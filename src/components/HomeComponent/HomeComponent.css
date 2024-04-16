@@ -1,0 +1,56 @@
+.mainHeading {
+  color: #0183c7;
+  width: 350px;
+}
+
+.upper-section {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.upper-section-content-text {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 27px;
+  max-width: 455px;
+}
+
+.lower-section {
+  padding-top: 15px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.lower-section-heading {
+  padding-left: 20px;
+  margin-bottom: 40px;
+  color: #0183c7;
+  width: 350px;
+}
+
+li::marker {
+  font-size: 40px;
+}
+
+.lower-section-content-list {
+  margin-left: 15px;
+  line-height: 27px;
+  max-width: 450px;
+}
+
+.img-container img {
+  position: relative; /* Ensure the image is positioned */
+  z-index: 2; /* Set a higher z-index value for the image */
+}
+
+.img-container {
+  position: relative;
+  padding-top: 40px;
+  display: flex;
+  align-items: center;
+  height: auto;
+  max-width: 100%;
+}
