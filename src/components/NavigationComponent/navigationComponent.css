@@ -3,3 +3,8 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.ant-menu-overflow{
+  display: flex;
+  align-items: center;
+}

@@ -1,52 +1,76 @@
 import "./navigationComponent.css";
 import { Menu } from "antd";
-import { useState } from "react";
-import HomeComponent from "../HomeComponent/HomeComponent"
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const items = [
+type MenuItem = {
+  label: string;
+  key: string;
+  target: string;
+};
+
+const items: MenuItem[] = [
   {
     label: "O NAS",
-    key: "dom",
-    path: "/",
+    key: "home",
+    target: "/",
   },
   {
     label: "CENNIK",
-    key: "cennik",
-    path: "/cennik",
+    key: "priceList",
+    target: "/cennik",
   },
   {
     label: "KONTAKT",
-    key: "kontakt",
-    icon: <HomeComponent/>,
+    key: "contact",
+    target: "/kontakt",
   },
   {
     label: "REZERWACJA",
-    key: "rezerwacja",
-    href: "http://localhost:3000/rezerwacja",
+    key: "reservation",
+    target: "/rezerwacja",
   },
   {
     label: "WARUNKI WYNAJMU",
-    key: "regulamin",
-    href: "http://localhost:3000/regulamin",
+    key: "statute",
+    target: "/regulamin",
   },
 ];
 
 const NavigationComponent: React.FC = () => {
-  const [current, setCurrent] = useState("dom");
+  const [current, setCurrent] = useState<string>("home");
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const onClick = (e: { key: React.Key }) => {
-    console.log("click ", e);
-    setCurrent(e.key.toString());
+  const getKeyFromPath = (path: string): string => {
+    const item = items.find((item) => item.target === path);
+    return item!.key;
+  };
+
+  useEffect(() => {
+    setCurrent(getKeyFromPath(location.pathname));
+  }, [location.pathname]);
+
+  const handleMenuClick = ({ key }: { key: MenuItem["key"] }) => {
+    const { target } = items.find((item) => item.key === key) || {};
+    setCurrent(key);
+    if (target) {
+      navigate(target);
+    }
   };
 
   return (
     <Menu
-      onClick={onClick}
-      selectedKeys={[current]}
+      style={{
+        fontSize: "16px",
+      }}
       mode="horizontal"
+      selectedKeys={[current]}
+      defaultSelectedKeys={["2"]}
       items={items}
+      onClick={handleMenuClick}
     />
   );
-}
+};
 
 export default NavigationComponent;

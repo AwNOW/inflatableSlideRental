@@ -1,5 +1,4 @@
 import { FC } from "react";
-import "./test.css";
 
 type Bubble = {
   top: string;
@@ -14,7 +13,11 @@ type BubblesProps = {
 
 const BubblesComponent: FC<BubblesProps> = ({ bubbles }) => {
   return (
-    <div className="bubbles-container">
+    <div
+      style={{
+        position: "relative",
+      }}
+    >
       {bubbles.map((bubble, index) => (
         <div
           key={index}
@@ -25,7 +28,8 @@ const BubblesComponent: FC<BubblesProps> = ({ bubbles }) => {
             height: bubble.height,
             width: bubble.width,
             borderRadius: bubble.borderRadius,
-            background: "linear-gradient(to top, #dfe9f3 0%, white 100%)", // Example background color
+            background:
+              "radial-gradient(592px at 48.2% 50%, rgba(255, 255, 249, 0.6) 0%, rgb(160, 199, 254) 74.6%)", // Example background color
           }}
         ></div>
       ))}

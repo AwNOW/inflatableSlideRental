@@ -1,14 +1,12 @@
 import "./HomeComponent.css";
-import "../../index.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
 import BubblesComponent from "../BubblesComponent/BubblesComponent";
 import { Button } from "antd";
-import type { SizeType } from "antd/es/config-provider/SizeContext";
-import { useState } from "react";
-import logo from "../../images/Zrzut ekranu 2024-04-14 220850.png";
-import obrazek from "../../images/obrazek2 2.png";
+import logo from "../../images/castle.png";
+import obrazek from "../../images/obrazek.png";
+import { Link } from "react-router-dom";
 
-let upperBubbleArr = [
+const upperBubbleArr = [
   {
     top: "-220px",
     left: "-400px",
@@ -39,13 +37,42 @@ let upperBubbleArr = [
   },
 ];
 
-function HomeComponent() {
-  const [size, setSize] = useState<SizeType>("large");
+const lowerBubbleArr = [
+  {
+    top: "-220px",
+    left: "-400px",
+    height: "350px",
+    width: "350px",
+    borderRadius: "350px",
+  },
+  {
+    top: "-100px",
+    left: "-330px",
+    height: "350px",
+    width: "350px",
+    borderRadius: "350px",
+  },
+  {
+    top: "-20px",
+    left: "-480px",
+    height: "250px",
+    width: "250px",
+    borderRadius: "250px",
+  },
+  {
+    top: "-170px",
+    left: "-150px",
+    height: "200px",
+    width: "200px",
+    borderRadius: "200px",
+  },
+];
 
+const HomeComponent = () => {
   return (
     <div>
       <header>
-        <nav>
+        <nav className="top-bar">
           <img src={logo} alt="Logo" />
           <NavigationComponent />
         </nav>
@@ -68,7 +95,7 @@ function HomeComponent() {
               color: "#000000",
               fontWeight: "500",
             }}
-            size={size}
+            size={"large"}
             href="http://localhost:3000/cennik"
           >
             SPRAWDŹ DMUCHAŃCE
@@ -82,15 +109,16 @@ function HomeComponent() {
       <div className="lower-section">
         <div className="img-container">
           <img src={obrazek} alt="dmuchanec1" />
-          <BubblesComponent bubbles={upperBubbleArr} />
+          <BubblesComponent bubbles={lowerBubbleArr} />
         </div>
         <div className="lower-section-content">
           <h2 className="lower-section-heading">Jak Działamy</h2>
           <ol className="lower-section-content-list">
             <li>
               Wybierz dmuchańca, który Cię interesuje i zarezerwuj go. To
-              proste! Możesz <a>zadzwonić</a> lub wypełnić
-              <a>formularz online</a>.
+              proste! Możesz <Link to="https://www.google.com">zadzwonić</Link>{" "}
+              lub wypełnić{" "}
+              <Link to="https://www.google.com">formularz online</Link>.
             </li>
             <li>
               Nasz zespół dostarczy wybrany sprzęt w ustalonym terminie i
@@ -114,7 +142,7 @@ function HomeComponent() {
               fontWeight: "500",
               backgroundColor: "#FFE54C",
             }}
-            size={size}
+            size={"large"}
             href="http://localhost:3000/regulamin"
           >
             SPRAWDŹ WARUNKI WYNAJMU
@@ -123,6 +151,9 @@ function HomeComponent() {
       </div>
     </div>
   );
-}
+};
 
 export default HomeComponent;
+
+//Playpen Sans
+//Lato
