@@ -2,6 +2,7 @@ import "./navigationComponent.css";
 import { Menu } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import logo from "../../images/castle.png";
 
 type MenuItem = {
   label: string;
@@ -60,16 +61,21 @@ const NavigationComponent: React.FC = () => {
   };
 
   return (
-    <Menu
-      style={{
-        fontSize: "16px",
-      }}
-      mode="horizontal"
-      selectedKeys={[current]}
-      defaultSelectedKeys={["2"]}
-      items={items}
-      onClick={handleMenuClick}
-    />
+    <div>
+      <nav className="top-bar">
+        <img src={logo} alt="Logo" />
+        <Menu
+          style={{
+            fontSize: "16px",
+          }}
+          mode="horizontal"
+          selectedKeys={[current]}
+          defaultSelectedKeys={["2"]}
+          items={items}
+          onClick={handleMenuClick}
+        />
+      </nav>
+    </div>
   );
 };
 

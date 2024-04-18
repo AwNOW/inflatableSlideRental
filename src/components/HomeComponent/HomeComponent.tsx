@@ -1,8 +1,7 @@
-import "./HomeComponent.css";
+import "./homeComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
-import BubblesComponent from "../BubblesComponent/BubblesComponent";
+import BubblesComponent from "../BubblesComponent/BubblesComponentAnim";
 import { Button } from "antd";
-import logo from "../../images/castle.png";
 import obrazek from "../../images/obrazek.png";
 import { Link } from "react-router-dom";
 
@@ -15,21 +14,21 @@ const upperBubbleArr = [
     borderRadius: "350px",
   },
   {
-    top: "-100px",
-    left: "-330px",
+    top: "-95px",
+    left: "-300px",
     height: "350px",
     width: "350px",
     borderRadius: "350px",
   },
   {
-    top: "-20px",
-    left: "-480px",
+    top: "20px",
+    left: "-440px",
     height: "250px",
     width: "250px",
     borderRadius: "250px",
   },
   {
-    top: "-170px",
+    top: "-250px",
     left: "-150px",
     height: "200px",
     width: "200px",
@@ -68,18 +67,13 @@ const lowerBubbleArr = [
   },
 ];
 
-const HomeComponent = () => {
+const HomeComponent: React.FC = () => {
   return (
     <div>
-      <header>
-        <nav className="top-bar">
-          <img src={logo} alt="Logo" />
-          <NavigationComponent />
-        </nav>
-      </header>
+      <NavigationComponent />
       <div className="upper-section">
         <div className="upper-section-content">
-          <h1 className="mainHeading">Urządź Dzieciom Niezapomniany Dzień!</h1>
+          <h1 className="main-heading">Urządź Dzieciom Niezapomniany Dzień!</h1>
           <p className="upper-section-content-text">
             Planujesz urządzić niezapomniane urodziny swojemu dziecku? Może
             chcesz przygotować coś specjalnego na dzień dziecka? Wypożyczalnia
@@ -116,9 +110,13 @@ const HomeComponent = () => {
           <ol className="lower-section-content-list">
             <li>
               Wybierz dmuchańca, który Cię interesuje i zarezerwuj go. To
-              proste! Możesz <Link to="https://www.google.com">zadzwonić</Link>{" "}
-              lub wypełnić{" "}
-              <Link to="https://www.google.com">formularz online</Link>.
+              proste! Możesz{" "}
+              <Link to="http://localhost:3000/kontakt">zadzwonić</Link> lub
+              wypełnić{" "}
+              <Link to="http://localhost:3000/rezerwacja">
+                formularz online
+              </Link>
+              .
             </li>
             <li>
               Nasz zespół dostarczy wybrany sprzęt w ustalonym terminie i
@@ -132,21 +130,25 @@ const HomeComponent = () => {
               dmuchańca i zabierzemy go z powrotem.
             </li>
           </ol>
-          <p>Chcesz wiedzieć więcej?</p>
+          <div className="lower-section-content-contact">
+            <p className="lower-section-content-subtext">
+              Chcesz wiedzieć więcej?
+            </p>
 
-          <Button
-            type="primary"
-            shape="round"
-            style={{
-              color: "	rgb(0, 0, 0)",
-              fontWeight: "500",
-              backgroundColor: "#FFE54C",
-            }}
-            size={"large"}
-            href="http://localhost:3000/regulamin"
-          >
-            SPRAWDŹ WARUNKI WYNAJMU
-          </Button>
+            <Button
+              type="primary"
+              shape="round"
+              style={{
+                color: "rgb(0, 0, 0)",
+                fontWeight: "500",
+                backgroundColor: "#FFE54C",
+              }}
+              size={"large"}
+              href="http://localhost:3000/regulamin"
+            >
+              SPRAWDŹ WARUNKI WYNAJMU
+            </Button>
+          </div>
         </div>
       </div>
     </div>

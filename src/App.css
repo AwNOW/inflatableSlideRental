@@ -1,5 +1,6 @@
 .app {
   max-width: 1400px;
+  min-width: 1200px;
   background: #fff;
   margin-top: 20px;
   margin-bottom: 20px;

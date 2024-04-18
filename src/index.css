@@ -8,7 +8,8 @@ body {
   background-color: #0183c7;
   font-family: "Lato", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
     "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 18px;
   /* font-variation-settings: 'wght' 625; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

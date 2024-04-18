@@ -1,4 +1,4 @@
-import "./formikContactComponent.css";
+import "./formComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
 import { v4 as uuidv4 } from "uuid";
 import { firestore } from "../../index";
@@ -54,7 +54,7 @@ const postalCodeValidation = (zipCode: string) => {
   }
 };
 
-function FormikContactComponent() {
+const FormikContactComponent: React.FC = () => {
   const handleFormSubmit: (
     values: OrderForm,
     formikHelpers: FormikHelpers<OrderForm>

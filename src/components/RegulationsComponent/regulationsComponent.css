@@ -1,0 +1,40 @@
+.main-content-heading {
+  font-family: "Playpen Sans";
+  font-size: 38px;
+  color: #0183c7;
+}
+
+.content-title {
+  font-family: "Playpen Sans";
+  font-size: 24px;
+  color: #0183c7;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.main-content-list {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  padding-left: 30px;
+}
+
+.main-content-list > li::marker {
+  font-size: 30px;
+}
+
+.footer-contact-information {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.footer-contact-information {
+  padding-top: 60px;
+  font-size: 16px;
+}
+
+.footer-contact-information-phone {
+  color: #0183c7;
+  text-decoration: underline;
+  font-weight: 600;
+}

@@ -4,9 +4,9 @@
   justify-content: space-between;
 }
 
-.mainHeading {
+.main-heading {
   color: #0183c7;
-  width: 400px;
+  width: 450px;
   font-family: "Playpen Sans";
   font-optical-sizing: auto;
   font-weight: 700;
@@ -37,13 +37,14 @@
 }
 
 .lower-section-heading {
+  font-family: "Playpen Sans";
   padding-left: 20px;
   margin-bottom: 40px;
   color: #0183c7;
   width: 350px;
 }
 
-li::marker {
+.lower-section-content-list > li::marker {
   font-size: 40px;
 }
 
@@ -51,6 +52,11 @@ li::marker {
   margin-left: 15px;
   line-height: 27px;
   max-width: 450px;
+}
+
+.lower-section-content-contact {
+  padding-top: 30px;
+  padding-left: 50px;
 }
 
 .img-container img {
