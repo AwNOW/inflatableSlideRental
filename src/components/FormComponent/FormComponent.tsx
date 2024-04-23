@@ -1,5 +1,6 @@
 import "./formComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
+import BubblesComponent from "../BubblesComponent/BubblesComponent";
 import { v4 as uuidv4 } from "uuid";
 import { firestore } from "../../index";
 import {
@@ -13,8 +14,8 @@ import {
 } from "formik";
 import * as Yup from "yup";
 
-import React, { useState } from "react";
-import { writeBatch, doc } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { writeBatch, doc, collection, getDocs } from "firebase/firestore";
 
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -24,47 +25,58 @@ import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 import type { RangeKeyDict } from "react-date-range";
 
+import type { TimePickerProps } from "antd";
+import { TimePicker, Input, Button } from "antd";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import { convertLegacyProps } from "antd/es/button";
+import { postalCodeValidation, DisabledDays, OrderData, getBookedDays, getDisabledDays} from "./formHelpers"
+
+
+const bubbleArr = [
+  {
+    top: "-5px",
+    left: "-150px",
+    height: "400px",
+    width: "400px",
+    borderRadius: "400px",
+  },
+  {
+    top: "210px",
+    left: "-270px",
+    height: "250px",
+    width: "250px",
+    borderRadius: "250px",
+  },
+];
+
 interface OrderForm {
   clientName: string;
   clientSurname: string;
   phoneNr: string;
   assType: string;
   deliveryType: string;
-  timeFrames: [Date, Date];
+  timeFrames: {
+    startDate?: Date | null;
+    endDate?: Date | null;
+    key?: string;
+  }[];
   addressZipCode: string;
   addressCity: string;
   addressHouseNumber: string;
   paymentType: string;
   checked: boolean;
 }
-interface Props {
-  onDateChange: (startDate: Date, endDate: Date) => void;
-}
-
-// ZIP CODE validation function
-const postalCodes = require("postal-codes-js");
-const countryCode = "PL"; // ISO 3166-1 alpha-2 or alpha-3 country code as string.
-
-const postalCodeValidation = (zipCode: string) => {
-  const message = postalCodes.validate(countryCode, zipCode);
-  if (message === true) {
-    return true;
-  } else {
-    return false;
-  }
-};
 
 const FormikContactComponent: React.FC = () => {
   const handleFormSubmit: (
     values: OrderForm,
     formikHelpers: FormikHelpers<OrderForm>
-  ) => void | Promise<any> = async (values, { setSubmitting, resetForm }) => {
-    console.log(values);
+  ) => void | Promise<void> = async (values, { setSubmitting, resetForm }) => {
     await writeToDatabase(values);
     setSubmitting(false);
     resetForm(); // Reset the form
   };
-
   const writeToDatabase = async (values: OrderForm) => {
     const orderId = uuidv4();
     const orderRef = doc(firestore, "orders", orderId);
@@ -75,7 +87,10 @@ const FormikContactComponent: React.FC = () => {
     batch.set(orderRef, {
       assType: values.assType,
       deliveryType: values.deliveryType,
-      tripTimeFrames: [values.timeFrames[0], values.timeFrames[1]],
+      timeFrames: [
+        values.timeFrames[0].startDate,
+        values.timeFrames[0].endDate,
+      ],
     });
 
     let addressZipCode = values.addressZipCode;
@@ -167,7 +182,7 @@ const FormikContactComponent: React.FC = () => {
     return inputValue.slice(0, 6);
   };
 
-  //trimmerFunc
+  //TrimmerFunc
   const trimAndSet = (
     fieldName: string,
     setFieldValue: (
@@ -182,59 +197,78 @@ const FormikContactComponent: React.FC = () => {
     };
   };
 
-  //calendar
-  const tomorrow = addDays(new Date(), 1);
-  const [state, setState] = useState([
-    {
-      startDate: tomorrow,
-      endDate: tomorrow,
-      key: "selection",
-    },
-  ]);
+  // timepicker
+  // dayjs.extend(customParseFormat);
+  // const onChange: TimePickerProps["onChange"] = (time, timeString) => {
+  //   console.log(time, timeString);
+  // };
 
-  const handleSelect = (ranges: RangeKeyDict) => {
-    const { selection } = ranges;
-    const selectedRange = {
-      startDate: selection.startDate || new Date(), // If undefined, default to new Date()
-      endDate: selection.endDate || new Date(), // If undefined, default to new Date()
-      key: "selection",
-    };
+  const [disabledDays, setDisabledDays] = useState<DisabledDays>();
 
-    setState([selectedRange]);
+
+  const assAmounts: { [key: string]: number } = {
+    typeA: 2,
+    typeB: 2,
   };
+
+  useEffect(() => {
+    const ordersCollection = collection(firestore, "orders");
+    getDocs(ordersCollection).then((snapshot) => {
+      const ordersData = snapshot.docs.map((doc) => {
+        const data = doc.data();
+        return {
+          id: doc.id,
+          assType: data.assType,
+          timeFrames: data.timeFrames,
+        } as OrderData;
+      });
+
+      const reservationInfo = getBookedDays(ordersData);
+      const disabledDaysResult = getDisabledDays(reservationInfo, assAmounts);
+      setDisabledDays(disabledDaysResult);
+    });
+  }, []);
+
+  console.log(disabledDays);
 
   return (
     <div>
       <NavigationComponent />
+      <h1>Rezerwacja</h1>
+      {/* <div className="bubble-container">
+        <BubblesComponent bubbles={bubbleArr} />
+      </div> */}
       <Formik
-        initialValues={{
-          clientName: "",
-          clientSurname: "",
-          phoneNr: "",
-          assType: "",
-          deliveryType: "",
-          timeFrames: [new Date(), new Date()],
-          addressZipCode: "",
-          addressCity: "",
-          addressHouseNumber: "",
-          paymentType: "",
-          checked: false,
-        }}
+        initialValues={
+          {
+            clientName: "",
+            clientSurname: "",
+            phoneNr: "",
+            assType: "",
+            deliveryType: "",
+            timeFrames: [
+              {
+                startDate: addDays(new Date(), 1),
+                endDate: addDays(new Date(), 1),
+                key: "selection",
+              },
+            ],
+            addressZipCode: "",
+            addressCity: "",
+            addressHouseNumber: "",
+            paymentType: "",
+            checked: false,
+          } as OrderForm
+        }
         validationSchema={validationSchema}
         onSubmit={handleFormSubmit}
       >
-        {({
-          values,
-          setFieldTouched,
-          setValues,
-          setFieldValue,
-          isValid,
-          resetForm,
-        }) => (
+        {({ values, setFieldValue, isValid, resetForm }) => (
           <Form>
             <div>
               <label htmlFor="clientName"></label>
               <Field
+                as={Input}
                 type="text"
                 placeholder="Imię (wymagane)"
                 name="clientName"
@@ -250,6 +284,7 @@ const FormikContactComponent: React.FC = () => {
             <div>
               <label htmlFor="clientSurname"></label>
               <Field
+                as={Input}
                 type="text"
                 placeholder="Nazwisko (wymagane)"
                 name="clientSurname"
@@ -265,6 +300,7 @@ const FormikContactComponent: React.FC = () => {
             <div>
               <label htmlFor="phoneNr"></label>
               <Field
+                as={Input}
                 type="text"
                 placeholder="Numer telefonu (wymagane)"
                 name="phoneNr"
@@ -278,14 +314,11 @@ const FormikContactComponent: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="assType">
-                Wybierz rodzaj dmuchanej atrakcji:
-              </label>
               <Field name="assType" as="select">
                 <option value="typeA">Zamek A</option>
                 <option value="typeB">Zamek B</option>
                 <option value="" disabled hidden>
-                  Rodzaje atrakcji
+                  Wybierz rodzaj dmuchanej atrakcji
                 </option>
               </Field>
 
@@ -295,9 +328,42 @@ const FormikContactComponent: React.FC = () => {
                 className="validationError"
               />
             </div>
-            <div></div>
+            <label>Wybierz dzień dostawy i odbioru:</label>
+            <Field
+              as={DateRange}
+              locale={pl}
+              name="timeFrames"
+              editableDateInputs={true}
+              disabledDates={[addDays(new Date(), 1)]}
+              onChange={(ranges: RangeKeyDict) => {
+                const { selection } = ranges;
+                const selectedRange = {
+                  startDate: selection.startDate,
+                  endDate: selection.endDate,
+                  key: "selection",
+                };
+                setFieldValue("timeFrames", [
+                  {
+                    startDate: selectedRange.startDate,
+                    endDate: selectedRange.endDate,
+                    key: "selection",
+                  },
+                ]);
+              }}
+              moveRangeOnFirstSelection={false}
+              ranges={values.timeFrames}
+              minDate={addDays(new Date(), 1)}
+              showDateDisplay={true}
+              showPreview={true}
+            />
+            <p>
+              Dni zaznaczone na szaro (te których nie da sie wybrać) oznaczają
+              że dana atrakcja w tym terminie jest nie dostępna.
+              <br />
+              Możesz spróbować wybrać innego dmuchańca i sprawdzić dostępność w
+              kalendarzu.
+            </p>
             <div>
-              <label htmlFor="assType">Wybierz rodzaj dostawy:</label>
               <Field name="deliveryType" as="select">
                 <option value="delivery">
                   Zamówienie z dostawą na miejsce imprezy.
@@ -305,7 +371,9 @@ const FormikContactComponent: React.FC = () => {
                 <option value="self-pickup">
                   Zamówienie z odbiorem osobistym.
                 </option>
-                <option value="" disabled hidden></option>
+                <option value="" disabled hidden>
+                  Wybierz rodzaj dostawy
+                </option>
               </Field>
 
               <ErrorMessage
@@ -326,7 +394,6 @@ const FormikContactComponent: React.FC = () => {
                       const prevValue = values.addressZipCode;
                       const updateValue = zipCodeFormatter(prevValue, newValue);
                       setFieldValue("addressZipCode", updateValue);
-                      console.log(newValue);
                     }}
                     type="text"
                     placeholder="Kod pocztowy"
@@ -364,35 +431,21 @@ const FormikContactComponent: React.FC = () => {
                 </div>
               </div>
             )}
-            <Field
-              as={DateRange}
-              locale={pl}
-              name=""
-              editableDateInputs={true}
-              onChange={(ranges: RangeKeyDict) => {
-                  const { selection } = ranges;
-                  const selectedRange = {
-                    startDate: selection.startDate || new Date(), // If undefined, default to new Date()
-                    endDate: selection.endDate || new Date(), // If undefined, default to new Date()
-                    key: "selection",
-                  };
-
-                  setFieldValue("timeFrames", [selectedRange.startDate, selectedRange.endDate]);
-                }
-              }
-              moveRangeOnFirstSelection={false}
-              ranges={state}
-              minDate={tomorrow}
-              showDateDisplay={true}
-              showPreview={true}
+            {/* <TimePicker
+              onChange={onChange}
+              defaultOpenValue={dayjs("00:00:00", "HH:mm:ss")}
             />
-
+            <TimePicker
+              onChange={onChange}
+              defaultOpenValue={dayjs("00:00:00", "HH:mm:ss")}
+            /> */}
             <div>
-              <label htmlFor="paymentType">Wybierz rodzaj płatności:</label>
               <Field name="paymentType" as="select">
                 <option value="card">Płatność kartą</option>
                 <option value="cash">Płatność gotówką</option>
-                <option value="" disabled hidden></option>
+                <option value="" disabled hidden>
+                  Wybierz rodzaj płatności
+                </option>
               </Field>
 
               <ErrorMessage
@@ -415,13 +468,15 @@ const FormikContactComponent: React.FC = () => {
             />
 
             <div>
-              <button type="submit">Wyślij wiadomość</button>
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
             </div>
           </Form>
         )}
       </Formik>
     </div>
   );
-}
+};
 
 export default FormikContactComponent;
