@@ -114,9 +114,7 @@ const HomeComponent: React.FC = () => {
               <Link to="http://localhost:3000/kontakt">zadzwonić</Link> lub
               wypełnić{" "}
               <Link to="http://localhost:3000/rezerwacja">
-                formularz online
-              </Link>
-              .
+                formularz online</Link>.
             </li>
             <li>
               Nasz zespół dostarczy wybrany sprzęt w ustalonym terminie i

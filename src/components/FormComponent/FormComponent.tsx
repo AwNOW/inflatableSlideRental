@@ -1,6 +1,7 @@
 import "./formComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
 import BubblesComponent from "../BubblesComponent/BubblesComponent";
+import obrazek from "../../images/obrazek.png";
 import { v4 as uuidv4 } from "uuid";
 import { firestore } from "../../index";
 import {
@@ -30,8 +31,13 @@ import { TimePicker, Input, Button } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { convertLegacyProps } from "antd/es/button";
-import { postalCodeValidation, DisabledDays, OrderData, getBookedDays, getDisabledDays} from "./formHelpers"
-
+import {
+  postalCodeValidation,
+  DisabledDays,
+  OrderData,
+  getBookedDays,
+  getDisabledDays,
+} from "./formHelpers";
 
 const bubbleArr = [
   {
@@ -205,7 +211,6 @@ const FormikContactComponent: React.FC = () => {
 
   const [disabledDays, setDisabledDays] = useState<DisabledDays>();
 
-
   const assAmounts: { [key: string]: number } = {
     typeA: 2,
     typeB: 2,
@@ -229,7 +234,6 @@ const FormikContactComponent: React.FC = () => {
     });
   }, []);
 
-  console.log(disabledDays);
 
   return (
     <div>
@@ -329,33 +333,45 @@ const FormikContactComponent: React.FC = () => {
               />
             </div>
             <label>Wybierz dzień dostawy i odbioru:</label>
-            <Field
-              as={DateRange}
-              locale={pl}
-              name="timeFrames"
-              editableDateInputs={true}
-              disabledDates={[addDays(new Date(), 1)]}
-              onChange={(ranges: RangeKeyDict) => {
-                const { selection } = ranges;
-                const selectedRange = {
-                  startDate: selection.startDate,
-                  endDate: selection.endDate,
-                  key: "selection",
-                };
-                setFieldValue("timeFrames", [
-                  {
-                    startDate: selectedRange.startDate,
-                    endDate: selectedRange.endDate,
-                    key: "selection",
-                  },
-                ]);
-              }}
-              moveRangeOnFirstSelection={false}
-              ranges={values.timeFrames}
-              minDate={addDays(new Date(), 1)}
-              showDateDisplay={true}
-              showPreview={true}
-            />
+            {values.assType && (
+              <>
+                <img src={obrazek} alt="dmuchanec1" />
+                <Field
+                  as={DateRange}
+                  locale={pl}
+                  name="timeFrames"
+                  editableDateInputs={true}
+                  disabledDates={
+                    !disabledDays || !disabledDays[values.assType]
+                      ? []
+                      : disabledDays[values.assType].map((timestamp) => {
+                        return new Date(Number(timestamp));
+                        })
+                  }
+                  onChange={(ranges: RangeKeyDict) => {
+                    const { selection } = ranges;
+                    const selectedRange = {
+                      startDate: selection.startDate,
+                      endDate: selection.endDate,
+                      key: "selection",
+                    };
+                    setFieldValue("timeFrames", [
+                      {
+                        startDate: selectedRange.startDate,
+                        endDate: selectedRange.endDate,
+                        key: "selection",
+                      },
+                    ]);
+                  }}
+                  moveRangeOnFirstSelection={false}
+                  ranges={values.timeFrames}
+                  minDate={addDays(new Date(), 1)}
+                  showDateDisplay={true}
+                  showPreview={true}
+                />
+              </>
+            )}
+
             <p>
               Dni zaznaczone na szaro (te których nie da sie wybrać) oznaczają
               że dana atrakcja w tym terminie jest nie dostępna.
