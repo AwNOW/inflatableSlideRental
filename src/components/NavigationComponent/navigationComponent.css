@@ -2,6 +2,7 @@
   border-bottom: none;
   display: flex;
   justify-content: flex-end;
+  background-color: #F6FDFF;
 }
 
 .ant-menu-overflow{

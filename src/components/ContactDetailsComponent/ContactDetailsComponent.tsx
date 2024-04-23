@@ -46,7 +46,7 @@ const ContactDetailsComponent: FC = () => {
         <div className="main-content-text">
           <h1 className="main-heading">Kontakt</h1>
           <p>
-            <span>Hulańce dla Bajtli</span>
+            <span className="subheading">Hulańce dla Bajtli</span>
             <br />
             Ornontowice <br />
             Zwycięstwa 20A
@@ -67,6 +67,7 @@ const ContactDetailsComponent: FC = () => {
             <span>sb - nd 8:00 - 21:00</span>
           </p>
         </div>
+        <p>Call a customer support rep at <a href="tel:6031112298">603-111-2298</a>.</p>
 
         <div className="bubble-container">
           <BubblesComponent bubbles={bubbleArr} />

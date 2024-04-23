@@ -5,3 +5,8 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.subheading{
+    font-size: 24px;
+    font-weight: bold;
+}

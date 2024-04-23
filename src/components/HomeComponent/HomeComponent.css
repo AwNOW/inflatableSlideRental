@@ -6,11 +6,12 @@
 
 .main-heading {
   color: #0183c7;
-  width: 450px;
+  width: 566px;
   font-family: "Playpen Sans";
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal;
+  font-family: 48px;
 }
 
 .upper-section {
@@ -27,6 +28,7 @@
   max-width: 455px;
   font-size: 18px;
   letter-spacing: -0.01em;
+  font-size: 600;
 }
 
 .lower-section {
