@@ -26,15 +26,18 @@
   display: flex;
   flex-direction: column;
   align-items: end;
-}
-
-.footer-contact-information {
   padding-top: 60px;
   font-size: 16px;
+}
+
+.footer-contact-text {
+  font-size: 18px;
+  margin-bottom: 0px;
 }
 
 .footer-contact-information-phone {
   color: #0183c7;
   text-decoration: underline;
   font-weight: 600;
+  font-size: 24px;
 }

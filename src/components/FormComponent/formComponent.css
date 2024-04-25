@@ -1,0 +1,69 @@
+.main-heading {
+  font-family: "Playpen Sans";
+  font-size: 38px;
+  color: #0183c7;
+}
+
+.img-container {
+  position: absolute;
+  left: 800px;
+  overflow: auto;
+}
+
+.form-input-long {
+  width: 654px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.form-input-medium {
+  width: 315px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.form-input-short {
+  width: 130px;
+  margin-bottom: 8px;
+}
+
+.calendar-content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+}
+
+.calendar-label {
+  padding-top: 8px;
+}
+
+.calendar-content {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.calendar-additional-text {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  width: 210px;
+}
+
+.delivery-info-content {
+  display: grid;
+  grid-template-columns: 315px 315px;
+  grid-row: auto auto;
+  grid-column-gap: 24px;
+}
+.time-pickers-content {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+.time-picker {
+  display: flex;
+  flex-direction: column;
+  width: 315px;
+}

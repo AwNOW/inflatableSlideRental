@@ -77,13 +77,15 @@ const RegulationsComponent: React.FC = () => {
         <BubblesComponent bubbles={bubbleArr} />
       </div>
       <div className="footer-contact-information">
-        <p>
+        <p className="footer-contact-text">
           W przypadku jakichkolwiek pytań, prosimy o kontakt pod numerem
           telefonu:
         </p>
-        <span className="footer-contact-information-phone">
-          +48 165 162 781
-        </span>
+        <p>
+          <a className="footer-contact-information-phone" href="tel:165162781">
+            +48 165 162 781
+          </a>
+        </p>
       </div>
     </div>
   );

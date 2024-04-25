@@ -67,7 +67,6 @@ const ContactDetailsComponent: FC = () => {
             <span>sb - nd 8:00 - 21:00</span>
           </p>
         </div>
-        <p>Call a customer support rep at <a href="tel:6031112298">603-111-2298</a>.</p>
 
         <div className="bubble-container">
           <BubblesComponent bubbles={bubbleArr} />

@@ -11,7 +11,6 @@ import {
   FormikHelpers,
   FormikErrors,
   Form,
-  validateYupSchema,
 } from "formik";
 import * as Yup from "yup";
 
@@ -27,7 +26,7 @@ import { addDays } from "date-fns";
 import type { RangeKeyDict } from "react-date-range";
 
 import type { TimePickerProps } from "antd";
-import { TimePicker, Input, Button } from "antd";
+import { TimePicker, Input, Button, Select } from "antd";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { convertLegacyProps } from "antd/es/button";
@@ -69,6 +68,7 @@ interface OrderForm {
   }[];
   addressZipCode: string;
   addressCity: string;
+  addressStreet: string;
   addressHouseNumber: string;
   paymentType: string;
   checked: boolean;
@@ -101,11 +101,13 @@ const FormikContactComponent: React.FC = () => {
 
     let addressZipCode = values.addressZipCode;
     let addressCity = values.addressCity;
+    let addressStreet = values.addressStreet;
     let addressHouseNumber = values.addressHouseNumber;
 
     if (values.assType === "self-pickup") {
       addressZipCode = "";
       addressCity = "";
+      addressStreet = "";
       addressHouseNumber = "";
     }
 
@@ -116,6 +118,7 @@ const FormikContactComponent: React.FC = () => {
       paymentType: values.paymentType,
       addressZipCode: addressZipCode,
       addressCity: addressCity,
+      addressStreet: addressStreet,
       addressHouseNumber: addressHouseNumber,
     });
 
@@ -152,7 +155,7 @@ const FormikContactComponent: React.FC = () => {
       is: "delivery",
       then: () =>
         Yup.string()
-          .required("Proszę podać kod pocztowy")
+          .required("Proszę podać kod pocztowy.")
           .matches(/^\d{2}-\d{3}$/, {
             message: "Kod pocztowy powinien być w formacie XX-XXX.",
           })
@@ -167,6 +170,10 @@ const FormikContactComponent: React.FC = () => {
     addressCity: Yup.string().when("deliveryType", {
       is: "delivery",
       then: () => Yup.string().required("Proszę podać miasto."),
+    }),
+    addressStreet: Yup.string().when("deliveryType", {
+      is: "delivery",
+      then: () => Yup.string().required("Proszę podać nazwę ulicy."),
     }),
     addressHouseNumber: Yup.string().when("deliveryType", {
       is: "delivery",
@@ -234,14 +241,10 @@ const FormikContactComponent: React.FC = () => {
     });
   }, []);
 
-
   return (
     <div>
       <NavigationComponent />
-      <h1>Rezerwacja</h1>
-      {/* <div className="bubble-container">
-        <BubblesComponent bubbles={bubbleArr} />
-      </div> */}
+      <h1 className="main-content-heading">Rezerwacja</h1>
       <Formik
         initialValues={
           {
@@ -257,9 +260,10 @@ const FormikContactComponent: React.FC = () => {
                 key: "selection",
               },
             ],
-            addressZipCode: "",
             addressCity: "",
+            addressStreet: "",
             addressHouseNumber: "",
+            addressZipCode: "",
             paymentType: "",
             checked: false,
           } as OrderForm
@@ -268,10 +272,18 @@ const FormikContactComponent: React.FC = () => {
         onSubmit={handleFormSubmit}
       >
         {({ values, setFieldValue, isValid, resetForm }) => (
-          <Form>
+          <Form className="main-form-content">
+            <div className="img-container">
+              {values.assType && <img
+              className="img"
+              src={obrazek}
+              alt="dmuchanec1" />}
+              {/* <BubblesComponent bubbles={upperBubbleArr} /> */}
+            </div>
             <div>
               <label htmlFor="clientName"></label>
               <Field
+                className="form-input-long"
                 as={Input}
                 type="text"
                 placeholder="Imię (wymagane)"
@@ -284,10 +296,10 @@ const FormikContactComponent: React.FC = () => {
                 className="validationError"
               />
             </div>
-
             <div>
               <label htmlFor="clientSurname"></label>
               <Field
+                className="form-input-long"
                 as={Input}
                 type="text"
                 placeholder="Nazwisko (wymagane)"
@@ -300,10 +312,10 @@ const FormikContactComponent: React.FC = () => {
                 className="validationError"
               />
             </div>
-
             <div>
               <label htmlFor="phoneNr"></label>
               <Field
+                className="form-input-long"
                 as={Input}
                 type="text"
                 placeholder="Numer telefonu (wymagane)"
@@ -316,15 +328,20 @@ const FormikContactComponent: React.FC = () => {
                 className="validationError"
               />
             </div>
-
             <div>
-              <Field name="assType" as="select">
-                <option value="typeA">Zamek A</option>
-                <option value="typeB">Zamek B</option>
-                <option value="" disabled hidden>
-                  Wybierz rodzaj dmuchanej atrakcji
-                </option>
-              </Field>
+              <Field
+                className="form-input-long"
+                name="assType"
+                component={Select}
+                placeholder="Wybierz rodzaj dmuchanej atrakcji"
+                options={[
+                  { value: "typeA", label: "Zamek A" },
+                  { value: "typeB", label: "Zamek B" },
+                ]}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setFieldValue("assType", e);
+                }}
+              ></Field>
 
               <ErrorMessage
                 name="assType"
@@ -332,65 +349,77 @@ const FormikContactComponent: React.FC = () => {
                 className="validationError"
               />
             </div>
-            <label>Wybierz dzień dostawy i odbioru:</label>
             {values.assType && (
-              <>
-                <img src={obrazek} alt="dmuchanec1" />
-                <Field
-                  as={DateRange}
-                  locale={pl}
-                  name="timeFrames"
-                  editableDateInputs={true}
-                  disabledDates={
-                    !disabledDays || !disabledDays[values.assType]
-                      ? []
-                      : disabledDays[values.assType].map((timestamp) => {
-                        return new Date(Number(timestamp));
-                        })
-                  }
-                  onChange={(ranges: RangeKeyDict) => {
-                    const { selection } = ranges;
-                    const selectedRange = {
-                      startDate: selection.startDate,
-                      endDate: selection.endDate,
-                      key: "selection",
-                    };
-                    setFieldValue("timeFrames", [
-                      {
-                        startDate: selectedRange.startDate,
-                        endDate: selectedRange.endDate,
+              <div>
+                <label>Wybierz dzień dostawy i odbioru:</label>
+                <div className="calendar-content">
+                  <Field
+                    as={DateRange}
+                    locale={pl}
+                    name="timeFrames"
+                    editableDateInputs={true}
+                    disabledDates={
+                      !disabledDays || !disabledDays[values.assType]
+                        ? []
+                        : disabledDays[values.assType].map((timestamp) => {
+                            return new Date(Number(timestamp));
+                          })
+                    }
+                    onChange={(ranges: RangeKeyDict) => {
+                      const { selection } = ranges;
+                      const selectedRange = {
+                        startDate: selection.startDate,
+                        endDate: selection.endDate,
                         key: "selection",
-                      },
-                    ]);
-                  }}
-                  moveRangeOnFirstSelection={false}
-                  ranges={values.timeFrames}
-                  minDate={addDays(new Date(), 1)}
-                  showDateDisplay={true}
-                  showPreview={true}
-                />
-              </>
+                      };
+                      setFieldValue("timeFrames", [
+                        {
+                          startDate: selectedRange.startDate,
+                          endDate: selectedRange.endDate,
+                          key: "selection",
+                        },
+                      ]);
+                    }}
+                    moveRangeOnFirstSelection={false}
+                    ranges={values.timeFrames}
+                    minDate={addDays(new Date(), 1)}
+                    showDateDisplay={true}
+                    showPreview={true}
+                  />
+                  <div className="calendar-additional-text">
+                    <p>
+                      Dni zaznaczone na szaro (te których nie da sie wybrać)
+                      oznaczają że dana atrakcja w tym terminie jest nie
+                      dostępna.
+                    </p>
+                    <p>
+                      Możesz spróbować wybrać innego dmuchańca i sprawdzić
+                      dostępność w kalendarzu.
+                    </p>
+                  </div>
+                </div>
+              </div>
             )}
-
-            <p>
-              Dni zaznaczone na szaro (te których nie da sie wybrać) oznaczają
-              że dana atrakcja w tym terminie jest nie dostępna.
-              <br />
-              Możesz spróbować wybrać innego dmuchańca i sprawdzić dostępność w
-              kalendarzu.
-            </p>
             <div>
-              <Field name="deliveryType" as="select">
-                <option value="delivery">
-                  Zamówienie z dostawą na miejsce imprezy.
-                </option>
-                <option value="self-pickup">
-                  Zamówienie z odbiorem osobistym.
-                </option>
-                <option value="" disabled hidden>
-                  Wybierz rodzaj dostawy
-                </option>
-              </Field>
+              <Field
+                className="form-input-long"
+                name="deliveryType"
+                component={Select}
+                placeholder="Wybierz rodzaj dostawy"
+                options={[
+                  {
+                    value: "delivery",
+                    label: "Zamówienie z dostawą na miejsce imprezy.",
+                  },
+                  {
+                    value: "self-pickup",
+                    label: "Zamówienie z odbiorem osobistym.",
+                  },
+                ]}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setFieldValue("deliveryType", e);
+                }}
+              ></Field>
 
               <ErrorMessage
                 name="deliveryType"
@@ -398,13 +427,61 @@ const FormikContactComponent: React.FC = () => {
                 className="validationError"
               />
             </div>
-
             {values.deliveryType === "delivery" && (
-              <div>
+              <div className="delivery-info-content">
+                <div>
+                  <label htmlFor="addressCity"></label>
+                  <Field
+                    className="form-input-medium"
+                    as={Input}
+                    type="text"
+                    placeholder="Miejscowość"
+                    name="addressCity"
+                    onChange={trimAndSet("addressCity", setFieldValue)}
+                  />
+                  <ErrorMessage
+                    name="addressCity"
+                    component="div"
+                    className="validationError"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="addressStreet"></label>
+                  <Field
+                    className="form-input-medium"
+                    as={Input}
+                    type="text"
+                    placeholder="Ulica"
+                    name="addressStreet"
+                    onChange={trimAndSet("addressStreet", setFieldValue)}
+                  />
+                  <ErrorMessage
+                    name="addressStreet"
+                    component="div"
+                    className="validationError"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="addressHouseNumber"></label>
+                  <Field
+                    className="form-input-medium"
+                    as={Input}
+                    type="text"
+                    placeholder="Numer budynku"
+                    name="addressHouseNumber"
+                    onChange={trimAndSet("addressHouseNumber", setFieldValue)}
+                  />
+                  <ErrorMessage
+                    name="addressHouseNumber"
+                    component="div"
+                    className="validationError"
+                  />
+                </div>
                 <div>
                   <label htmlFor="addressZipCode"></label>
                   <Field
-                    as="input"
+                    className="form-input-medium"
+                    as={Input}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       const newValue = e.target.value;
                       const prevValue = values.addressZipCode;
@@ -421,48 +498,48 @@ const FormikContactComponent: React.FC = () => {
                     className="validationError"
                   />
                 </div>
-                <div>
-                  <label htmlFor="addressCity"></label>
-                  <Field
-                    type="text"
-                    placeholder="Miejscowość"
-                    name="addressCity"
-                    onChange={trimAndSet("addressCity", setFieldValue)}
-                  />
-                  <ErrorMessage
-                    name="addressCity"
-                    component="div"
-                    className="validationError"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="addressHouseNumber"></label>
-                  <Field
-                    type="text"
-                    placeholder="Numer budynku"
-                    name="addressHouseNumber"
-                    onChange={trimAndSet("addressHouseNumber", setFieldValue)}
-                  />
-                  <ErrorMessage name="addressHouseNumber" component="div" />
-                </div>
               </div>
             )}
-            {/* <TimePicker
-              onChange={onChange}
-              defaultOpenValue={dayjs("00:00:00", "HH:mm:ss")}
-            />
-            <TimePicker
-              onChange={onChange}
-              defaultOpenValue={dayjs("00:00:00", "HH:mm:ss")}
-            /> */}
+            <div className="time-pickers-content">
+              <div className="time-picker">
+                <label>Preferowana godzina dostawy:</label>
+                <Field
+                  className="form-input-short"
+                  component={TimePicker}
+                  // onChange={}
+                  // defaultOpenValue={dayjs("00:00:00", "HH:mm:ss")}
+                />
+              </div>
+              <div className="time-picker">
+                <label>Preferowana godzina odbioru:</label>
+                <Field
+                  className="form-input-short"
+                  component={TimePicker}
+                  // onChange={}
+                  // defaultOpenValue={dayjs("00:00:00", "HH:mm:ss")}
+                />
+              </div>
+            </div>
             <div>
-              <Field name="paymentType" as="select">
-                <option value="card">Płatność kartą</option>
-                <option value="cash">Płatność gotówką</option>
-                <option value="" disabled hidden>
-                  Wybierz rodzaj płatności
-                </option>
-              </Field>
+              <Field
+                className="form-input-long"
+                name="paymentType"
+                component={Select}
+                placeholder="Wybierz rodzaj płatności przy odbiorze"
+                options={[
+                  {
+                    value: "card",
+                    label: "Płatność kartą.",
+                  },
+                  {
+                    value: "cash",
+                    label: "Płatność gotówką.",
+                  },
+                ]}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setFieldValue("paymentType", e);
+                }}
+              ></Field>
 
               <ErrorMessage
                 name="paymentType"
@@ -470,27 +547,47 @@ const FormikContactComponent: React.FC = () => {
                 className="validationError"
               />
             </div>
-            <label>
+            <div className="">
               <Field type="checkbox" name="checked" />
               Wyrażam zgodę na przetwarzanie moich danych osobowych przez XYZ w
               celu i zakresie koniecznym do udzielenia odpowiedzi na przesłanie
               zapytanie.*
-            </label>
-
-            <ErrorMessage
-              name="checked"
-              component="div"
-              className="validationError"
-            />
+              <ErrorMessage
+                name="checked"
+                component="div"
+                className="validationError"
+              />
+            </div>
 
             <div>
-              <Button type="primary" htmlType="submit">
-                Submit
+              <Button
+                type="primary"
+                shape="round"
+                style={{
+                  backgroundColor: "#28D2FF",
+                  color: "#000000",
+                  fontWeight: "500",
+                }}
+                size={"large"}
+                htmlType="submit"
+              >
+                REZERWUJ
               </Button>
             </div>
           </Form>
         )}
       </Formik>
+      <div className="footer-contact-information">
+        <p className="footer-contact-text">
+          W przypadku jakichkolwiek pytań, prosimy o kontakt pod numerem
+          telefonu:
+        </p>
+        <p>
+          <a className="footer-contact-information-phone" href="tel:165162781">
+            +48 165 162 781
+          </a>
+        </p>
+      </div>
     </div>
   );
 };
