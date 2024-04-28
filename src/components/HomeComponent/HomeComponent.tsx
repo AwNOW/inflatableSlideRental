@@ -1,6 +1,6 @@
 import "./homeComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
-import BubblesComponent from "../BubblesComponent/BubblesComponentAnim";
+import BubblesComponent from "../BubblesComponent/BubblesComponent";
 import { Button } from "antd";
 import obrazek from "../../images/obrazek.png";
 import { Link } from "react-router-dom";
@@ -70,7 +70,9 @@ const lowerBubbleArr = [
 const HomeComponent: React.FC = () => {
   return (
     <div>
-      <NavigationComponent />
+      <nav>
+        <NavigationComponent />
+      </nav>
       <div className="upper-section">
         <div className="upper-section-content">
           <h1 className="main-heading">Urządź Dzieciom Niezapomniany Dzień!</h1>
@@ -106,7 +108,7 @@ const HomeComponent: React.FC = () => {
           <BubblesComponent bubbles={lowerBubbleArr} />
         </div>
         <div className="lower-section-content">
-          <h2 className="lower-section-heading">Jak Działamy</h2>
+          <h2 className="main-content-heading">Jak Działamy</h2>
           <ol className="lower-section-content-list">
             <li>
               Wybierz dmuchańca, który Cię interesuje i zarezerwuj go. To
@@ -114,7 +116,9 @@ const HomeComponent: React.FC = () => {
               <Link to="http://localhost:3000/kontakt">zadzwonić</Link> lub
               wypełnić{" "}
               <Link to="http://localhost:3000/rezerwacja">
-                formularz online</Link>.
+                formularz online
+              </Link>
+              .
             </li>
             <li>
               Nasz zespół dostarczy wybrany sprzęt w ustalonym terminie i

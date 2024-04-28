@@ -1,14 +1,8 @@
-.main-heading {
-  font-family: "Playpen Sans";
-  font-size: 38px;
-  color: #0183c7;
-}
-
-.img-container {
+/* .form-img-container {
   position: absolute;
   left: 800px;
   overflow: auto;
-}
+} */
 
 .form-input-long {
   width: 654px;

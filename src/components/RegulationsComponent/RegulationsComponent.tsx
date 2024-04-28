@@ -29,7 +29,9 @@ const bubbleArr = [
 const RegulationsComponent: React.FC = () => {
   return (
     <div>
-      <NavigationComponent />
+      <nav>
+        <NavigationComponent />
+      </nav>
       <h1 className="main-content-heading">Warunki Wynajmu</h1>
       <h2 className="content-title">Teren</h2>
       <ol className="main-content-list">

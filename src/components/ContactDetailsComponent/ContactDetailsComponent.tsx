@@ -6,18 +6,18 @@ import "./contactDetailsComponent.css";
 
 const bubbleArr = [
   {
-    top: "-5px",
-    left: "-150px",
+    top: "20px",
+    left: "-90px",
     height: "400px",
     width: "400px",
     borderRadius: "400px",
   },
   {
-    top: "210px",
-    left: "-270px",
-    height: "250px",
-    width: "250px",
-    borderRadius: "250px",
+    top: "280px",
+    left: "-150px",
+    height: "220px",
+    width: "220px",
+    borderRadius: "220px",
   },
 ];
 
@@ -41,33 +41,38 @@ const defaultProps: { center: Coords; zoom: number } = {
 const ContactDetailsComponent: FC = () => {
   return (
     <div>
-      <NavigationComponent />
-      <div className="main-content">
+      <nav>
+        <NavigationComponent />
+      </nav>
+      <div className="contact-main-content">
         <div className="main-content-text">
-          <h1 className="main-heading">Kontakt</h1>
-          <p>
+          <h1 className="main-content-heading">Kontakt</h1>
+          <div className="text-adress">
             <span className="subheading">Hulańce dla Bajtli</span>
             <br />
             Ornontowice <br />
             Zwycięstwa 20A
             <br />
             Polska
-          </p>
-          <p>
-            tel.: <span>+48 165 162 781</span>
-          </p>
-          <p>
-            e-mail: <span>example@example.com</span>
-          </p>
-          <p>
-            Godziny otwarcia:
-            <br />
+          </div>
+          <div className="contact-details">
+            <span className="bold-contact-text">tel.:</span>
+            <a className="contact-information-phone" href="tel:165162781">
+              +48 165 162 781
+            </a>
+          </div>
+          <div className="contact-details">
+            <span className="bold-contact-text">e-mail:</span>
+            <a className="contact-information-email" href="">
+              example@example.com
+            </a>
+          </div>
+          <div className="contact-details">
+            <span className="bold-contact-text">Godziny otwarcia:</span>
             <span>pn - pt 15:00 - 19:00</span>
-            <br />
             <span>sb - nd 8:00 - 21:00</span>
-          </p>
+          </div>
         </div>
-
         <div className="bubble-container">
           <BubblesComponent bubbles={bubbleArr} />
         </div>

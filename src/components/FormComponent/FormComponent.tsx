@@ -243,7 +243,9 @@ const FormikContactComponent: React.FC = () => {
 
   return (
     <div>
-      <NavigationComponent />
+      <nav>
+        <NavigationComponent />
+      </nav>
       <h1 className="main-content-heading">Rezerwacja</h1>
       <Formik
         initialValues={
@@ -273,11 +275,10 @@ const FormikContactComponent: React.FC = () => {
       >
         {({ values, setFieldValue, isValid, resetForm }) => (
           <Form className="main-form-content">
-            <div className="img-container">
-              {values.assType && <img
-              className="img"
-              src={obrazek}
-              alt="dmuchanec1" />}
+            <div className="form-img-container">
+              {values.assType && (
+                <img className="img" src={obrazek} alt="dmuchanec1" />
+              )}
               {/* <BubblesComponent bubbles={upperBubbleArr} /> */}
             </div>
             <div>

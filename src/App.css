@@ -1,7 +1,7 @@
 .app {
   max-width: 1400px;
   min-width: 1200px;
-  background-color: #F6FDFF;
+  background-color: #f6fdff;
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 30px;
@@ -15,4 +15,10 @@
 
 .validationError {
   color: red;
+}
+
+.main-content-heading {
+  font-family: "Playpen Sans";
+  font-size: 38px;
+  color: #0183c7;
 }
