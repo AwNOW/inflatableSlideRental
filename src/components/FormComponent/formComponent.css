@@ -1,8 +1,24 @@
-/* .form-img-container {
-  position: absolute;
-  left: 800px;
-  overflow: auto;
-} */
+.upper-form-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.bubbles-container{
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: auto;
+  max-width: 100%;
+}
+
+.form-img-container{
+  width: 420px;
+}
+
+.img{
+  position: relative;
+  z-index: 2;
+}
 
 .form-input-long {
   width: 654px;
@@ -23,16 +39,19 @@
 
 .calendar-content {
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 30px;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
 }
 
-.calendar-label {
-  padding-top: 8px;
+.rdrDateDisplayWrapper{
+  background-color: rgb(37, 131, 156);
 }
 
 .calendar-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   margin-top: 8px;
   margin-bottom: 8px;
 }
@@ -41,7 +60,7 @@
   display: flex;
   flex-direction: column;
   text-align: start;
-  width: 210px;
+  width: 290px;
 }
 
 .delivery-info-content {
@@ -50,14 +69,48 @@
   grid-row: auto auto;
   grid-column-gap: 24px;
 }
+
 .time-pickers-content {
   margin-top: 8px;
   display: flex;
   flex-direction: row;
   gap: 24px;
 }
+
 .time-picker {
   display: flex;
   flex-direction: column;
   width: 315px;
+}
+
+.lower-form-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.checkbox-statement{
+  padding-top: 30px;
+  padding-bottom: 40px;
+}
+
+
+.form-footer-contact-information {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-end;
+  font-size: 16px;
+}
+
+.form-footer-contact-text {
+  font-size: 18px;
+  margin: 0px;
+}
+
+.form-footer-contact-information-phone {
+  color: #0183c7;
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: 24px;
 }
