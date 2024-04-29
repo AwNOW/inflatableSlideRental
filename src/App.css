@@ -1,6 +1,7 @@
 .app {
-  max-width: 1400px;
-  min-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
   background-color: #f6fdff;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -14,7 +15,8 @@
 }
 
 .validationError {
-  color: red;
+  color: #f04134;
+  font-size: 12px;
 }
 
 .main-content-heading {
