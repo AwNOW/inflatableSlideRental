@@ -1,5 +1,6 @@
 import "./formComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
+import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
 import BubblesComponent from "../BubblesComponent/BubblesComponent";
 import obrazek from "../../images/obrazek.png";
 import { v4 as uuidv4 } from "uuid";
@@ -40,11 +41,25 @@ import {
 
 const bubbleArr = [
   {
+    top: "350px",
+    left: "10px",
+    height: "200px",
+    width: "200px",
+    borderRadius: "200px",
+  },
+  {
     top: "-50px",
-    left: "0px",
-    height: "400px",
-    width: "400px",
-    borderRadius: "400px",
+    left: "-30px",
+    height: "450px",
+    width: "450px",
+    borderRadius: "450px",
+  },
+  {
+    top: "550px",
+    left: "100px",
+    height: "150px",
+    width: "150px",
+    borderRadius: "150px",
   },
 ];
 
@@ -177,9 +192,7 @@ const FormikContactComponent: React.FC = () => {
       then: () => Yup.string().required("Proszę podać numer budynku/lokalu."),
     }),
     checked: Yup.boolean().oneOf([true], "Proszę zaznaczyć zgodę."),
-    deliveryTime: Yup.object().required(
-      "Proszę podać czas dostawy."
-    ),
+    deliveryTime: Yup.object().required("Proszę podać czas dostawy."),
     pickUpTime: Yup.object().required("Proszę podać czas odbioru."),
   });
 
@@ -236,6 +249,59 @@ const FormikContactComponent: React.FC = () => {
       setDisabledDays(disabledDaysResult);
     });
   }, []);
+
+  // Exception Delivery Days
+  const [deliveryExceptionText, setDeliveryExceptionText] =
+    useState<React.ReactNode>(null);
+
+  const daysOfWeekArr = [
+    "niedzieli",
+    "poniedziałku",
+    "wtorku",
+    "środy",
+    "czwartku",
+    "piątku",
+    "soboty",
+  ];
+
+  const getDeliveryDay = (
+    deliveryDayOfWeek: number,
+    pickUpDayOfWeek: number
+  ): void => {
+    if (
+      (deliveryDayOfWeek === 6 && pickUpDayOfWeek === 6) ||
+      (deliveryDayOfWeek === 0 && pickUpDayOfWeek === 0)
+    ) {
+      setDeliveryExceptionText(
+        <div className="exception-delivery-text">
+          Powyższe godziny dotyczą{" "}
+          <strong>{daysOfWeekArr[deliveryDayOfWeek]}</strong> - dnia dostawy
+          oraz odbioru dmuchańca.
+        </div>
+      );
+    } else if (
+      (deliveryDayOfWeek === 6 && pickUpDayOfWeek !== 6) ||
+      (deliveryDayOfWeek === 0 && pickUpDayOfWeek !== 0)
+    ) {
+      setDeliveryExceptionText(
+        <div className="exception-delivery-text">
+          Powyższe godziny dotyczą{" "}
+          <strong>{daysOfWeekArr[deliveryDayOfWeek]}</strong> - dnia dostawy
+          dmuchańca oraz <strong>{daysOfWeekArr[pickUpDayOfWeek]}</strong> -
+          dnia odbioru.
+        </div>
+      );
+    } else {
+      setDeliveryExceptionText(
+        <div className="exception-delivery-text">
+          Powyższe godziny dotyczą{" "}
+          <strong>{daysOfWeekArr[deliveryDayOfWeek - 1]}</strong> - dnia dostawy
+          dmuchańca oraz <strong>{daysOfWeekArr[pickUpDayOfWeek]}</strong> -
+          dnia odbioru.
+        </div>
+      );
+    }
+  };
 
   return (
     <div>
@@ -348,77 +414,94 @@ const FormikContactComponent: React.FC = () => {
                     className="validationError"
                   />
                 </div>
-                {values.assType && (
-                  <div>
-                    <label>Wybierz dzień dostawy i odbioru:</label>
-                    <div className="calendar-content">
-                      <Field
-                        as={DateRange}
-                        locale={pl}
-                        name="timeFrames"
-                        editableDateInputs={true}
-                        disabledDates={
-                          !disabledDays || !disabledDays[values.assType]
-                            ? []
-                            : disabledDays[values.assType].map((timestamp) => {
-                                return new Date(Number(timestamp));
-                              })
-                        }
-                        onChange={(ranges: RangeKeyDict) => {
-                          const { selection } = ranges;
-                          const selectedRange = {
-                            startDate: selection.startDate,
-                            endDate: selection.endDate,
-                            key: "selection",
-                          };
-                          setFieldValue("timeFrames", [
-                            {
-                              startDate: selectedRange.startDate,
-                              endDate: selectedRange.endDate,
+                <div>
+                  <label className="form-label">
+                    Wybierz dzień dostawy i odbioru:
+                  </label>
+                  <div className="calendar-container">
+                    <div className="calendar">
+                      {!values.assType && (
+                        <div className="calendar-content-disabled"></div>
+                      )}
+                      <div>
+                        <Field
+                          as={DateRange}
+                          disabled={true}
+                          locale={pl}
+                          name="timeFrames"
+                          editableDateInputs={true}
+                          disabledDates={
+                            values.assType &&
+                            disabledDays &&
+                            disabledDays[values.assType]
+                              ? disabledDays[values.assType].map(
+                                  (timestamp: string) => {
+                                    console.log(timestamp);
+                                    return new Date(Number(timestamp));
+                                  }
+                                )
+                              : []
+                          }
+                          onChange={(ranges: RangeKeyDict) => {
+                            const { selection } = ranges;
+                            const selectedRange = {
+                              startDate: selection.startDate,
+                              endDate: selection.endDate,
                               key: "selection",
-                            },
-                          ]);
-                        }}
-                        moveRangeOnFirstSelection={false}
-                        ranges={values.timeFrames}
-                        minDate={addDays(new Date(), 1)}
-                        showDateDisplay={true}
-                      />
-                      <div className="calendar-additional-text">
-                        <p>
-                          Dni zaznaczone na szaro (te których nie da sie wybrać)
-                          oznaczają że dana atrakcja w tym terminie jest nie
-                          dostępna.
-                        </p>
-                        <p>
-                          Możesz spróbować wybrać innego dmuchańca i sprawdzić
-                          dostępność w kalendarzu.
-                        </p>
+                            };
+                            setFieldValue("timeFrames", [
+                              {
+                                startDate: selectedRange.startDate,
+                                endDate: selectedRange.endDate,
+                                key: "selection",
+                              },
+                            ]);
+                            getDeliveryDay(
+                              selectedRange.startDate!.getDay(),
+                              selectedRange.endDate!.getDay()
+                            );
+                          }}
+                          moveRangeOnFirstSelection={false}
+                          ranges={values.timeFrames}
+                          minDate={addDays(new Date(), 1)}
+                          showDateDisplay={true}
+                        />
                       </div>
                     </div>
+                    <div className="calendar-additional-text">
+                      <p>
+                        Dni zaznaczone na szaro (te których nie da sie wybrać)
+                        oznaczają że dana atrakcja w tym terminie jest nie
+                        dostępna.
+                      </p>
+                      <p>
+                        Możesz spróbować wybrać innego dmuchańca i sprawdzić
+                        dostępność w kalendarzu.
+                      </p>
+                    </div>
                   </div>
-                )}
-                <div>
-                  <Field
-                    className="form-input-long"
-                    name="deliveryType"
-                    value={values.deliveryType}
-                    component={Select}
-                    placeholder="Wybierz rodzaj dostawy"
-                    options={[
-                      {
-                        value: "delivery",
-                        label: "Zamówienie z dostawą na miejsce imprezy.",
-                      },
-                      {
-                        value: "self-pickup",
-                        label: "Zamówienie z odbiorem osobistym.",
-                      },
-                    ]}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      setFieldValue("deliveryType", e);
-                    }}
-                  />
+                  <div>
+                    <Field
+                      className="form-input-long"
+                      name="deliveryType"
+                      value={values.deliveryType}
+                      component={Select}
+                      placeholder="Wybierz rodzaj dostawy"
+                      options={[
+                        {
+                          value: "delivery",
+                          label: "Zamówienie z dostawą na miejsce imprezy.",
+                        },
+                        {
+                          value: "self-pickup",
+                          label: "Zamówienie z odbiorem osobistym.",
+                        },
+                      ]}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        setFieldValue("deliveryType", e);
+                      }}
+                    />
+                  </div>
 
                   <ErrorMessage
                     name="deliveryType"
@@ -507,7 +590,9 @@ const FormikContactComponent: React.FC = () => {
                 )}
                 <div className="time-pickers-content">
                   <div className="time-picker">
-                    <label>Preferowana godzina dostawy:</label>
+                    <label className="form-label">
+                      Preferowana godzina dostawy:
+                    </label>
                     <Field
                       className="form-input-short"
                       component={TimePicker}
@@ -533,7 +618,9 @@ const FormikContactComponent: React.FC = () => {
                     />
                   </div>
                   <div className="time-picker">
-                    <label>Preferowana godzina odbioru:</label>
+                    <label className="form-label">
+                      Preferowana godzina odbioru:
+                    </label>
                     <Field
                       className="form-input-short"
                       component={TimePicker}
@@ -552,6 +639,7 @@ const FormikContactComponent: React.FC = () => {
                         }
                       }}
                     />
+
                     <ErrorMessage
                       name="pickUpTime"
                       component="div"
@@ -559,6 +647,7 @@ const FormikContactComponent: React.FC = () => {
                     />
                   </div>
                 </div>
+                {deliveryExceptionText}
                 <div>
                   <Field
                     className="form-input-long"
@@ -623,24 +712,11 @@ const FormikContactComponent: React.FC = () => {
                   REZERWUJ
                 </Button>
               </div>
-              <div className="form-footer-contact-information">
-                <p className="form-footer-contact-text">
-                  W przypadku jakichkolwiek pytań, prosimy o kontakt pod numerem
-                  telefonu:
-                </p>
-                <p>
-                  <a
-                    className="form-footer-contact-information-phone"
-                    href="tel:165162781"
-                  >
-                    +48 165 162 781
-                  </a>
-                </p>
-              </div>
             </div>
           </Form>
         )}
       </Formik>
+      <ContactDetailsComponent />
     </div>
   );
 };
