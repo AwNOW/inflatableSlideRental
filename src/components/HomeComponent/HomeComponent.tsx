@@ -1,6 +1,7 @@
 import "./homeComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
 import BubblesComponent from "../BubblesComponent/BubblesComponent";
+import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
 import { Button } from "antd";
 import obrazek from "../../images/obrazek.png";
 import { Link } from "react-router-dom";
@@ -113,9 +114,17 @@ const HomeComponent: React.FC = () => {
             <li>
               Wybierz dmuchańca, który Cię interesuje i zarezerwuj go. To
               proste! Możesz{" "}
-              <Link to="http://localhost:3000/kontakt">zadzwonić</Link> lub
-              wypełnić{" "}
-              <Link to="http://localhost:3000/rezerwacja">
+              <a
+                className="lower-section-link"
+                href="tel:165162781"
+              >
+                zadzwonić
+              </a>{" "}
+              lub wypełnić{" "}
+              <Link
+                className="lower-section-link"
+                to="/rezerwacja"
+              >
                 formularz online
               </Link>
               .
@@ -153,6 +162,7 @@ const HomeComponent: React.FC = () => {
           </div>
         </div>
       </div>
+      <ContactDetailsComponent/>
     </div>
   );
 };

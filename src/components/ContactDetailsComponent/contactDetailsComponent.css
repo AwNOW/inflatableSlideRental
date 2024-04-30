@@ -1,8 +1,9 @@
 .contact-main-content {
-  min-height: 850px;
+  background-color: aquamarine;
+  margin-top: 40px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .subheading {

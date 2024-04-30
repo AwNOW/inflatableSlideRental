@@ -5,7 +5,6 @@ import FormComponent from "./components/FormComponent/FormComponent";
 import RegulationsComponent from "./components/RegulationsComponent/RegulationsComponent";
 import HomeComponent from "./components/HomeComponent/HomeComponent";
 import AssortmentComponent from "./components/AssortmentComponent/AssortmentComponent";
-import ContactDetailsComponent from "./components/ContactDetailsComponent/ContactDetailsComponent";
 
 const App: React.FC = () => {
   return (
@@ -15,7 +14,6 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<HomeComponent />} />
         <Route path={"/cennik"} element={<AssortmentComponent />} />
-        <Route path={"/kontakt"} element={<ContactDetailsComponent />} />
         <Route path={"/rezerwacja"} element={<FormComponent />} />
         <Route path={"/regulamin"} element={<RegulationsComponent />} />
         <Route path="*" element={<div>This page doesn't exist!</div>} />

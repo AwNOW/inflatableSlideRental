@@ -1,25 +1,6 @@
 import React, { FC } from "react";
-import NavigationComponent from "../NavigationComponent/NavigationComponent";
-import BubblesComponent from "../BubblesComponent/BubblesComponent";
 import GoogleMapReact, { Coords } from "google-map-react"; // Importing Coords type from google-map-react
 import "./contactDetailsComponent.css";
-
-const bubbleArr = [
-  {
-    top: "20px",
-    left: "-90px",
-    height: "400px",
-    width: "400px",
-    borderRadius: "400px",
-  },
-  {
-    top: "280px",
-    left: "-150px",
-    height: "220px",
-    width: "220px",
-    borderRadius: "220px",
-  },
-];
 
 //MAPS
 interface AnyReactComponentProps {
@@ -41,10 +22,20 @@ const defaultProps: { center: Coords; zoom: number } = {
 const ContactDetailsComponent: FC = () => {
   return (
     <div>
-      <nav>
-        <NavigationComponent />
-      </nav>
       <div className="contact-main-content">
+        <div style={{ height: "40vh", width: "50%" }}>
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: "" }}
+            defaultCenter={defaultProps.center}
+            defaultZoom={defaultProps.zoom}
+          >
+            <AnyReactComponent
+              lat={59.955413}
+              lng={30.337844}
+              text="My Marker"
+            />
+          </GoogleMapReact>
+        </div>
         <div className="main-content-text">
           <h1 className="main-content-heading">Kontakt</h1>
           <div className="text-adress">
@@ -72,22 +63,6 @@ const ContactDetailsComponent: FC = () => {
             <span>pn - pt 15:00 - 19:00</span>
             <span>sb - nd 8:00 - 21:00</span>
           </div>
-        </div>
-        <div className="bubble-container">
-          <BubblesComponent bubbles={bubbleArr} />
-        </div>
-        <div style={{ height: "40vh", width: "50%" }}>
-          <GoogleMapReact
-            bootstrapURLKeys={{ key: "" }}
-            defaultCenter={defaultProps.center}
-            defaultZoom={defaultProps.zoom}
-          >
-            <AnyReactComponent
-              lat={59.955413}
-              lng={30.337844}
-              text="My Marker"
-            />
-          </GoogleMapReact>
         </div>
       </div>
     </div>
