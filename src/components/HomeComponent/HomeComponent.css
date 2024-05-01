@@ -1,10 +1,4 @@
-.top-bar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.main-heading {
+.homepage-main-heading {
   color: #0183c7;
   width: 566px;
   font-family: "Playpen Sans";
@@ -14,14 +8,20 @@
   font-size: 48px;
 }
 
-.upper-section {
+.homepage-main-content-heading {
+  font-family: "Playpen Sans";
+  font-size: 38px;
+  color: #0183c7;
+}
+
+.homepage-upper-section {
   padding-top: 50px;
   padding-bottom: 50px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
-.upper-section-content-text {
+.homepage-upper-section-content-text {
   padding-top: 10px;
   padding-bottom: 10px;
   line-height: 27px;
@@ -31,46 +31,80 @@
   font-size: 600;
 }
 
-.lower-section {
+.homepage-lower-section {
   padding-top: 15px;
   padding-bottom: 50px;
   display: flex;
   justify-content: space-around;
 }
 
-.lower-section-heading {
+.homepage-lower-section-heading {
   font-family: "Playpen Sans";
   padding-left: 20px;
   margin-bottom: 40px;
   color: #0183c7;
-  width: 350px;
 }
 
-.lower-section-content-list > li::marker {
+.homepage-lower-section-content-list > li::marker {
   font-size: 40px;
 }
 
-.lower-section-content-list {
+.homepage-lower-section-content-list {
   margin-left: 15px;
   line-height: 27px;
   max-width: 450px;
 }
 
-.lower-section-content-contact {
+.homepage-lower-section-content-contact {
   padding-top: 30px;
   padding-left: 50px;
 }
 
-.img-container img {
+.homepage-lower-section-link {
+  color: #0183c7;
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.homepage-img-container img {
   position: relative; /* Ensure the image is positioned */
   z-index: 2; /* Set a higher z-index value for the image */
- }
+}
 
-.img-container {
+.homepage-img-container {
   position: relative;
   padding-top: 40px;
+  padding-right: 30px;
   display: flex;
   align-items: center;
-  height: auto;
-  max-width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  .homepage-main-heading {
+    width: 100%;
+  }
+  .homepage-upper-section {
+    display: flex;
+    justify-content: center;
+  }
+  .homepage-upper-section-content-text {
+    max-width: 80%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .homepage-img-container {
+    zoom: 0.8;
+  }
+}
+
+@media screen and (max-width: 1145px) {
+  .homepage-main-heading {
+    font-size: 38px;
+    width: 100%;
+  }
+  .homepage-img-container {
+    zoom: 0.6;
+  }
 }

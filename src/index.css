@@ -2,9 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playpen+Sans:wght@100..800&display=swap");
 html,
 body {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
   background-color: #0183c7;
   font-family: "Lato", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
     "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
@@ -13,4 +10,11 @@ body {
   /* font-variation-settings: 'wght' 625; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 20px;
+}
+
+
+*{
+  box-sizing: border-box;
 }

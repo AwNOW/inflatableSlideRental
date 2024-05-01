@@ -9,8 +9,6 @@ import AssortmentComponent from "./components/AssortmentComponent/AssortmentComp
 const App: React.FC = () => {
   return (
     <div className="app">
-      <header className="App-header"></header>
-
       <Routes>
         <Route path="/" element={<HomeComponent />} />
         <Route path={"/cennik"} element={<AssortmentComponent />} />
