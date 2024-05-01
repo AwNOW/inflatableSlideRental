@@ -1,26 +1,83 @@
-.contact-main-content {
-  background-color: aquamarine;
-  margin-top: 40px;
+.contact-main-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.subheading {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.text-adress {
-  margin-bottom: 20px;
-}
-
-.bold-contact-text {
-  font-weight: 800;
+  flex-direction: column;
 }
 
 .contact-details {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #d5eef4;
+  margin-top: 40px;
+  margin-left: -76px;
+  margin-right: -76px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.contact-information {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  grid-row: auto auto;
+  grid-column-gap: 50px;
+  grid-row-gap: 40px;
+  padding-right: 70px;
+}
+
+.main-column-heading {
+  font-family: "Playpen Sans";
+  font-size: 38px;
+  color: #0183c7;
+}
+
+.contact-details-item {
+  display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+}
+
+.bold-contact-text {
+  margin: 0;
+  padding-bottom: 10px;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.contact-details-link {
+  color: #0183c7;
+  text-decoration: underline;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.footer {
+  padding-top: 18px;
+}
+/* map */
+
+.google-map {
+  height: 400px; /* Adjust height as needed */
+  width: 500px;
+  margin-bottom: 50px;
+}
+
+.pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pin-icon {
+  color: red; /* Change color as needed */
+  font-size: 24px;
+}
+
+.pin-text {
+  position: absolute;
+  top: 10px;
+  left: -40px;
+  width: 100px;
+  text-align: center;
+  font-size: 14px;
 }
