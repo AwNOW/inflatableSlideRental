@@ -52,6 +52,7 @@
 
 .footer {
   padding-top: 18px;
+  color: #3d6d87;
 }
 /* map */
 
@@ -80,4 +81,47 @@
   width: 100px;
   text-align: center;
   font-size: 14px;
+}
+
+@media screen and (max-width: 1350px) {
+  .contact-information {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+  .contact-information {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    grid-row-gap: 25px;
+  }
+  .contact-details {
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .contact-details {
+    flex-direction: column;
+    align-items: center;
+  }
+  .main-column-heading {
+    margin-top: 0px;
+    font-size: 30px;
+  }
+  .contact-information {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 50px;
+    grid-row-gap: 40px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+  }
+  .map {
+    padding-top: 30px;
+  }
+}
+
+@media screen and (max-width: px) {
 }

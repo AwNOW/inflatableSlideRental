@@ -40,7 +40,7 @@ const ContactDetailsComponent: FC = () => {
         </div>
 
         <div className="contact">
-          <h1 className="main-column-heading">Kontakt</h1>
+          <h2 className="main-column-heading">Kontakt</h2>
           <div className="contact-information">
             <div className="contact-details-item">
               <h2 className="bold-contact-text">Odwiedź nas</h2>

@@ -8,29 +8,29 @@ import { Link } from "react-router-dom";
 
 const upperBubbleArr = [
   {
-    top: "-230px",
-    left: "-420px",
+    top: "-250px",
+    left: "-400px",
     height: "350px",
     width: "350px",
     borderRadius: "350px",
   },
   {
-    top: "-95px",
+    top: "-100px",
     left: "-300px",
     height: "350px",
     width: "350px",
     borderRadius: "350px",
   },
   {
-    top: "30px",
-    left: "-500px",
+    top: "35px",
+    left: "-450px",
     height: "250px",
     width: "250px",
     borderRadius: "250px",
   },
   {
-    top: "-250px",
-    left: "-150px",
+    top: "-280px",
+    left: "-200px",
     height: "200px",
     width: "200px",
     borderRadius: "200px",
@@ -40,28 +40,28 @@ const upperBubbleArr = [
 const lowerBubbleArr = [
   {
     top: "-250px",
-    left: "-400px",
+    left: "-410px",
     height: "350px",
     width: "350px",
     borderRadius: "350px",
   },
   {
     top: "-100px",
-    left: "-330px",
+    left: "-340px",
     height: "350px",
     width: "350px",
     borderRadius: "350px",
   },
   {
     top: "60px",
-    left: "-470px",
+    left: "-460px",
     height: "250px",
     width: "250px",
     borderRadius: "250px",
   },
   {
-    top: "-170px",
-    left: "-150px",
+    top: "-280px",
+    left: "-210px",
     height: "200px",
     width: "200px",
     borderRadius: "200px",
@@ -87,30 +87,25 @@ const HomeComponent: React.FC = () => {
               stanie się wyjątkowa.
               <br /> Gwarantujemy dobrą zabawę!
             </p>
-            <Button
-              type="primary"
-              shape="round"
-              style={{
-                backgroundColor: "#28D2FF",
-                color: "#000000",
-                fontWeight: "500",
-              }}
-              size={"large"}
-              href="http://localhost:3000/cennik"
-            >
-              SPRAWDŹ DMUCHAŃCE
-            </Button>
+            <Link to="/cennik">
+              <button className="button-primary">SPRAWDŹ DMUCHAŃCE</button>
+            </Link>
           </div>
           <div className="homepage-img-container">
             <img src={obrazek} alt="dmuchanec1" />
             <BubblesComponent bubbles={upperBubbleArr} />
           </div>
         </div>
+        <div className="container-img-asso">
+          <img src={obrazek} alt="dmuchanec1" />
+          <img src={obrazek} alt="dmuchanec1" />
+        </div>
         <div className="homepage-lower-section">
           <div className="homepage-img-container">
             <img src={obrazek} alt="dmuchanec1" />
             <BubblesComponent bubbles={lowerBubbleArr} />
           </div>
+
           <div className="homepage-lower-section-content">
             <h2 className="homepage-main-content-heading">Jak Działamy</h2>
             <ol className="homepage-lower-section-content-list">
@@ -142,20 +137,11 @@ const HomeComponent: React.FC = () => {
               <p className="homepage-lower-section-content-subtext">
                 Chcesz wiedzieć więcej?
               </p>
-
-              <Button
-                type="primary"
-                shape="round"
-                style={{
-                  color: "rgb(0, 0, 0)",
-                  fontWeight: "500",
-                  backgroundColor: "#FFE54C",
-                }}
-                size={"large"}
-                href="http://localhost:3000/regulamin"
-              >
-                SPRAWDŹ WARUNKI WYNAJMU
-              </Button>
+              <Link to="/regulamin">
+                <button className="button-primary yellow">
+                  SPRAWDŹ WARUNKI WYNAJMU
+                </button>
+              </Link>
             </div>
           </div>
         </div>
