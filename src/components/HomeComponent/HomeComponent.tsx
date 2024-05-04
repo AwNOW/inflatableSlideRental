@@ -2,7 +2,6 @@ import "./homeComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
 import BubblesComponent from "../BubblesComponent/BubblesComponent";
 import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
-import { Button } from "antd";
 import obrazek from "../../images/obrazek.png";
 import { Link } from "react-router-dom";
 

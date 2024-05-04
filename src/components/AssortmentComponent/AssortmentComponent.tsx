@@ -1,7 +1,7 @@
 import "./assortmentComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
+import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
 import obrazek from "../../images/obrazek.png";
-import { Button } from "antd";
 import { Link } from "react-router-dom";
 
 const AssortmentComponent: React.FC = () => {
@@ -28,23 +28,14 @@ const AssortmentComponent: React.FC = () => {
                 <span>wysokość: 195 cm</span>
                 <span>maksymalne obciążenie - 90 kg</span>
                 <div>
-                  <span>Cena:</span> <span className="item-card-price">88 zł / doba</span>
+                  <span>Cena:</span>{" "}
+                  <span className="item-card-price">88 zł / doba</span>
                 </div>
               </div>
               <div>
-                <Button
-                  type="primary"
-                  shape="round"
-                  style={{
-                    backgroundColor: "#FFE54C",
-                    color: "#000000",
-                    fontWeight: "500",
-                  }}
-                  size={"large"}
-                  htmlType="submit"
-                >
+                <button className="button-primary yellow" type="submit">
                   REZERWUJ
-                </Button>
+                </button>
               </div>
             </Link>
           </li>
@@ -61,23 +52,14 @@ const AssortmentComponent: React.FC = () => {
                 <span>wysokość: 195 cm</span>
                 <span>maksymalne obciążenie - 90 kg</span>
                 <div>
-                  <span>Cena:</span> <span className="item-card-price">88 zł / doba</span>
+                  <span>Cena:</span>{" "}
+                  <span className="item-card-price">88 zł / doba</span>
                 </div>
               </div>
               <div>
-                <Button
-                  type="primary"
-                  shape="round"
-                  style={{
-                    backgroundColor: "#FFE54C",
-                    color: "#000000",
-                    fontWeight: "500",
-                  }}
-                  size={"large"}
-                  htmlType="submit"
-                >
+                <button className="button-primary yellow" type="submit">
                   REZERWUJ
-                </Button>
+                </button>
               </div>
             </Link>
           </li>
@@ -94,28 +76,20 @@ const AssortmentComponent: React.FC = () => {
                 <span>wysokość: 195 cm</span>
                 <span>maksymalne obciążenie - 90 kg</span>
                 <div>
-                  <span>Cena:</span> <span className="item-card-price">88 zł / doba</span>
+                  <span>Cena:</span>{" "}
+                  <span className="item-card-price">88 zł / doba</span>
                 </div>
               </div>
               <div>
-                <Button
-                  type="primary"
-                  shape="round"
-                  style={{
-                    backgroundColor: "#FFE54C",
-                    color: "#000000",
-                    fontWeight: "500",
-                  }}
-                  size={"large"}
-                  htmlType="submit"
-                >
+                <button className="button-primary yellow" type="submit">
                   REZERWUJ
-                </Button>
+                </button>
               </div>
             </Link>
           </li>
         </ul>
       </div>
+      <ContactDetailsComponent />
     </div>
   );
 };
