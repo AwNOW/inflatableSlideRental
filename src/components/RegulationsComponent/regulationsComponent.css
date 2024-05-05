@@ -16,22 +16,18 @@
   font-size: 30px;
 }
 
-.footer-contact-information {
+
+.regulation-bubbles-container{
+  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  padding-top: 60px;
-  font-size: 16px;
+  align-items: center;
+  height: auto;
+  max-width: 100%;
 }
 
-.footer-contact-text {
-  font-size: 18px;
-  margin-bottom: 0px;
-}
+@media (max-width: 1100px) {
+  .regulation-bubbles-container{
+    display: none;
+  }
 
-.footer-contact-information-phone {
-  color: #0183c7;
-  text-decoration: underline;
-  font-weight: 600;
-  font-size: 24px;
 }

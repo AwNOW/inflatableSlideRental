@@ -1,25 +1,26 @@
 import "./regulationsComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
 import BubblesComponent from "../BubblesComponent/BubblesComponent";
+import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
 
 const bubbleArr = [
   {
-    top: "25px",
-    left: "80px",
+    top: "-150px",
+    left: "0px",
     height: "120px",
     width: "120px",
     borderRadius: "120px",
   },
   {
-    top: "40px",
-    left: "-30px",
+    top: "-140px",
+    left: "0px",
     height: "150px",
     width: "150px",
     borderRadius: "150px",
   },
   {
-    top: "100px",
-    left: "100px",
+    top: "-80px",
+    left: "0px",
     height: "80px",
     width: "80px",
     borderRadius: "80px",
@@ -75,20 +76,10 @@ const RegulationsComponent: React.FC = () => {
           Godziny wynajmu można także dostosować do klienta indywidualnie.
         </li>
       </ol>
-      <div className="bubbles-container">
+      <div className="regulation-bubbles-container">
         <BubblesComponent bubbles={bubbleArr} />
       </div>
-      <div className="footer-contact-information">
-        <p className="footer-contact-text">
-          W przypadku jakichkolwiek pytań, prosimy o kontakt pod numerem
-          telefonu:
-        </p>
-        <p>
-          <a className="footer-contact-information-phone" href="tel:165162781">
-            +48 165 162 781
-          </a>
-        </p>
-      </div>
+      <ContactDetailsComponent />
     </div>
   );
 };
