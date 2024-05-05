@@ -2,33 +2,35 @@ import "./homeComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
 import BubblesComponent from "../BubblesComponent/BubblesComponent";
 import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
-import obrazek from "../../images/obrazek.png";
+import zamekA from "../../images/zamekA.png";
+import zamekB from "../../images/zamekB.png";
 import { Link } from "react-router-dom";
 
 const upperBubbleArr = [
   {
-    top: "-250px",
-    left: "-400px",
-    height: "350px",
-    width: "350px",
-    borderRadius: "350px",
-  },
-  {
-    top: "-100px",
-    left: "-300px",
-    height: "350px",
-    width: "350px",
-    borderRadius: "350px",
-  },
-  {
-    top: "35px",
-    left: "-450px",
+    top: "15px",
+    left: "-470px",
     height: "250px",
     width: "250px",
     borderRadius: "250px",
   },
   {
-    top: "-280px",
+    top: "-250px",
+    left: "-410px",
+    height: "320px",
+    width: "320px",
+    borderRadius: "320px",
+  },
+  {
+    top: "-100px",
+    left: "-300px",
+    height: "320px",
+    width: "320px",
+    borderRadius: "320px",
+  },
+
+  {
+    top: "-250px",
     left: "-200px",
     height: "200px",
     width: "200px",
@@ -38,8 +40,15 @@ const upperBubbleArr = [
 
 const lowerBubbleArr = [
   {
-    top: "-250px",
-    left: "-410px",
+    top: "-240px",
+    left: "-210px",
+    height: "200px",
+    width: "200px",
+    borderRadius: "200px",
+  },
+  {
+    top: "-230px",
+    left: "-470px",
     height: "350px",
     width: "350px",
     borderRadius: "350px",
@@ -52,18 +61,11 @@ const lowerBubbleArr = [
     borderRadius: "350px",
   },
   {
-    top: "60px",
-    left: "-460px",
+    top: "35px",
+    left: "-490px",
     height: "250px",
     width: "250px",
     borderRadius: "250px",
-  },
-  {
-    top: "-280px",
-    left: "-210px",
-    height: "200px",
-    width: "200px",
-    borderRadius: "200px",
   },
 ];
 
@@ -91,17 +93,17 @@ const HomeComponent: React.FC = () => {
             </Link>
           </div>
           <div className="homepage-img-container">
-            <img src={obrazek} alt="dmuchanec1" />
+            <img src={zamekA} alt="dmuchanec, zjeżdżalnia, palmy" />
             <BubblesComponent bubbles={upperBubbleArr} />
           </div>
         </div>
         <div className="container-img-asso">
-          <img src={obrazek} alt="dmuchanec1" />
-          <img src={obrazek} alt="dmuchanec1" />
+          <img src={zamekA} alt="dmuchanec, zjeżdżalnia, palmy" />
+          <img src={zamekB} alt="dmuchanec, zjeżdżalnia" />
         </div>
         <div className="homepage-lower-section">
           <div className="homepage-img-container">
-            <img src={obrazek} alt="dmuchanec1" />
+            <img src={zamekB} alt="dmuchanec, zjeżdżalnia" />
             <BubblesComponent bubbles={lowerBubbleArr} />
           </div>
 

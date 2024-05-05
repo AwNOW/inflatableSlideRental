@@ -15,7 +15,8 @@ const BubblesComponent: FC<BubblesProps> = ({ bubbles }) => {
   return (
     <div
       style={{
-        position: "relative",
+        position: "absolute",
+        right: 0,
       }}
     >
       {bubbles.map((bubble, index) => (
