@@ -15,10 +15,37 @@
 .validationError {
   color: #f04134;
   font-size: 12px;
+
 }
 
 .main-content-heading {
   font-family: "Playpen Sans";
   font-size: 38px;
   color: #0183c7;
+}
+
+.button-primary {
+  border-radius: 34px;
+  border: none;
+  padding: 15px 20px;
+  background: #28d2ff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.yellow {
+  background: #ffe44f;
+}
+
+.button-primary:hover {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.24), 0 5px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media screen and (max-width: 640px) {
+  .app {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
 }
