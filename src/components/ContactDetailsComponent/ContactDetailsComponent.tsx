@@ -32,7 +32,7 @@ const ContactDetailsComponent: FC = () => {
       <div className="contact-details">
         <div className="map">
           <h2 className="main-column-heading">Jak Do Nas Dojechać</h2>
-          <div className="google-map">
+          <div className="google-map-wrap">
             <GoogleMapReact defaultCenter={location} defaultZoom={17}>
               <LocationPin text={address} />
             </GoogleMapReact>
