@@ -26,11 +26,9 @@ import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 import type { RangeKeyDict } from "react-date-range";
 
-import type { TimePickerProps } from "antd";
-import { TimePicker, Input, Button, Select, Checkbox } from "antd";
+import { TimePicker, Input, Select, Checkbox } from "antd";
 import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import { convertLegacyProps } from "antd/es/button";
+
 import {
   postalCodeValidation,
   DisabledDays,
@@ -41,22 +39,22 @@ import {
 
 const bubbleArr = [
   {
-    top: "350px",
-    left: "10px",
+    top: "220px",
+    left: "-380px",
     height: "200px",
     width: "200px",
     borderRadius: "200px",
   },
   {
-    top: "-50px",
-    left: "-30px",
-    height: "450px",
-    width: "450px",
-    borderRadius: "450px",
+    top: "-40px",
+    left: "-340px",
+    height: "350px",
+    width: "350px",
+    borderRadius: "350px",
   },
   {
-    top: "550px",
-    left: "100px",
+    top: "390px",
+    left: "-320px",
     height: "150px",
     width: "150px",
     borderRadius: "150px",
@@ -100,6 +98,7 @@ const FormikContactComponent: React.FC = () => {
 
     const batch = writeBatch(firestore);
 
+    console.log();
     batch.set(orderRef, {
       assType: values.assType,
       deliveryTime: values.deliveryTime,
@@ -116,7 +115,7 @@ const FormikContactComponent: React.FC = () => {
     let addressStreet = values.addressStreet;
     let addressHouseNumber = values.addressHouseNumber;
 
-    if (values.assType === "self-pickup") {
+    if (values.deliveryType === "self-pickup") {
       addressZipCode = "";
       addressCity = "";
       addressStreet = "";
@@ -192,8 +191,8 @@ const FormikContactComponent: React.FC = () => {
       then: () => Yup.string().required("Proszę podać numer budynku/lokalu."),
     }),
     checked: Yup.boolean().oneOf([true], "Proszę zaznaczyć zgodę."),
-    deliveryTime: Yup.object().required("Proszę podać czas dostawy."),
-    pickUpTime: Yup.object().required("Proszę podać czas odbioru."),
+    deliveryTime: Yup.number().required("Proszę podać czas dostawy."),
+    pickUpTime: Yup.number().required("Proszę podać czas odbioru."),
   });
 
   //ZipCode formatting
@@ -250,9 +249,7 @@ const FormikContactComponent: React.FC = () => {
     });
   }, []);
 
-  // Exception Delivery Days
-  const [deliveryExceptionText, setDeliveryExceptionText] =
-    useState<React.ReactNode>(null);
+  // Exception Delivery Days and Delivery Types
 
   const daysOfWeekArr = [
     "niedzieli",
@@ -265,39 +262,52 @@ const FormikContactComponent: React.FC = () => {
   ];
 
   const getDeliveryDay = (
-    deliveryDayOfWeek: number,
-    pickUpDayOfWeek: number
-  ): void => {
+    deliveryType: string | null,
+    deliveryDayOfWeek: number | undefined,
+    pickUpDayOfWeek: number | undefined
+  ) => {
+    console.log({deliveryType,deliveryDayOfWeek,pickUpDayOfWeek})
+    if (
+      deliveryType === null ||
+      deliveryDayOfWeek === undefined ||
+      pickUpDayOfWeek === undefined
+    ) {
+      return;
+    }
+    const action1 = deliveryType === "delivery" ? "dostawy " : "odbioru ";
+    const action2 = deliveryType === "delivery" ? "odbioru" : "zwrotu";
+
     if (
       (deliveryDayOfWeek === 6 && pickUpDayOfWeek === 6) ||
       (deliveryDayOfWeek === 0 && pickUpDayOfWeek === 0)
     ) {
-      setDeliveryExceptionText(
+      return (
         <div className="exception-delivery-text">
           Powyższe godziny dotyczą{" "}
-          <strong>{daysOfWeekArr[deliveryDayOfWeek]}</strong> - dnia dostawy
-          oraz odbioru dmuchańca.
+          <strong>{daysOfWeekArr[deliveryDayOfWeek]}</strong> - dnia {action1}
+          oraz {action2} dmuchańca.
         </div>
       );
     } else if (
       (deliveryDayOfWeek === 6 && pickUpDayOfWeek !== 6) ||
       (deliveryDayOfWeek === 0 && pickUpDayOfWeek !== 0)
     ) {
-      setDeliveryExceptionText(
+      return (
         <div className="exception-delivery-text">
           Powyższe godziny dotyczą{" "}
-          <strong>{daysOfWeekArr[deliveryDayOfWeek]}</strong> - dnia dostawy
+          <strong>{daysOfWeekArr[deliveryDayOfWeek]}</strong> - dnia {action1}
           dmuchańca oraz <strong>{daysOfWeekArr[pickUpDayOfWeek]}</strong> -
-          dnia odbioru.
+          dnia {action2}.
         </div>
       );
     } else {
-      setDeliveryExceptionText(
+      return (
         <div className="exception-delivery-text">
           Powyższe godziny dotyczą{" "}
-          <strong>{daysOfWeekArr[deliveryDayOfWeek - 1]}</strong> - dnia dostawy
+          <strong>{daysOfWeekArr[deliveryDayOfWeek - 1]}</strong> - dnia{" "}
+          {action1}
           dmuchańca oraz <strong>{daysOfWeekArr[pickUpDayOfWeek]}</strong> -
-          dnia odbioru.
+          dnia {action2}.
         </div>
       );
     }
@@ -337,74 +347,71 @@ const FormikContactComponent: React.FC = () => {
         validationSchema={validationSchema}
         onSubmit={handleFormSubmit}
       >
-        {({ values, setFieldValue, resetForm }) => (
+        {({ values, setFieldValue }) => (
           <Form>
             <div className="upper-form-content">
-              <div>
+              <div className="upper-form-fields">
                 <div>
-                  <label htmlFor="clientName"></label>
-                  <Field
-                    className="form-input-long"
-                    as={Input}
-                    type="text"
-                    placeholder="Imię (wymagane)"
-                    name="clientName"
-                    onChange={trimAndSet("clientName", setFieldValue)}
-                  />
-                  <ErrorMessage
-                    name="clientName"
-                    component="div"
-                    className="validationError"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="clientSurname"></label>
-                  <Field
-                    className="form-input-long"
-                    as={Input}
-                    type="text"
-                    placeholder="Nazwisko (wymagane)"
-                    name="clientSurname"
-                    onChange={trimAndSet("clientSurname", setFieldValue)}
-                  />
-                  <ErrorMessage
-                    name="clientSurname"
-                    component="div"
-                    className="validationError"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="phoneNr"></label>
-                  <Field
-                    className="form-input-long"
-                    as={Input}
-                    type="text"
-                    placeholder="Numer telefonu (wymagane)"
-                    name="phoneNr"
-                    onChange={trimAndSet("phoneNr", setFieldValue)}
-                  />
-                  <ErrorMessage
-                    name="phoneNr"
-                    component="div"
-                    className="validationError"
-                  />
+                  <div>
+                    <Field
+                      className="form-input-long"
+                      as={Input}
+                      type="text"
+                      placeholder="Imię (wymagane)"
+                      name="clientName"
+                      onChange={trimAndSet("clientName", setFieldValue)}
+                    />
+                    <ErrorMessage
+                      name="clientName"
+                      component="div"
+                      className="validationError"
+                    />
+                  </div>
+                  <div>
+                    <Field
+                      className="form-input-long"
+                      as={Input}
+                      type="text"
+                      placeholder="Nazwisko (wymagane)"
+                      name="clientSurname"
+                      onChange={trimAndSet("clientSurname", setFieldValue)}
+                    />
+                    <ErrorMessage
+                      name="clientSurname"
+                      component="div"
+                      className="validationError"
+                    />
+                  </div>
+                  <div>
+                    <Field
+                      className="form-input-long"
+                      as={Input}
+                      type="text"
+                      placeholder="Numer telefonu (wymagane)"
+                      name="phoneNr"
+                      onChange={trimAndSet("phoneNr", setFieldValue)}
+                    />
+                    <ErrorMessage
+                      name="phoneNr"
+                      component="div"
+                      className="validationError"
+                    />
+                  </div>
                 </div>
 
                 <div>
                   <Field
                     className="form-input-long"
                     name="assType"
-                    component={Select}
+                    as={Select}
                     placeholder="Wybierz rodzaj dmuchanej atrakcji"
-                    value={values.assType}
                     options={[
                       { value: "typeA", label: "Zamek A" },
                       { value: "typeB", label: "Zamek B" },
                       { value: "typeC", label: "Zamek C" },
+                      { value: "typeD", label: "Zamek D" },
                     ]}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChange={(e: string) => {
                       setFieldValue("assType", e);
                     }}
                   />
@@ -414,10 +421,11 @@ const FormikContactComponent: React.FC = () => {
                     className="validationError"
                   />
                 </div>
+
+                <label className="form-label">
+                  Wybierz zakres dni rezerwacji:
+                </label>
                 <div>
-                  <label className="form-label">
-                    Wybierz dzień dostawy i odbioru:
-                  </label>
                   <div className="calendar-container">
                     <div className="calendar">
                       {!values.assType && (
@@ -456,16 +464,17 @@ const FormikContactComponent: React.FC = () => {
                                 key: "selection",
                               },
                             ]);
-                            getDeliveryDay(
-                              selectedRange.startDate!.getDay(),
-                              selectedRange.endDate!.getDay()
-                            );
                           }}
                           moveRangeOnFirstSelection={false}
                           ranges={values.timeFrames}
                           minDate={addDays(new Date(), 1)}
                           showDateDisplay={true}
                         />
+                      </div>
+                      <div className="form-img-container-small">
+                        {values.assType && (
+                          <img className="img" src={obrazek} alt="dmuchanec1" />
+                        )}
                       </div>
                     </div>
                     <div className="calendar-additional-text">
@@ -512,7 +521,6 @@ const FormikContactComponent: React.FC = () => {
                 {values.deliveryType === "delivery" && (
                   <div className="delivery-info-content">
                     <div>
-                      <label htmlFor="addressCity"></label>
                       <Field
                         className="form-input-medium"
                         as={Input}
@@ -528,7 +536,6 @@ const FormikContactComponent: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label htmlFor="addressStreet"></label>
                       <Field
                         className="form-input-medium"
                         as={Input}
@@ -544,7 +551,6 @@ const FormikContactComponent: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label htmlFor="addressHouseNumber"></label>
                       <Field
                         className="form-input-medium"
                         as={Input}
@@ -563,7 +569,6 @@ const FormikContactComponent: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <label htmlFor="addressZipCode"></label>
                       <Field
                         className="form-input-medium"
                         type="text"
@@ -590,9 +595,15 @@ const FormikContactComponent: React.FC = () => {
                 )}
                 <div className="time-pickers-content">
                   <div className="time-picker">
-                    <label className="form-label">
-                      Preferowana godzina dostawy:
-                    </label>
+                    {values.deliveryType === "delivery" ? (
+                      <label className="form-label">
+                        Preferowana godzina dostawy:
+                      </label>
+                    ) : (
+                      <label className="form-label">
+                        Preferowana godzina odbioru:
+                      </label>
+                    )}
                     <Field
                       className="form-input-short"
                       component={TimePicker}
@@ -618,9 +629,15 @@ const FormikContactComponent: React.FC = () => {
                     />
                   </div>
                   <div className="time-picker">
-                    <label className="form-label">
-                      Preferowana godzina odbioru:
-                    </label>
+                    {values.deliveryType === "delivery" ? (
+                      <label className="form-label">
+                        Preferowana godzina odbioru:
+                      </label>
+                    ) : (
+                      <label className="form-label">
+                        Preferowana godzina zwrotu:
+                      </label>
+                    )}
                     <Field
                       className="form-input-short"
                       component={TimePicker}
@@ -639,7 +656,6 @@ const FormikContactComponent: React.FC = () => {
                         }
                       }}
                     />
-
                     <ErrorMessage
                       name="pickUpTime"
                       component="div"
@@ -647,7 +663,11 @@ const FormikContactComponent: React.FC = () => {
                     />
                   </div>
                 </div>
-                {deliveryExceptionText}
+                {getDeliveryDay(
+                  values.deliveryType,
+                  values.timeFrames[0]?.startDate?.getDay(),
+                  values.timeFrames[0]?.endDate?.getDay()
+                )}
                 <div>
                   <Field
                     className="form-input-long"
@@ -697,21 +717,9 @@ const FormikContactComponent: React.FC = () => {
               />
             </div>
             <div className="lower-form-content">
-              <div>
-                <Button
-                  type="primary"
-                  shape="round"
-                  style={{
-                    backgroundColor: "#28D2FF",
-                    color: "#000000",
-                    fontWeight: "500",
-                  }}
-                  size={"large"}
-                  htmlType="submit"
-                >
-                  REZERWUJ
-                </Button>
-              </div>
+              <button className="button-primary" type="submit">
+                REZERWUJ
+              </button>
             </div>
           </Form>
         )}

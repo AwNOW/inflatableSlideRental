@@ -11,9 +11,6 @@ export const postalCodeValidation = (zipCode: string) => {
   }
 };
 
-
-
-// Calendar disabled days
 export type OrderData = {
   id: string;
   assType: string;
@@ -30,7 +27,7 @@ export type AssAmounts = {
   [key: string]: number;
 };
 
-// zrób pure i nazwij getBookedDays, wynieś do fromHelpers
+
 export const getBookedDays = (ordersData: OrderData[]) => {
   const result = ordersData.reduce<{
     [key: string]: { [key: string]: number };
@@ -62,8 +59,6 @@ export const getBookedDays = (ordersData: OrderData[]) => {
   return result;
 };
 
-
-// zrób getDisabledDays, wynieś do formHelpers
 export const getDisabledDays = (
   reservationInfo: ReservationInfo,
   assAmounts: AssAmounts

@@ -1,22 +1,18 @@
-.upper-form-content{
+.upper-form-content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.bubbles-container{
+
+.form-img-container {
   position: relative;
   display: flex;
-  align-items: center;
-  height: auto;
-  max-width: 100%;
+  justify-content: center;
 }
 
-.form-img-container{
-  width: 420px;
-}
-
-.img{
-  position: relative;
+.form-img-container img {
+  height: 300px;
+  width: auto;
   z-index: 2;
 }
 
@@ -37,51 +33,42 @@
   margin-bottom: 8px;
 }
 
-.form-label{
+.form-label {
   margin-bottom: 5px;
 }
 
 .calendar-container {
   display: flex;
   flex-direction: row;
-  align-items: start;
   gap: 10px;
   padding-bottom: 10px;
+  padding-top: 5px;
 }
 
-.rdrDateDisplayWrapper{
+.rdrDateDisplayWrapper {
   background-color: rgb(232 248 252) !important;
 }
 
-
-.calendar{
+.calendar {
   position: relative;
 }
 
-.calendar-content-disabled{
-  top:0;
+.calendar-content-disabled {
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  width: 332px;
   position: absolute;
-  pointer-events:none;
+  pointer-events: none;
   background-color: rgb(202, 211, 211);
   z-index: 1000;
   opacity: 0.7;
 }
 
-.calendar-content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
 .calendar-additional-text {
   display: flex;
   flex-direction: column;
-  text-align: start;
   width: 270px;
   color: #0183c7;
 }
@@ -106,19 +93,98 @@
   width: 315px;
 }
 
-.exception-delivery-text{
+.exception-delivery-text {
   margin-bottom: 15px;
   color: #0183c7;
 }
 
-.lower-form-content{
+.lower-form-content {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
-.checkbox-statement{
+.checkbox-statement {
   padding-top: 30px;
   padding-bottom: 40px;
+}
+
+.form-img-container-small {
+  display: none;
+}
+
+@media (max-width: 1270px) {
+  .form-img-container {
+    zoom: 0.8;
+  }
+}
+
+@media (max-width: 1200px) {
+  .form-img-container {
+    display: none;
+  }
+  .form-input-long {
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+  .upper-form-fields {
+    flex-grow: 1;
+  }
+  .form-input-long {
+    width: 100%;
+  }
+  .form-input-medium {
+    width: 100%;
+  }
+  .calendar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .calendar-container {
+    flex-direction: column;
+    flex-direction: column-reverse;
+    gap: 5px;
+  }
+  .calendar-additional-text {
+    width: 100%;
+  }
+  .calendar-additional-text p {
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+
+  .form-img-container-small {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+  }
+  .form-img-container-small img {
+    height: 200px;
+    width: auto;
+  }
+}
+
+@media (max-width: 905px) {
+  .delivery-info-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+  .time-pickers-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .calendar {
+    display: flex;
+    gap: 15px;
+  }
+  .form-img-container-small img {
+    display: none;
+  }
 }
