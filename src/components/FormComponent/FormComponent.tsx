@@ -274,6 +274,7 @@ const FormikContactComponent: React.FC = () => {
   ];
 
   const getDeliveryDay = (
+    assoType: string | null,
     deliveryType: string | null,
     deliveryDayOfWeek: number | undefined,
     pickUpDayOfWeek: number | undefined
@@ -281,6 +282,7 @@ const FormikContactComponent: React.FC = () => {
     console.log({ deliveryType, deliveryDayOfWeek, pickUpDayOfWeek });
     if (
       deliveryType === null ||
+      assoType === null ||
       deliveryDayOfWeek === undefined ||
       pickUpDayOfWeek === undefined
     ) {
@@ -680,6 +682,7 @@ const FormikContactComponent: React.FC = () => {
                   </div>
                 </div>
                 {getDeliveryDay(
+                  values.assType,
                   values.deliveryType,
                   values.timeFrames[0]?.startDate?.getDay(),
                   values.timeFrames[0]?.endDate?.getDay()
