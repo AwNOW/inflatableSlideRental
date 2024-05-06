@@ -16,18 +16,20 @@
   font-size: 30px;
 }
 
-
-.regulation-bubbles-container{
+.regulation-bubbles-container {
   position: relative;
   display: flex;
   align-items: center;
-  height: auto;
-  max-width: 100%;
 }
 
-@media (max-width: 1100px) {
-  .regulation-bubbles-container{
+.regulations-lower-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 1130px) {
+  .regulation-bubbles-container {
     display: none;
   }
-
 }

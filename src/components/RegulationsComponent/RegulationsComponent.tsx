@@ -5,22 +5,22 @@ import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsCo
 
 const bubbleArr = [
   {
-    top: "-150px",
-    left: "0px",
+    top: "-60px",
+    left: "-180px",
     height: "120px",
     width: "120px",
     borderRadius: "120px",
   },
   {
-    top: "-140px",
-    left: "0px",
+    top: "-100px",
+    left: "-110px",
     height: "150px",
     width: "150px",
     borderRadius: "150px",
   },
   {
-    top: "-80px",
-    left: "0px",
+    top: "-0px",
+    left: "-150px",
     height: "80px",
     width: "80px",
     borderRadius: "80px",
@@ -62,22 +62,24 @@ const RegulationsComponent: React.FC = () => {
       </p>
 
       <h2 className="content-title">Pozostałe</h2>
-      <ol className="main-content-list">
-        <li>
-          Urządzenia są wynajmowane na cały dzień, w godzinach od godz. 10:00 do
-          19:00.
-        </li>
-        <li>
-          Dostarczenie albo odbiór własny jest możliwy w dniu wynajmu od godz.
-          7:00 do 10:00.
-        </li>
-        <li>Zwrot odbywa się od godz. 19:00 do 22:00.</li>
-        <li>
-          Godziny wynajmu można także dostosować do klienta indywidualnie.
-        </li>
-      </ol>
-      <div className="regulation-bubbles-container">
-        <BubblesComponent bubbles={bubbleArr} />
+      <div className="regulations-lower-content">
+        <ol className="main-content-list">
+          <li>
+            Urządzenia są wynajmowane na cały dzień, w godzinach od godz. 10:00
+            do 19:00.
+          </li>
+          <li>
+            Dostarczenie albo odbiór własny jest możliwy w dniu wynajmu od godz.
+            7:00 do 10:00.
+          </li>
+          <li>Zwrot odbywa się od godz. 19:00 do 22:00.</li>
+          <li>
+            Godziny wynajmu można także dostosować do klienta indywidualnie.
+          </li>
+        </ol>
+        <div className="regulation-bubbles-container">
+          <BubblesComponent bubbles={bubbleArr} />
+        </div>
       </div>
       <ContactDetailsComponent />
     </div>
