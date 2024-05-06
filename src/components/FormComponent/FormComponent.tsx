@@ -2,7 +2,12 @@ import "./formComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
 import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
 import BubblesComponent from "../BubblesComponent/BubblesComponent";
-import obrazek from "../../images/obrazek.png";
+
+import picAssoTypeA from "../../images/zamekA.png";
+import picAssoTypeB from "../../images/zamekB.png";
+import picAssoTypeC from "../../images/zamekC.png";
+import picAssoTypeD from "../../images/zamekB.png";
+
 import { v4 as uuidv4 } from "uuid";
 import { firestore } from "../../index";
 import {
@@ -25,7 +30,6 @@ import { pl } from "date-fns/locale";
 import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
 import type { RangeKeyDict } from "react-date-range";
-
 import { TimePicker, Input, Select, Checkbox } from "antd";
 import dayjs from "dayjs";
 
@@ -61,11 +65,19 @@ const bubbleArr = [
   },
 ];
 
+const picAssoTypesObj: { [key in AssortmentTypes]: string } = {
+  assoTypeA: picAssoTypeA,
+  assoTypeB: picAssoTypeB,
+  assoTypeC: picAssoTypeC,
+  assoTypeD: picAssoTypeD,
+};
+type AssortmentTypes = "assoTypeA" | "assoTypeB" | "assoTypeC" | "assoTypeD";
+
 interface OrderForm {
   clientName: string;
   clientSurname: string;
   phoneNr: string;
-  assType: string | null;
+  assType: AssortmentTypes | null;
   deliveryType: string | null;
   timeFrames: {
     startDate?: Date | null;
@@ -266,7 +278,7 @@ const FormikContactComponent: React.FC = () => {
     deliveryDayOfWeek: number | undefined,
     pickUpDayOfWeek: number | undefined
   ) => {
-    console.log({deliveryType,deliveryDayOfWeek,pickUpDayOfWeek})
+    console.log({ deliveryType, deliveryDayOfWeek, pickUpDayOfWeek });
     if (
       deliveryType === null ||
       deliveryDayOfWeek === undefined ||
@@ -406,10 +418,10 @@ const FormikContactComponent: React.FC = () => {
                     as={Select}
                     placeholder="Wybierz rodzaj dmuchanej atrakcji"
                     options={[
-                      { value: "typeA", label: "Zamek A" },
-                      { value: "typeB", label: "Zamek B" },
-                      { value: "typeC", label: "Zamek C" },
-                      { value: "typeD", label: "Zamek D" },
+                      { value: "assoTypeA", label: "Zamek A" },
+                      { value: "assoTypeB", label: "Zamek B" },
+                      { value: "assoTypeC", label: "Zamek C" },
+                      { value: "assoTypeD", label: "Zamek D" },
                     ]}
                     onChange={(e: string) => {
                       setFieldValue("assType", e);
@@ -473,7 +485,11 @@ const FormikContactComponent: React.FC = () => {
                       </div>
                       <div className="form-img-container-small">
                         {values.assType && (
-                          <img className="img" src={obrazek} alt="dmuchanec1" />
+                          <img
+                            className="img"
+                            src={picAssoTypesObj[values.assType]}
+                            alt="dmuchanec1"
+                          />
                         )}
                       </div>
                     </div>
@@ -700,7 +716,11 @@ const FormikContactComponent: React.FC = () => {
               <div className="form-img-container">
                 <BubblesComponent bubbles={bubbleArr} />
                 {values.assType && (
-                  <img className="img" src={obrazek} alt="dmuchanec1" />
+                  <img
+                    className="img"
+                    src={picAssoTypesObj[values.assType]}
+                    alt="dmuchanec1"
+                  />
                 )}
               </div>
             </div>

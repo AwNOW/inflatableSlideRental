@@ -2,8 +2,8 @@ import "./homeComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
 import BubblesComponent from "../BubblesComponent/BubblesComponent";
 import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
-import zamekA from "../../images/zamekA.png";
-import zamekB from "../../images/zamekB.png";
+import picAssoTypeA from "../../images/zamekA.png";
+import picAssoTypeB from "../../images/zamekB.png";
 import { Link } from "react-router-dom";
 
 const upperBubbleArr = [
@@ -93,17 +93,17 @@ const HomeComponent: React.FC = () => {
             </Link>
           </div>
           <div className="homepage-img-container">
-            <img src={zamekA} alt="dmuchanec, zjeżdżalnia, palmy" />
+            <img src={picAssoTypeA} alt="dmuchanec, zjeżdżalnia, palmy" />
             <BubblesComponent bubbles={upperBubbleArr} />
           </div>
         </div>
         <div className="container-img-asso">
-          <img src={zamekA} alt="dmuchanec, zjeżdżalnia, palmy" />
-          <img src={zamekB} alt="dmuchanec, zjeżdżalnia" />
+          <img src={picAssoTypeA} alt="dmuchanec, zjeżdżalnia, palmy" />
+          <img src={picAssoTypeB} alt="dmuchanec, zjeżdżalnia" />
         </div>
         <div className="homepage-lower-section">
           <div className="homepage-img-container">
-            <img src={zamekB} alt="dmuchanec, zjeżdżalnia" />
+            <img src={picAssoTypeB} alt="dmuchanec, zjeżdżalnia" />
             <BubblesComponent bubbles={lowerBubbleArr} />
           </div>
 

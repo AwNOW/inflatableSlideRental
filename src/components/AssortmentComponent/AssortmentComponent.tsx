@@ -1,9 +1,9 @@
 import "./assortmentComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
 import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
-import zamekA from "../../images/zamekA.png";
-import zamekB from "../../images/zamekB.png";
-import zamekC from "../../images/zamekA.png";
+import picAssoTypeA from "../../images/zamekA.png";
+import picAssoTypeB from "../../images/zamekB.png";
+import picAssoTypeC from "../../images/zamekC.png";
 import { Link } from "react-router-dom";
 
 const AssortmentComponent: React.FC = () => {
@@ -19,7 +19,7 @@ const AssortmentComponent: React.FC = () => {
         <ul className="items-list">
           <li>
             <Link className="item-card" to="/rezerwacja">
-              <img className="item-image" src={zamekA} alt="dmuchanec1" />
+              <img className="item-image" src={picAssoTypeA} alt="dmuchanec1" />
               <h2 className="item-card-heading">
                 Nadmuchiwany zamek do skakania ze zjeżdżalnią.
               </h2>
@@ -43,7 +43,7 @@ const AssortmentComponent: React.FC = () => {
           </li>
           <li>
             <Link className="item-card" to="/rezerwacja">
-              <img className="item-image" src={zamekA} alt="dmuchanec1" />
+              <img className="item-image" src={picAssoTypeA} alt="dmuchanec1" />
               <h2 className="item-card-heading">
                 Nadmuchiwany zamek do skakania ze zjeżdżalnią.
               </h2>
@@ -67,7 +67,7 @@ const AssortmentComponent: React.FC = () => {
           </li>
           <li>
             <Link className="item-card" to="/rezerwacja">
-              <img className="item-image" src={zamekB} alt="dmuchanec1" />
+              <img className="item-image" src={picAssoTypeB} alt="dmuchanec1" />
               <h2 className="item-card-heading">
                 Nadmuchiwany zamek do skakania ze zjeżdżalnią.
               </h2>
@@ -91,7 +91,7 @@ const AssortmentComponent: React.FC = () => {
           </li>
           <li>
             <Link className="item-card" to="/rezerwacja">
-              <img className="item-image" src={zamekC} alt="dmuchanec1" />
+              <img className="item-image" src={picAssoTypeC} alt="dmuchanec1" />
               <h2 className="item-card-heading">
                 Nadmuchiwany zamek do skakania ze zjeżdżalnią.
               </h2>
