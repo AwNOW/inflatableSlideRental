@@ -94,7 +94,7 @@ const HomeComponent: React.FC = () => {
           </div>
           <div className="homepage-img-container">
             <img src={picAssoTypeA} alt="dmuchanec, zjeżdżalnia, palmy" />
-            <BubblesComponent bubbles={upperBubbleArr} />
+            <BubblesComponent animation bubbles={upperBubbleArr} />
           </div>
         </div>
         <div className="container-img-asso">
@@ -104,7 +104,7 @@ const HomeComponent: React.FC = () => {
         <div className="homepage-lower-section">
           <div className="homepage-img-container">
             <img src={picAssoTypeB} alt="dmuchanec, zjeżdżalnia" />
-            <BubblesComponent bubbles={lowerBubbleArr} />
+            <BubblesComponent animation bubbles={lowerBubbleArr} />
           </div>
 
           <div className="homepage-lower-section-content">
