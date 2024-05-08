@@ -65,6 +65,10 @@ const RegulationsComponent: React.FC = () => {
       <div className="regulations-lower-content">
         <ol className="main-content-list">
           <li>
+            Darmowy dojazd do 15km, powyżej do każdego kolejnego 1km dopłata
+            2zł.
+          </li>
+          <li>
             Urządzenia są wynajmowane na cały dzień, w godzinach od godz. 10:00
             do 19:00.
           </li>

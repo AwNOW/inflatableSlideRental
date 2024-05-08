@@ -62,22 +62,22 @@ const ContactDetailsComponent: FC = () => {
               <h2 className="bold-contact-text">Napisz do nas</h2>
               <a
                 className="contact-details-link"
-                href="mailto:hulance.dla.bajtli@onet.pl"
+                href="mailto:hulancedlabajtli@gmail.com"
               >
-                hulance.dla.bajtli@onet.pl
+                hulancedlabajtli@gmail.coml
               </a>
             </div>
             <div className="contact-details-item">
               <h2 className="bold-contact-text">Zadzwoń</h2>
-              <a className="contact-details-link" href="tel:165162781">
-                +48 165 162 781
+              <a className="contact-details-link" href="tel:732495748">
+                +48 732 495 748
               </a>
             </div>
           </div>
         </div>
       </div>
       <div className="footer">
-        Copyright ©2024 Hulańce Dla Bajtli – Wynajem Zamków Dmuchanych
+        Copyright ©2024 Hulańce dla Bajtli – Wynajem Zamków Dmuchanych
         Ornontowice - Wszystkie prawa zastrzeżone
       </div>
     </div>

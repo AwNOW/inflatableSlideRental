@@ -11,8 +11,6 @@ import picAssoTypeF from "../../images/zamekF.png";
 import { Link } from "react-router-dom";
 
 const AssortmentComponent: React.FC = () => {
-  const handleClick = () => {};
-
   return (
     <div>
       <nav>
@@ -23,19 +21,27 @@ const AssortmentComponent: React.FC = () => {
         <ul className="items-list">
           <li>
             <Link className="item-card" to="/rezerwacja">
-              <img className="item-image" src={picAssoTypeA} alt="dmuchanec1" />
-              <h2 className="item-card-heading">
-                Nadmuchiwany zamek do skakania ze zjeżdżalnią.
-              </h2>
+              <div className="item-card-img-container">
+                <img
+                  className="item-image"
+                  src={picAssoTypeF}
+                  alt="dmuchanec1"
+                />
+              </div>
+              <h2 className="item-card-heading">Dmuchany Zamek Bajtel</h2>
               <div className="item-additional-info">
                 <span>Wymiary:</span>
-                <span>szerokość: 350 cm</span>
-                <span>głębokość: 212 cm</span>
-                <span>wysokość: 195 cm</span>
-                <span>maksymalne obciążenie - 90 kg</span>
+                <span>szerokość: 3,00m</span>
+                <span>głębokość: 2,80m</span>
+                <span>wysokość: 2,10m</span>
+                <span>
+                  wymagana przestrzeń: 4x4m<sup>2</sup>
+                </span>
+                <span>waga użytkowania (max): 45kg</span>
+                <span>obciążenie całkowite (max): 180kg</span>
                 <div>
                   <span>Cena:</span>{" "}
-                  <span className="item-card-price">88 zł / doba</span>
+                  <span className="item-card-price">150 zł / doba</span>
                 </div>
               </div>
               <div>
@@ -47,19 +53,61 @@ const AssortmentComponent: React.FC = () => {
           </li>
           <li>
             <Link className="item-card" to="/rezerwacja">
-              <img className="item-image" src={picAssoTypeB} alt="dmuchanec1" />
-              <h2 className="item-card-heading">
-                Nadmuchiwany zamek do skakania ze zjeżdżalnią.
-              </h2>
+              <div className="item-card-img-container">
+                <img
+                  className="item-image"
+                  src={picAssoTypeA}
+                  alt="dmuchanec1"
+                />
+              </div>
+
+              <h2 className="item-card-heading">Dmuchany Zamek La Palma</h2>
               <div className="item-additional-info">
                 <span>Wymiary:</span>
-                <span>szerokość: 350 cm</span>
-                <span>głębokość: 212 cm</span>
-                <span>wysokość: 195 cm</span>
-                <span>maksymalne obciążenie - 90 kg</span>
+                <span>szerokość: 4,68m</span>
+                <span>głębokość: 4,06m</span>
+                <span>wysokość: 2,40m</span>
+                <span>
+                  wymagana przestrzeń: 5x6m<sup>2</sup>
+                </span>
+                <span>waga użytkowania (max): 45kg</span>
+                <span>obciążenie całkowite (max): 180kg</span>
                 <div>
                   <span>Cena:</span>{" "}
-                  <span className="item-card-price">88 zł / doba</span>
+                  <span className="item-card-price">200 zł / doba</span>
+                </div>
+              </div>
+
+              <div>
+                <button className="button-primary yellow" type="submit">
+                  REZERWUJ
+                </button>
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link className="item-card" to="/rezerwacja">
+              <div className="item-card-img-container">
+                <img
+                  className="item-image"
+                  src={picAssoTypeB}
+                  alt="dmuchanec1"
+                />
+              </div>
+              <h2 className="item-card-heading">Dmuchany Zamek Combo Slide</h2>
+              <div className="item-additional-info">
+                <span>Wymiary:</span>
+                <span>szerokość: 2,15m</span>
+                <span>głębokość: 6,00m</span>
+                <span>wysokość: 2,85m</span>
+                <span>
+                  wymagana przestrzeń: 5x8m<sup>2</sup>
+                </span>
+                <span>waga użytkowania (max): 45kg</span>
+                <span>obciążenie całkowite (max): 180kg</span>
+                <div>
+                  <span>Cena:</span>{" "}
+                  <span className="item-card-price">250 zł / doba</span>
                 </div>
               </div>
               <div>
@@ -71,19 +119,27 @@ const AssortmentComponent: React.FC = () => {
           </li>
           <li>
             <Link className="item-card" to="/rezerwacja">
-              <img className="item-image" src={picAssoTypeC} alt="dmuchanec1" />
-              <h2 className="item-card-heading">
-                Nadmuchiwany zamek do skakania ze zjeżdżalnią.
-              </h2>
+              <div className="item-card-img-container">
+                <img
+                  className="item-image"
+                  src={picAssoTypeC}
+                  alt="dmuchanec1"
+                />
+              </div>
+              <h2 className="item-card-heading">Dmuchany Zamek Żyrafa</h2>
               <div className="item-additional-info">
                 <span>Wymiary:</span>
-                <span>szerokość: 350 cm</span>
-                <span>głębokość: 212 cm</span>
-                <span>wysokość: 195 cm</span>
-                <span>maksymalne obciążenie - 90 kg</span>
+                <span>szerokość: 3,40m</span>
+                <span>głębokość: 3,50m</span>
+                <span>wysokość: 2,45m</span>
+                <span>
+                  wymagana przestrzeń: 5x6m<sup>2</sup>
+                </span>
+                <span>waga użytkowania (max): 45kg</span>
+                <span>obciążenie całkowite (max): 180kg</span>
                 <div>
                   <span>Cena:</span>{" "}
-                  <span className="item-card-price">88 zł / doba</span>
+                  <span className="item-card-price">250 zł / doba</span>
                 </div>
               </div>
               <div>
@@ -95,19 +151,27 @@ const AssortmentComponent: React.FC = () => {
           </li>
           <li>
             <Link className="item-card" to="/rezerwacja">
-              <img className="item-image" src={picAssoTypeD} alt="dmuchanec1" />
-              <h2 className="item-card-heading">
-                Nadmuchiwany zamek do skakania ze zjeżdżalnią.
-              </h2>
+              <div className="item-card-img-container">
+                <img
+                  className="item-image"
+                  src={picAssoTypeD}
+                  alt="dmuchanec1"
+                />
+              </div>
+              <h2 className="item-card-heading">Dmuchany Zamek Kangurek</h2>
               <div className="item-additional-info">
                 <span>Wymiary:</span>
-                <span>szerokość: 350 cm</span>
-                <span>głębokość: 212 cm</span>
-                <span>wysokość: 195 cm</span>
-                <span>maksymalne obciążenie - 90 kg</span>
+                <span>szerokość: 3,43m</span>
+                <span>głębokość: 3,88m</span>
+                <span>wysokość: 2,28m</span>
+                <span>
+                  wymagana przestrzeń: 5x5m<sup>2</sup>
+                </span>
+                <span>waga użytkowania (max): 45kg</span>
+                <span>obciążenie całkowite (max): 180kg</span>
                 <div>
                   <span>Cena:</span>{" "}
-                  <span className="item-card-price">88 zł / doba</span>
+                  <span className="item-card-price">150 zł / doba</span>
                 </div>
               </div>
               <div>
@@ -119,43 +183,27 @@ const AssortmentComponent: React.FC = () => {
           </li>
           <li>
             <Link className="item-card" to="/rezerwacja">
-              <img className="item-image" src={picAssoTypeE} alt="dmuchanec1" />
-              <h2 className="item-card-heading">
-                Nadmuchiwany zamek do skakania ze zjeżdżalnią.
-              </h2>
+              <div className="item-card-img-container">
+                <img
+                  className="item-image"
+                  src={picAssoTypeE}
+                  alt="dmuchanec1"
+                />
+              </div>
+              <h2 className="item-card-heading">Dmuchany Zamek Słonik Maksa</h2>
               <div className="item-additional-info">
                 <span>Wymiary:</span>
-                <span>szerokość: 350 cm</span>
-                <span>głębokość: 212 cm</span>
-                <span>wysokość: 195 cm</span>
-                <span>maksymalne obciążenie - 90 kg</span>
+                <span>szerokość: 3,78m</span>
+                <span>głębokość: 4,69m</span>
+                <span>wysokość: 2,50m</span>
+                <span>
+                  wymagana przestrzeń: 5x6m<sup>2</sup>
+                </span>
+                <span>waga użytkowania (max): 45kg</span>
+                <span>obciążenie całkowite (max): 180kg</span>
                 <div>
                   <span>Cena:</span>{" "}
-                  <span className="item-card-price">88 zł / doba</span>
-                </div>
-              </div>
-              <div>
-                <button className="button-primary yellow" type="submit">
-                  REZERWUJ
-                </button>
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link className="item-card" to="/rezerwacja">
-              <img className="item-image" src={picAssoTypeF} alt="dmuchanec1" />
-              <h2 className="item-card-heading">
-                Nadmuchiwany zamek do skakania ze zjeżdżalnią.
-              </h2>
-              <div className="item-additional-info">
-                <span>Wymiary:</span>
-                <span>szerokość: 350 cm</span>
-                <span>głębokość: 212 cm</span>
-                <span>wysokość: 195 cm</span>
-                <span>maksymalne obciążenie - 90 kg</span>
-                <div>
-                  <span>Cena:</span>{" "}
-                  <span className="item-card-price">88 zł / doba</span>
+                  <span className="item-card-price">250 zł / doba</span>
                 </div>
               </div>
               <div>
@@ -166,6 +214,9 @@ const AssortmentComponent: React.FC = () => {
             </Link>
           </li>
         </ul>
+        <p className="asso-lower-section-content-text">
+          Podane ceny są cenami brutto!
+        </p>
       </div>
       <ContactDetailsComponent />
     </div>

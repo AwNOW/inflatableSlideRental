@@ -113,7 +113,7 @@ const HomeComponent: React.FC = () => {
               <li>
                 Wybierz dmuchańca, który Cię interesuje i zarezerwuj go. To
                 proste! Możesz{" "}
-                <a className="homepage-lower-section-link" href="tel:165162781">
+                <a className="homepage-lower-section-link" href="tel:732495748">
                   zadzwonić
                 </a>{" "}
                 lub wypełnić{" "}
@@ -153,6 +153,3 @@ const HomeComponent: React.FC = () => {
 };
 
 export default HomeComponent;
-
-//Playpen Sans
-//Lato

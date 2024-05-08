@@ -6,7 +6,9 @@ import BubblesComponent from "../BubblesComponent/BubblesComponent";
 import picAssoTypeA from "../../images/zamekA.png";
 import picAssoTypeB from "../../images/zamekB.png";
 import picAssoTypeC from "../../images/zamekC.png";
-import picAssoTypeD from "../../images/zamekB.png";
+import picAssoTypeD from "../../images/zamekD.png";
+import picAssoTypeE from "../../images/zamekE.png";
+import picAssoTypeF from "../../images/zamekF.png";
 
 import { v4 as uuidv4 } from "uuid";
 import { firestore } from "../../index";
@@ -70,8 +72,17 @@ const picAssoTypesObj: { [key in AssortmentTypes]: string } = {
   assoTypeB: picAssoTypeB,
   assoTypeC: picAssoTypeC,
   assoTypeD: picAssoTypeD,
+  assoTypeE: picAssoTypeE,
+  assoTypeF: picAssoTypeF,
 };
-type AssortmentTypes = "assoTypeA" | "assoTypeB" | "assoTypeC" | "assoTypeD";
+
+type AssortmentTypes =
+  | "assoTypeA"
+  | "assoTypeB"
+  | "assoTypeC"
+  | "assoTypeD"
+  | "assoTypeE"
+  | "assoTypeF";
 
 interface OrderForm {
   clientName: string;
@@ -237,10 +248,13 @@ const FormikContactComponent: React.FC = () => {
 
   const [disabledDays, setDisabledDays] = useState<DisabledDays>();
 
-  const assAmounts: { [key: string]: number } = {
-    typeA: 3,
-    typeB: 5,
-    typeC: 4,
+  const assoAmounts: { [key: string]: number } = {
+    assoTypeA: 1,
+    assoTypeB: 1,
+    assoTypeC: 1,
+    assoTypeD: 1,
+    assoTypeE: 1,
+    assoTypeF: 1,
   };
 
   useEffect(() => {
@@ -297,7 +311,7 @@ const FormikContactComponent: React.FC = () => {
     ) {
       return (
         <div className="exception-delivery-text">
-          Powyższe godziny dotyczą{" "}
+          Poniższe godziny dotyczą{" "}
           <strong>{daysOfWeekArr[deliveryDayOfWeek]}</strong> - dnia {action1}
           oraz {action2} dmuchańca.
         </div>
@@ -308,7 +322,7 @@ const FormikContactComponent: React.FC = () => {
     ) {
       return (
         <div className="exception-delivery-text">
-          Powyższe godziny dotyczą{" "}
+          Poniższe godziny dotyczą{" "}
           <strong>{daysOfWeekArr[deliveryDayOfWeek]}</strong> - dnia {action1}
           dmuchańca oraz <strong>{daysOfWeekArr[pickUpDayOfWeek]}</strong> -
           dnia {action2}.
@@ -317,7 +331,11 @@ const FormikContactComponent: React.FC = () => {
     } else {
       return (
         <div className="exception-delivery-text">
-          Powyższe godziny dotyczą{" "}
+          Dostarczenie dmuchańca najprawdopodniej odbędzie się dzień wcześniej w
+          godzinach wieczornych. <br />
+          Wiąże się to z samodzielnym rozłożeniem sprzętu i uruchomieniem go.
+          <br />
+          Poniższe godziny dotyczą{" "}
           <strong>{daysOfWeekArr[deliveryDayOfWeek - 1]}</strong> - dnia{" "}
           {action1}
           dmuchańca oraz <strong>{daysOfWeekArr[pickUpDayOfWeek]}</strong> -
@@ -424,6 +442,8 @@ const FormikContactComponent: React.FC = () => {
                       { value: "assoTypeB", label: "Zamek B" },
                       { value: "assoTypeC", label: "Zamek C" },
                       { value: "assoTypeD", label: "Zamek D" },
+                      { value: "assoTypeE", label: "Zamek E" },
+                      { value: "assoTypeF", label: "Zamek F" },
                     ]}
                     onChange={(e: string) => {
                       setFieldValue("assType", e);
@@ -611,6 +631,12 @@ const FormikContactComponent: React.FC = () => {
                     </div>
                   </div>
                 )}
+                {getDeliveryDay(
+                  values.assoType,
+                  values.deliveryType,
+                  values.timeFrames[0]?.startDate?.getDay(),
+                  values.timeFrames[0]?.endDate?.getDay()
+                )}
                 <div className="time-pickers-content">
                   <div className="time-picker">
                     {values.deliveryType === "delivery" ? (
@@ -681,12 +707,6 @@ const FormikContactComponent: React.FC = () => {
                     />
                   </div>
                 </div>
-                {getDeliveryDay(
-                  values.assType,
-                  values.deliveryType,
-                  values.timeFrames[0]?.startDate?.getDay(),
-                  values.timeFrames[0]?.endDate?.getDay()
-                )}
                 <div>
                   <Field
                     className="form-input-long"
@@ -730,9 +750,9 @@ const FormikContactComponent: React.FC = () => {
 
             <div className="checkbox-statement">
               <Field as={Checkbox} name="checked" checked={values.checked} />{" "}
-              Wyrażam zgodę na przetwarzanie moich danych osobowych przez XYZ w
-              celu i zakresie koniecznym do udzielenia odpowiedzi na przesłanie
-              zapytanie.*
+              Wyrażam zgodę na przetwarzanie moich danych osobowych przez{" "}
+              <strong>Hulańce dla Bajtli</strong> w celu i zakresie koniecznym
+              do udzielenia odpowiedzi na przesłanie zapytanie.*
               <ErrorMessage
                 name="checked"
                 component="div"
