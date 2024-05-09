@@ -5,6 +5,7 @@ import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsCo
 import picAssoTypeA from "../../images/zamekA.png";
 import picAssoTypeB from "../../images/zamekB.png";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const upperBubbleArr = [
   {
@@ -70,6 +71,11 @@ const lowerBubbleArr = [
 ];
 
 const HomeComponent: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
   return (
     <div>
       <nav>

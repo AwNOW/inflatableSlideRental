@@ -107,6 +107,11 @@ interface OrderForm {
 }
 
 const FormikContactComponent: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
   const handleFormSubmit: (
     values: OrderForm,
     formikHelpers: FormikHelpers<OrderForm>
@@ -453,18 +458,18 @@ const FormikContactComponent: React.FC = () => {
                     as={Select}
                     placeholder="Wybierz rodzaj dmuchanej atrakcji"
                     options={[
-                      { value: "assoTypeA", label: "Dmuchany Zamek La Palma" },
+                      { value: "assoTypeA", label: "Zamek La Palma" },
                       {
                         value: "assoTypeB",
-                        label: "Dmuchany Zamek Combo Slide",
+                        label: "Zamek Combo Slide",
                       },
-                      { value: "assoTypeC", label: "Dmuchany Zamek Żyrafa" },
-                      { value: "assoTypeD", label: "Dmuchany Zamek Kangurek" },
+                      { value: "assoTypeC", label: "Zamek Żyrafa" },
+                      { value: "assoTypeD", label: "Zamek Kangurek" },
                       {
                         value: "assoTypeE",
-                        label: "Dmuchany Zamek Słonik Maksa",
+                        label: "Zamek Słonik Maksa",
                       },
-                      { value: "assoTypeF", label: "Dmuchany Zamek Bajtel" },
+                      { value: "assoTypeF", label: "Zamek Bajtel" },
                     ]}
                     onChange={(e: string) => {
                       setFieldValue("assoType", e);

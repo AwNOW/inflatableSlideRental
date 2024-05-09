@@ -9,8 +9,14 @@ import picAssoTypeE from "../../images/zamekE.png";
 import picAssoTypeF from "../../images/zamekF.png";
 
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const AssortmentComponent: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    })
+  }, []);
   return (
     <div>
       <nav>
@@ -28,7 +34,7 @@ const AssortmentComponent: React.FC = () => {
                   alt="dmuchanec1"
                 />
               </div>
-              <h2 className="item-card-heading">Dmuchany Zamek Bajtel</h2>
+              <h2 className="item-card-heading">Zamek Bajtel</h2>
               <div className="item-additional-info">
                 <span>Wymiary:</span>
                 <span>szerokość: 3,00m</span>
@@ -61,7 +67,7 @@ const AssortmentComponent: React.FC = () => {
                 />
               </div>
 
-              <h2 className="item-card-heading">Dmuchany Zamek La Palma</h2>
+              <h2 className="item-card-heading">Zamek La Palma</h2>
               <div className="item-additional-info">
                 <span>Wymiary:</span>
                 <span>szerokość: 4,68m</span>
@@ -94,7 +100,7 @@ const AssortmentComponent: React.FC = () => {
                   alt="dmuchanec1"
                 />
               </div>
-              <h2 className="item-card-heading">Dmuchany Zamek Combo Slide</h2>
+              <h2 className="item-card-heading">Zamek Combo Slide</h2>
               <div className="item-additional-info">
                 <span>Wymiary:</span>
                 <span>szerokość: 2,15m</span>
@@ -126,7 +132,7 @@ const AssortmentComponent: React.FC = () => {
                   alt="dmuchanec1"
                 />
               </div>
-              <h2 className="item-card-heading">Dmuchany Zamek Żyrafa</h2>
+              <h2 className="item-card-heading">Zamek Żyrafa</h2>
               <div className="item-additional-info">
                 <span>Wymiary:</span>
                 <span>szerokość: 3,40m</span>
@@ -158,7 +164,7 @@ const AssortmentComponent: React.FC = () => {
                   alt="dmuchanec1"
                 />
               </div>
-              <h2 className="item-card-heading">Dmuchany Zamek Kangurek</h2>
+              <h2 className="item-card-heading">Zamek Kangurek</h2>
               <div className="item-additional-info">
                 <span>Wymiary:</span>
                 <span>szerokość: 3,43m</span>
@@ -190,7 +196,7 @@ const AssortmentComponent: React.FC = () => {
                   alt="dmuchanec1"
                 />
               </div>
-              <h2 className="item-card-heading">Dmuchany Zamek Słonik Maksa</h2>
+              <h2 className="item-card-heading">Zamek Słonik Maksa</h2>
               <div className="item-additional-info">
                 <span>Wymiary:</span>
                 <span>szerokość: 3,78m</span>

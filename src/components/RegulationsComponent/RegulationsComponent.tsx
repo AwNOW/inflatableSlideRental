@@ -2,6 +2,7 @@ import "./regulationsComponent.css";
 import NavigationComponent from "../NavigationComponent/NavigationComponent";
 import BubblesComponent from "../BubblesComponent/BubblesComponent";
 import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
+import { useEffect } from "react";
 
 const bubbleArr = [
   {
@@ -28,6 +29,11 @@ const bubbleArr = [
 ];
 
 const RegulationsComponent: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    })
+  }, []);
   return (
     <div>
       <nav>
