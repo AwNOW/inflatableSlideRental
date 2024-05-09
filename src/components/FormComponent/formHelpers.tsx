@@ -13,8 +13,13 @@ export const postalCodeValidation = (zipCode: string) => {
 
 export type OrderData = {
   id: string;
-  assType: string;
+  assoType: string;
   timeFrames: { seconds: number; nanoseconds: number }[];
+  confirmedOrder: boolean;
+};
+export type confirmedOrderData = {
+  id: string;
+  confirmedOrder: boolean;
 };
 
 export type DisabledDays = { [key: string]: string[] };
@@ -27,15 +32,24 @@ export type AssAmounts = {
   [key: string]: number;
 };
 
+export const getBookedDays = (
+  ordersData: OrderData[],
+  confirmedOrdersData: confirmedOrderData[]
+) => {
+  const confirmedOrdersIds = confirmedOrdersData.map((order) => order.id);
+  const filteredOrdersData = ordersData.filter((order) =>
+    confirmedOrdersIds.includes(order.id)
+  );
+  console.log("filteredOrdersData")
+  console.log(filteredOrdersData)
 
-export const getBookedDays = (ordersData: OrderData[]) => {
-  const result = ordersData.reduce<{
+  const result = filteredOrdersData.reduce<{
     [key: string]: { [key: string]: number };
   }>((acc, order) => {
-    const { assType, timeFrames } = order;
+    const { assoType, timeFrames } = order;
 
-    if (!acc[assType]) {
-      acc[assType] = {};
+    if (!acc[assoType]) {
+      acc[assoType] = {};
     }
     const list: number[] = [];
 
@@ -48,10 +62,10 @@ export const getBookedDays = (ordersData: OrderData[]) => {
 
     list.forEach(function (reservedDate) {
       const dateKey = reservedDate.toString();
-      if (!acc[assType][dateKey]) {
-        acc[assType][dateKey] = 1;
+      if (!acc[assoType][dateKey]) {
+        acc[assoType][dateKey] = 1;
       } else {
-        acc[assType][dateKey] = acc[assType][dateKey] + 1;
+        acc[assoType][dateKey] = acc[assoType][dateKey] + 1;
       }
     });
     return acc;

@@ -39,6 +39,7 @@ import {
   postalCodeValidation,
   DisabledDays,
   OrderData,
+  confirmedOrderData,
   getBookedDays,
   getDisabledDays,
 } from "./formHelpers";
@@ -88,7 +89,7 @@ interface OrderForm {
   clientName: string;
   clientSurname: string;
   phoneNr: string;
-  assType: AssortmentTypes | null;
+  assoType: AssortmentTypes | null;
   deliveryType: string | null;
   timeFrames: {
     startDate?: Date | null;
@@ -121,9 +122,8 @@ const FormikContactComponent: React.FC = () => {
 
     const batch = writeBatch(firestore);
 
-    console.log();
     batch.set(orderRef, {
-      assType: values.assType,
+      assoType: values.assoType,
       deliveryTime: values.deliveryTime,
       pickUpTime: values.pickUpTime,
       deliveryType: values.deliveryType,
@@ -183,7 +183,7 @@ const FormikContactComponent: React.FC = () => {
       )
       .trim("The contact name cannot include leading and trailing spaces"),
     paymentType: Yup.string().required("Proszę wybrać rodzaj płatności."),
-    assType: Yup.string().required("Proszę wybrać rodzaj dmuchanej atrakcji."),
+    assoType: Yup.string().required("Proszę wybrać rodzaj dmuchanej atrakcji."),
     deliveryType: Yup.string().required("Proszę wybrać rodzaj dostawy."),
     addressZipCode: Yup.string().when("deliveryType", {
       is: "delivery",
@@ -246,6 +246,7 @@ const FormikContactComponent: React.FC = () => {
     };
   };
 
+  //disabled dates
   const [disabledDays, setDisabledDays] = useState<DisabledDays>();
 
   const assoAmounts: { [key: string]: number } = {
@@ -259,19 +260,34 @@ const FormikContactComponent: React.FC = () => {
 
   useEffect(() => {
     const ordersCollection = collection(firestore, "orders");
-    getDocs(ordersCollection).then((snapshot) => {
+    const confirmedOrdersCollection = collection(firestore, "confirmedOrders");
+    const promise = getDocs(ordersCollection);
+    promise.then((snapshot) => {
       const ordersData = snapshot.docs.map((doc) => {
         const data = doc.data();
         return {
           id: doc.id,
-          assType: data.assType,
+          assoType: data.assoType,
           timeFrames: data.timeFrames,
         } as OrderData;
       });
 
-      const reservationInfo = getBookedDays(ordersData);
-      const disabledDaysResult = getDisabledDays(reservationInfo, assAmounts);
-      setDisabledDays(disabledDaysResult);
+      getDocs(confirmedOrdersCollection).then((snapshot) => {
+        const confirmedOrdersData = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            confirmedOrder: data.confirmed,
+          } as confirmedOrderData;
+        });
+
+        const reservationInfo = getBookedDays(ordersData, confirmedOrdersData);
+        const disabledDaysResult = getDisabledDays(
+          reservationInfo,
+          assoAmounts
+        );
+        setDisabledDays(disabledDaysResult);
+      });
     });
   }, []);
 
@@ -293,7 +309,6 @@ const FormikContactComponent: React.FC = () => {
     deliveryDayOfWeek: number | undefined,
     pickUpDayOfWeek: number | undefined
   ) => {
-    console.log({ deliveryType, deliveryDayOfWeek, pickUpDayOfWeek });
     if (
       deliveryType === null ||
       assoType === null ||
@@ -357,7 +372,7 @@ const FormikContactComponent: React.FC = () => {
             clientName: "",
             clientSurname: "",
             phoneNr: "",
-            assType: null,
+            assoType: null,
             deliveryType: null,
             timeFrames: [
               {
@@ -434,23 +449,29 @@ const FormikContactComponent: React.FC = () => {
                 <div>
                   <Field
                     className="form-input-long"
-                    name="assType"
+                    name="assoType"
                     as={Select}
                     placeholder="Wybierz rodzaj dmuchanej atrakcji"
                     options={[
-                      { value: "assoTypeA", label: "Zamek A" },
-                      { value: "assoTypeB", label: "Zamek B" },
-                      { value: "assoTypeC", label: "Zamek C" },
-                      { value: "assoTypeD", label: "Zamek D" },
-                      { value: "assoTypeE", label: "Zamek E" },
-                      { value: "assoTypeF", label: "Zamek F" },
+                      { value: "assoTypeA", label: "Dmuchany Zamek La Palma" },
+                      {
+                        value: "assoTypeB",
+                        label: "Dmuchany Zamek Combo Slide",
+                      },
+                      { value: "assoTypeC", label: "Dmuchany Zamek Żyrafa" },
+                      { value: "assoTypeD", label: "Dmuchany Zamek Kangurek" },
+                      {
+                        value: "assoTypeE",
+                        label: "Dmuchany Zamek Słonik Maksa",
+                      },
+                      { value: "assoTypeF", label: "Dmuchany Zamek Bajtel" },
                     ]}
                     onChange={(e: string) => {
-                      setFieldValue("assType", e);
+                      setFieldValue("assoType", e);
                     }}
                   />
                   <ErrorMessage
-                    name="assType"
+                    name="assoType"
                     component="div"
                     className="validationError"
                   />
@@ -462,7 +483,7 @@ const FormikContactComponent: React.FC = () => {
                 <div>
                   <div className="calendar-container">
                     <div className="calendar">
-                      {!values.assType && (
+                      {!values.assoType && (
                         <div className="calendar-content-disabled"></div>
                       )}
                       <div>
@@ -473,12 +494,11 @@ const FormikContactComponent: React.FC = () => {
                           name="timeFrames"
                           editableDateInputs={true}
                           disabledDates={
-                            values.assType &&
+                            values.assoType &&
                             disabledDays &&
-                            disabledDays[values.assType]
-                              ? disabledDays[values.assType].map(
+                            disabledDays[values.assoType]
+                              ? disabledDays[values.assoType].map(
                                   (timestamp: string) => {
-                                    console.log(timestamp);
                                     return new Date(Number(timestamp));
                                   }
                                 )
@@ -506,10 +526,10 @@ const FormikContactComponent: React.FC = () => {
                         />
                       </div>
                       <div className="form-img-container-small">
-                        {values.assType && (
+                        {values.assoType && (
                           <img
                             className="img"
-                            src={picAssoTypesObj[values.assType]}
+                            src={picAssoTypesObj[values.assoType]}
                             alt="dmuchanec1"
                           />
                         )}
@@ -738,10 +758,10 @@ const FormikContactComponent: React.FC = () => {
               </div>
               <div className="form-img-container">
                 <BubblesComponent bubbles={bubbleArr} />
-                {values.assType && (
+                {values.assoType && (
                   <img
                     className="img"
-                    src={picAssoTypesObj[values.assType]}
+                    src={picAssoTypesObj[values.assoType]}
                     alt="dmuchanec1"
                   />
                 )}
