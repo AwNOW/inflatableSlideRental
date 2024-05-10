@@ -33,7 +33,7 @@ const NavigationComponent: React.FC = () => {
                 location.pathname === "/" ? "active-link" : ""
               }`}
             >
-              O NAS
+              STRONA GŁÓWNA
             </Link>
           </li>
           <li>

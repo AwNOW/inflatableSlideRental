@@ -28,11 +28,12 @@
   border-radius: 34px;
   border: none;
   padding: 15px 20px;
-  background: #28d2ff;
+  background: #2edcf7;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.3s;
+  color: black;
 }
 
 .yellow {

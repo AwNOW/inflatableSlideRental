@@ -15,7 +15,7 @@ const AssortmentComponent: React.FC = () => {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-    })
+    });
   }, []);
   return (
     <div>
@@ -24,6 +24,10 @@ const AssortmentComponent: React.FC = () => {
       </nav>
       <div className="asso-main-content">
         <h1 className="main-content-heading">Cennik</h1>
+        <p className="asso-upper-section-content-text">
+          Podane ceny są cenami brutto. Nie wystawiamy faktury VAT. Kaucja
+          podlega zwrotowi przy odbiorze.
+        </p>
         <ul className="items-list">
           <li>
             <Link className="item-card" to="/rezerwacja">
@@ -48,6 +52,7 @@ const AssortmentComponent: React.FC = () => {
                 <div>
                   <span>Cena:</span>{" "}
                   <span className="item-card-price">150 zł / doba</span>
+                  <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
               <div>
@@ -81,6 +86,7 @@ const AssortmentComponent: React.FC = () => {
                 <div>
                   <span>Cena:</span>{" "}
                   <span className="item-card-price">200 zł / doba</span>
+                  <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
 
@@ -114,6 +120,7 @@ const AssortmentComponent: React.FC = () => {
                 <div>
                   <span>Cena:</span>{" "}
                   <span className="item-card-price">250 zł / doba</span>
+                  <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
               <div>
@@ -146,6 +153,7 @@ const AssortmentComponent: React.FC = () => {
                 <div>
                   <span>Cena:</span>{" "}
                   <span className="item-card-price">250 zł / doba</span>
+                  <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
               <div>
@@ -178,6 +186,7 @@ const AssortmentComponent: React.FC = () => {
                 <div>
                   <span>Cena:</span>{" "}
                   <span className="item-card-price">150 zł / doba</span>
+                  <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
               <div>
@@ -210,6 +219,7 @@ const AssortmentComponent: React.FC = () => {
                 <div>
                   <span>Cena:</span>{" "}
                   <span className="item-card-price">250 zł / doba</span>
+                  <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
               <div>
@@ -220,9 +230,6 @@ const AssortmentComponent: React.FC = () => {
             </Link>
           </li>
         </ul>
-        <p className="asso-lower-section-content-text">
-          Podane ceny są cenami brutto!
-        </p>
       </div>
       <ContactDetailsComponent />
     </div>

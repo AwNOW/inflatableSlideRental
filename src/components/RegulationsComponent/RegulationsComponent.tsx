@@ -32,7 +32,7 @@ const RegulationsComponent: React.FC = () => {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-    })
+    });
   }, []);
   return (
     <div>
@@ -59,7 +59,7 @@ const RegulationsComponent: React.FC = () => {
       </ol>
 
       <h2 className="content-title">Prąd</h2>
-      <p>Urządzenia wymagają dostępu do gniazdka 230V w odległości…</p>
+      <p>Urządzenia wymagają dostępu do gniazdka 230V w odległości 1,50m.</p>
 
       <h2 className="content-title">Warunki Atmosferyczne</h2>
       <p>
@@ -80,7 +80,8 @@ const RegulationsComponent: React.FC = () => {
           </li>
           <li>
             Dostarczenie albo odbiór własny jest możliwy w dniu wynajmu od godz.
-            7:00 do 10:00.
+            7:00 do 10:00 w dni wolne. Natomiast w dni robocze odbywa się w
+            porach wieczornych dnia poprzedzającego dzień wynajmu.
           </li>
           <li>Zwrot odbywa się od godz. 19:00 do 22:00.</li>
           <li>

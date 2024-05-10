@@ -133,7 +133,8 @@ const HomeComponent: React.FC = () => {
                 przygotuje go do użycia.
               </li>
               <li>
-                Dmuchaniec gotowy do akcji! Teraz dzieci mogą bawić się do woli!
+                Przed rozłożeniem sprzętu podpisujemy umowę i dopinamy wszelkich
+                formalności. Teraz dzieci mogą bawić sę do woli!{" "}
               </li>
               <li>
                 Po imprezie przyjedziemy ponownie w uzgodnionym terminie,

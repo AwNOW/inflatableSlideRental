@@ -62,6 +62,12 @@
   font-weight: 700;
 }
 
+.item-card-deposit{
+  color: #000000;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
 .item-image {
   width: 200px;
   height: auto;
@@ -75,12 +81,12 @@
   padding-bottom: 50px;
 }
 
-.asso-lower-section-content-text {
-  align-self: flex-end;
+.asso-upper-section-content-text {
   margin-right: 30px;
   font-weight: 600;
   line-height: 27px;
 }
+
 
 @media screen and (max-width: 1255px) {
   .item-card {

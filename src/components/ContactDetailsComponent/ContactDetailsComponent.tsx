@@ -45,9 +45,10 @@ const ContactDetailsComponent: FC = () => {
             <div className="contact-details-item">
               <h2 className="bold-contact-text">Odwiedź nas</h2>
               <div>
-                Ornontowice <br />
-                Zwycięstwa 20A
+                ul. Zwycięstwa 20A
                 <br />
+                22-246 <br />
+                Ornontowice <br />
                 Polska
               </div>
             </div>
