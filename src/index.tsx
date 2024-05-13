@@ -5,7 +5,7 @@ import App from "./App";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { firebaseConfig } from "./firebaseConfig";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 
 const app = initializeApp(firebaseConfig);
 export const firestore = getFirestore(app);
@@ -15,8 +15,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+      <HashRouter>
+        <App />
+      </HashRouter>
   </React.StrictMode>
 );
