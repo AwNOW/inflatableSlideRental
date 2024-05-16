@@ -26,7 +26,7 @@ const AssortmentComponent: React.FC = () => {
         <h1 className="main-content-heading">Cennik</h1>
         <p className="asso-upper-section-content-text">
           Podane ceny są cenami brutto. Nie wystawiamy faktury VAT. Kaucja
-          podlega zwrotowi przy odbiorze.
+          podlega zwrotowi.
         </p>
         <ul className="items-list">
           <li>
