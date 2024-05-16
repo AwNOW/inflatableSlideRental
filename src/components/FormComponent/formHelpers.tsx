@@ -15,8 +15,8 @@ export type OrderData = {
   id: string;
   assoType: string;
   timeFrames: { seconds: number; nanoseconds: number }[];
-  confirmedOrder: boolean;
 };
+
 export type confirmedOrderData = {
   id: string;
   confirmedOrder: boolean;

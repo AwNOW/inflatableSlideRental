@@ -102,7 +102,6 @@ interface OrderForm {
   addressHouseNumber: string;
   deliveryTime: number | null;
   pickUpTime: number | null;
-  paymentType: string | null;
   checked: boolean;
 }
 
@@ -154,7 +153,6 @@ const FormikContactComponent: React.FC = () => {
       clientName: values.clientName,
       clientSurname: values.clientSurname,
       phoneNr: values.phoneNr,
-      paymentType: values.paymentType,
       addressZipCode: addressZipCode,
       addressCity: addressCity,
       addressStreet: addressStreet,
@@ -187,7 +185,6 @@ const FormikContactComponent: React.FC = () => {
         }
       )
       .trim("The contact name cannot include leading and trailing spaces"),
-    paymentType: Yup.string().required("Proszę wybrać rodzaj płatności."),
     assoType: Yup.string().required("Proszę wybrać rodzaj dmuchanej atrakcji."),
     deliveryType: Yup.string().required("Proszę wybrać rodzaj dostawy."),
     addressZipCode: Yup.string().when("deliveryType", {
@@ -392,7 +389,6 @@ const FormikContactComponent: React.FC = () => {
             addressZipCode: "",
             deliveryTime: null,
             pickUpTime: null,
-            paymentType: null,
             checked: false,
           } as OrderForm
         }
@@ -731,34 +727,6 @@ const FormikContactComponent: React.FC = () => {
                       className="validationError"
                     />
                   </div>
-                </div>
-                <div>
-                  <Field
-                    className="form-input-long"
-                    name="paymentType"
-                    value={values.paymentType}
-                    component={Select}
-                    placeholder="Wybierz rodzaj płatności przy odbiorze"
-                    options={[
-                      {
-                        value: "card",
-                        label: "Płatność kartą.",
-                      },
-                      {
-                        value: "cash",
-                        label: "Płatność gotówką.",
-                      },
-                    ]}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                      setFieldValue("paymentType", e);
-                    }}
-                  />
-
-                  <ErrorMessage
-                    name="paymentType"
-                    component="div"
-                    className="validationError"
-                  />
                 </div>
               </div>
               <div className="form-img-container">
