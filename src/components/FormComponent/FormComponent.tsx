@@ -89,6 +89,7 @@ interface OrderForm {
   clientName: string;
   clientSurname: string;
   phoneNr: string;
+  email: string;
   assoType: AssortmentTypes | null;
   deliveryType: string | null;
   timeFrames: {
@@ -153,6 +154,7 @@ const FormikContactComponent: React.FC = () => {
       clientName: values.clientName,
       clientSurname: values.clientSurname,
       phoneNr: values.phoneNr,
+      email: values.email,
       addressZipCode: addressZipCode,
       addressCity: addressCity,
       addressStreet: addressStreet,
@@ -185,6 +187,9 @@ const FormikContactComponent: React.FC = () => {
         }
       )
       .trim("The contact name cannot include leading and trailing spaces"),
+    email: Yup.string()
+      .required("Proszę podać adres email.")
+      .email("Proszę podać poprawny adres email."),
     assoType: Yup.string().required("Proszę wybrać rodzaj dmuchanej atrakcji."),
     deliveryType: Yup.string().required("Proszę wybrać rodzaj dostawy."),
     addressZipCode: Yup.string().when("deliveryType", {
@@ -374,6 +379,7 @@ const FormikContactComponent: React.FC = () => {
             clientName: "",
             clientSurname: "",
             phoneNr: "",
+            email: "",
             assoType: null,
             deliveryType: null,
             timeFrames: [
@@ -441,6 +447,21 @@ const FormikContactComponent: React.FC = () => {
                     />
                     <ErrorMessage
                       name="phoneNr"
+                      component="div"
+                      className="validationError"
+                    />
+                  </div>
+                  <div>
+                    <Field
+                      className="form-input-long"
+                      as={Input}
+                      type="text"
+                      placeholder="Adres e-mail (wymagane)"
+                      name="email"
+                      onChange={trimAndSet("email", setFieldValue)}
+                    />
+                    <ErrorMessage
+                      name="email"
                       component="div"
                       className="validationError"
                     />
