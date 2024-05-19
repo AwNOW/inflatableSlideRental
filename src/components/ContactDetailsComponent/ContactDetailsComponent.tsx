@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import GoogleMapReact from "google-map-react";
 import { Coords } from "google-map-react"; // Importing Coords type from google-map-react
-import { FaMapMarkerAlt } from "react-icons/fa"; // Assuming you're using Font Awesome for location icon
+import { FaMapMarkerAlt, FaInstagram, FaFacebookSquare } from "react-icons/fa"; // Assuming you're using Font Awesome for location icon
 import "./contactDetailsComponent.css";
 
 // MAPS
@@ -43,12 +43,10 @@ const ContactDetailsComponent: FC = () => {
           <h2 className="main-column-heading">Kontakt</h2>
           <div className="contact-information">
             <div className="contact-details-item">
-              <h2 className="bold-contact-text">Odwiedź nas</h2>
+              <h2 className="bold-contact-text">Adres</h2>
               <div>
-                ul. Zwycięstwa 20A
-                <br />
-                22-246 <br />
-                Ornontowice <br />
+                ul. Zwycięstwa 20A <br />
+                43-178 Ornontowice <br />
                 Polska
               </div>
             </div>
@@ -65,7 +63,7 @@ const ContactDetailsComponent: FC = () => {
                 className="contact-details-link"
                 href="mailto:hulancedlabajtli@gmail.com"
               >
-                hulancedlabajtli@gmail.coml
+                hulancedlabajtli@gmail.com
               </a>
             </div>
             <div className="contact-details-item">
@@ -74,6 +72,25 @@ const ContactDetailsComponent: FC = () => {
                 +48 732 495 748
               </a>
             </div>
+          </div>
+          <div className="contact-details-social-icons">
+            <h2 className="bold-contact-text">Znajdź nas również</h2>
+            <a
+              className="social-icon-inst"
+              href="https://www.instagram.com/hulance_dla_bajtli/?igsh=aWRkdWNjNXo0Nnk1"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram />
+            </a>
+            <a
+              className="social-icon-fb"
+              href="https://www.facebook.com/profile.php?id=61558689674356"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebookSquare />
+            </a>
           </div>
         </div>
       </div>

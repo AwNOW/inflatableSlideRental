@@ -28,7 +28,7 @@ const BubblesComponent: FC<BubblesProps> = ({ animation, bubbles }) => {
     >
       {bubbles.map((bubble, index) => {
         const animationDuration = `${getRandomInt(6, 10)}s`; // Random duration between 6s and 10s
-        const animationDelay = `${getRandomInt(0, 4)}s`; // Random delay between 0s and 4s
+        const animationDelay = `${getRandomInt(0, 2)}s`; // Random delay between 0s and 4s
 
         return (
           <div

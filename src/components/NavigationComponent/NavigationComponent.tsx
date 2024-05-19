@@ -22,9 +22,11 @@ const NavigationComponent: React.FC = () => {
     <div>
       <nav className="nav-bar">
         <div className="logo-container">
-          <img src={logo} alt="Logo" />
+          <Link to="/">
+            <img src={logo} alt="Logo" />
+          </Link>
         </div>
-        <FaAlignJustify className="open-menu" onClick={openMenu}/>
+        <FaAlignJustify className="open-menu" onClick={openMenu} />
         <ul className={`main-menu ${showMenu ? "active" : ""}`}>
           <li>
             <Link

@@ -80,8 +80,9 @@ const RegulationsComponent: React.FC = () => {
           </li>
           <li>
             Dostarczenie albo odbiór własny jest możliwy w dniu wynajmu od godz.
-            7:00 do 10:00 w dni wolne. Natomiast w dni robocze odbywa się w
-            porach wieczornych dnia poprzedzającego dzień wynajmu.
+            7:00 do 10:00 w dni wolne. <br />
+            Natomiast w dni robocze odbywa się w porach wieczornych dnia
+            poprzedzającego dzień wynajmu.
           </li>
           <li>Zwrot odbywa się od godz. 19:00 do 22:00.</li>
           <li>

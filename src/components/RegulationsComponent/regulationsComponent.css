@@ -28,7 +28,7 @@
   align-items: center;
 }
 
-@media (max-width: 1130px) {
+@media (max-width: 1245px) {
   .regulation-bubbles-container {
     display: none;
   }
