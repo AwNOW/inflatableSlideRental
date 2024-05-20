@@ -289,6 +289,8 @@ const FormikContactComponent: React.FC = () => {
         });
 
         const reservationInfo = getBookedDays(ordersData, confirmedOrdersData);
+
+
         const disabledDaysResult = getDisabledDays(
           reservationInfo,
           assoAmounts
@@ -511,7 +513,6 @@ const FormikContactComponent: React.FC = () => {
                       <div>
                         <Field
                           as={DateRange}
-                          disabled={true}
                           locale={pl}
                           name="timeFrames"
                           editableDateInputs={true}
