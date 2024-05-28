@@ -86,7 +86,7 @@ const HomeComponent: React.FC = () => {
           <div className="homepage-upper-section-content">
             <h1 className="homepage-main-heading">
               Urządź Dzieciom Niezapomniany Dzień!
-            </h1>
+            </h1>{" "}
             <p className="homepage-upper-section-content-text">
               Planujesz urządzić niezapomniane urodziny swojemu dziecku? Może
               chcesz przygotować coś specjalnego na dzień dziecka? Wypożyczalnia
