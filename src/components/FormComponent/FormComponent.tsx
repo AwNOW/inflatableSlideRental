@@ -508,7 +508,9 @@ const FormikContactComponent: React.FC = () => {
                   <div className="calendar-container">
                     <div className="calendar">
                       {!values.assoType && (
-                        <div className="calendar-content-disabled"></div>
+                        <div className="calendar-content-disabled">
+                          Aby zobaczyć dostępne terminy, proszę wybrać rodzaj dmuchanej atrakcji.
+                        </div>
                       )}
                       <div>
                         <Field

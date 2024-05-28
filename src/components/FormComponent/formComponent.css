@@ -60,7 +60,10 @@
   right: 0;
   width: 332px;
   position: absolute;
-  pointer-events: none;
+  display: flex;
+  text-align: center;
+  font-weight: 700;
+  align-items: center;
   background-color: rgb(202, 211, 211);
   z-index: 1000;
   opacity: 0.7;
@@ -126,14 +129,9 @@
   }
   .form-input-long {
     width: 100%;
-    margin-top: 8px;
-    margin-bottom: 8px;
   }
   .upper-form-fields {
     flex-grow: 1;
-  }
-  .form-input-long {
-    width: 100%;
   }
   .form-input-medium {
     width: 100%;
