@@ -19,7 +19,7 @@ export type OrderData = {
 
 export type confirmedOrderData = {
   id: string;
-  confirmedOrder: boolean;
+  adminConfirmation: boolean;
 };
 
 export type DisabledDays = { [key: string]: string[] };
@@ -40,8 +40,6 @@ export const getBookedDays = (
   const filteredOrdersData = ordersData.filter((order) =>
     confirmedOrdersIds.includes(order.id)
   );
-  console.log("filteredOrdersData")
-  console.log(filteredOrdersData)
 
   const result = filteredOrdersData.reduce<{
     [key: string]: { [key: string]: number };

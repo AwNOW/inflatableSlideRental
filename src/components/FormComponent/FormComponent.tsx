@@ -284,7 +284,7 @@ const FormikContactComponent: React.FC = () => {
           const data = doc.data();
           return {
             id: doc.id,
-            confirmedOrder: data.confirmed,
+            adminConfirmation: data.adminConfirmation,
           } as confirmedOrderData;
         });
 
@@ -536,6 +536,7 @@ const FormikContactComponent: React.FC = () => {
                               endDate: selection.endDate,
                               key: "selection",
                             };
+                            console.log(selectedRange)
                             setFieldValue("timeFrames", [
                               {
                                 startDate: selectedRange.startDate,
