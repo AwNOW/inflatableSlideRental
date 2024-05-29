@@ -1,44 +1,46 @@
-import React, { FC } from "react";
-import { Link } from "react-router-dom";
-import GoogleMapReact from "google-map-react";
-import { Coords } from "google-map-react"; // Importing Coords type from google-map-react
-import { FaMapMarkerAlt, FaInstagram, FaFacebookSquare } from "react-icons/fa"; // Assuming you're using Font Awesome for location icon
+import React, { FC, useState } from "react";
+import {
+  APIProvider,
+  Map,
+  AdvancedMarker,
+  Pin,
+} from "@vis.gl/react-google-maps";
+import { FaInstagram, FaFacebookSquare } from "react-icons/fa"; // Assuming you're using Font Awesome for location icon
 import "./contactDetailsComponent.css";
 
-// MAPS
+const location = {
+  lat: 50.182427074933315,
+  lng: 18.7635570829699,
+};
 
-interface LocationPinProps {
-  text: string;
-}
-
-const LocationPin: FC<LocationPinProps> = ({ text }) => (
-  <div className="pin">
-    <FaMapMarkerAlt className="pin-icon" />
-    <p className="pin-text">{text}</p>
-  </div>
-);
+const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string;
 
 const ContactDetailsComponent: FC = () => {
-  const location: Coords = {
-    lat: 37.42216,
-    lng: -122.08427,
-  };
-
-  const address: string =
-    "1600 Amphitheatre Parkway, Mountain View, California";
-
   return (
     <div className="contact-main-container">
       <div className="contact-details">
         <div className="map">
           <h2 className="main-column-heading">Jak Do Nas Dojechać</h2>
-          <div className="google-map-wrap">
-            <GoogleMapReact defaultCenter={location} defaultZoom={17}>
-              <LocationPin text={address} />
-            </GoogleMapReact>
+          <div>
+            <APIProvider apiKey={apiKey}>
+              <Map
+                style={{ height: "400px", width: "600px" }}
+                mapId={"f7fb703ab67d9ce9"}
+                defaultCenter={{
+                  lat: 50.182427074933315,
+                  lng: 18.7635570829699,
+                }}
+                defaultZoom={15}
+                gestureHandling={"greedy"}
+                disableDefaultUI={false}
+              >
+                <AdvancedMarker position={location}>
+                  <Pin scale={1.1}></Pin>
+                </AdvancedMarker>
+              </Map>
+            </APIProvider>
           </div>
         </div>
-
         <div className="contact">
           <h2 className="main-column-heading">Kontakt</h2>
           <div className="contact-information">

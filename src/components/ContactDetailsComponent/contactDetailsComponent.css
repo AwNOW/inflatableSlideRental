@@ -8,11 +8,13 @@
 }
 
 .main-column-heading {
+  margin-top: 30px;
   font-family: "Playpen Sans";
   font-size: 38px;
   color: #0183c7;
   text-align: center;
 }
+
 .contact-details {
   display: flex;
   flex-direction: row;
@@ -81,33 +83,9 @@
   font-size: 16px;
   font-weight: 600;
 }
-/* map */
 
-.google-map-wrap {
-  height: 400px; /* Adjust height as needed */
-  width: 500px;
-  margin-bottom: 50px;
-}
-
-.pin {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.pin-icon {
-  color: red; /* Change color as needed */
-  font-size: 24px;
-}
-
-.pin-text {
-  position: absolute;
-  top: 10px;
-  left: -40px;
-  width: 100px;
-  text-align: center;
-  font-size: 14px;
+.map{
+  margin-bottom: 40px;
 }
 
 @media screen and (max-width: 1350px) {
@@ -133,6 +111,13 @@
   .contact-details {
     flex-direction: column;
   }
+  .map{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0px;
+  }
   .main-column-heading {
     font-size: 30px;
   }
@@ -143,10 +128,7 @@
     padding-bottom: 30px;
     justify-content: center;
   }
-  .google-map-wrap {
-    margin-bottom: 0px;
-    width: 100%;
-  }
+
 }
 
 @media screen and (max-width: 640px) {
