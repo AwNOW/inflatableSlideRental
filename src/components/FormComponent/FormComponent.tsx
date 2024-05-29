@@ -167,13 +167,13 @@ const FormikContactComponent: React.FC = () => {
   // VALIDATION //
   const validationSchema = Yup.object().shape({
     clientName: Yup.string()
-      .matches(/^[A-Za-z]+$/, {
+      .matches(/^[A-Za-zŁłÓóŻżĆćŃńĄąĘęŚśŹź]+$/, {
         message: "Cyfry i znaki specjalne są zabronione",
       })
       .required("Proszę podać imię.")
       .max(20, "Proszę podać imię nie przekraczające 20 znaków."),
     clientSurname: Yup.string()
-      .matches(/^[A-Za-z]+$/, {
+      .matches(/^[A-Za-zŁłÓóŻżĆćŃńĄąĘęŚśŹź]+$/, {
         message: "Cyfry i znaki specjalne są zabronione",
       })
       .required("Proszę podać nazwisko.")
