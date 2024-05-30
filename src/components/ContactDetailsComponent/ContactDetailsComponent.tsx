@@ -21,10 +21,9 @@ const ContactDetailsComponent: FC = () => {
       <div className="contact-details">
         <div className="map">
           <h2 className="main-column-heading">Jak Do Nas Dojechać</h2>
-          <div>
+          <div className="map-wrapper">
             <APIProvider apiKey={apiKey}>
               <Map
-                style={{ height: "400px", width: "600px" }}
                 mapId={"f7fb703ab67d9ce9"}
                 defaultCenter={{
                   lat: 50.182427074933315,

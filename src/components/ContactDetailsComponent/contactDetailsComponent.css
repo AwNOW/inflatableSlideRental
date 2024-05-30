@@ -84,8 +84,10 @@
   font-weight: 600;
 }
 
-.map{
+.map-wrapper {
   margin-bottom: 40px;
+  height: 400px;
+  width: 600px;
 }
 
 @media screen and (max-width: 1350px) {
@@ -111,7 +113,10 @@
   .contact-details {
     flex-direction: column;
   }
-  .map{
+  .map-wrapper {
+    width: 100%;
+  }
+  .map {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -128,7 +133,6 @@
     padding-bottom: 30px;
     justify-content: center;
   }
-
 }
 
 @media screen and (max-width: 640px) {
