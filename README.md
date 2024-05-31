@@ -44,3 +44,25 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+# Hulance dla Bajtli - Rental Website
+
+This project is a rental website for Hulance dla Bajtli, built with [Create React App](https://github.com/facebook/create-react-app).
+
+## Project Overview
+
+Hulance dla Bajtli is a platform for renting inflatable slides. Users can browse available items, place rental orders.
+
+## Features
+
+- Browse and search for rental items
+- Place rental orders
+
+### Installation
+
+1. Clone the repository:
+
+   ```sh
+   git clone https://github.com/AwNOW/inflatableSlideRental.git
+   cd hulance-dla-bajtli
