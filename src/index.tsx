@@ -5,7 +5,7 @@ import App from "./App";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { firebaseConfig } from "./firebaseConfig";
-import { BrowserRouter, HashRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 
 const app = initializeApp(firebaseConfig);
 export const firestore = getFirestore(app);

@@ -59,10 +59,10 @@ const RegulationsComponent: React.FC = () => {
       </ol>
 
       <h2 className="content-title">Prąd</h2>
-      <p>Urządzenia wymagają dostępu do gniazdka 230V w odległości 1,50m.</p>
+      <p className="content-text">Urządzenia wymagają dostępu do gniazdka 230V w odległości 1,50m.</p>
 
       <h2 className="content-title">Warunki Atmosferyczne</h2>
-      <p>
+      <p className="content-text">
         W przypadku złych warunków atmosferycznych, takich jak: opady deszczu,
         silne podmuchy wiatru, burza nie można korzystać z urządzeń.
       </p>

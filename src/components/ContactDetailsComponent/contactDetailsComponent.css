@@ -47,13 +47,12 @@
   margin: 0;
   padding-bottom: 10px;
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .contact-details-link {
   color: #0183c7;
   text-decoration: underline;
-  font-weight: 600;
   font-size: 18px;
 }
 

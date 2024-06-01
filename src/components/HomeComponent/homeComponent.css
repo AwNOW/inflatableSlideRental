@@ -25,7 +25,7 @@
   padding-bottom: 20px;
   max-width: 500px;
   line-height: 27px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .homepage-lower-section {
@@ -47,9 +47,6 @@
   font-size: 40px;
 }
 
-.homepage-lower-section-content-list > li {
-  font-weight: 600;
-}
 
 .homepage-lower-section-content-list {
   line-height: 30px;
@@ -62,7 +59,7 @@
 }
 
 .homepage-lower-section-content-subtext {
-  font-weight: 600;
+
   line-height: 27px;
 }
 
