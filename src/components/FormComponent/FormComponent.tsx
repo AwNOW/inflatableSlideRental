@@ -27,6 +27,12 @@ import { writeBatch, doc, collection, getDocs } from "firebase/firestore";
 
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
+import {
+  FaMailBulk,
+  FaPhone,
+  FaInstagram,
+  FaFacebookSquare,
+} from "react-icons/fa";
 
 import { pl } from "date-fns/locale";
 import { DateRange } from "react-date-range";
@@ -112,6 +118,9 @@ const FormikContactComponent: React.FC = () => {
       top: 0,
     });
   }, []);
+
+  const [showModal, setShowModal] = useState(false);
+
   const handleFormSubmit: (
     values: OrderForm,
     formikHelpers: FormikHelpers<OrderForm>
@@ -119,6 +128,7 @@ const FormikContactComponent: React.FC = () => {
     await writeToDatabase(values);
     setSubmitting(false);
     resetForm(); // Reset the form
+    setShowModal(true);
   };
   const writeToDatabase = async (values: OrderForm) => {
     const orderId = uuidv4();
@@ -255,7 +265,6 @@ const FormikContactComponent: React.FC = () => {
 
   //disabled dates
   const [disabledDays, setDisabledDays] = useState<DisabledDays>();
-
   const assoAmounts: { [key: string]: number } = {
     assoTypeA: 1,
     assoTypeB: 1,
@@ -264,7 +273,6 @@ const FormikContactComponent: React.FC = () => {
     assoTypeE: 1,
     assoTypeF: 1,
   };
-
   useEffect(() => {
     const ordersCollection = collection(firestore, "orders");
     const confirmedOrdersCollection = collection(firestore, "confirmedOrders");
@@ -290,7 +298,6 @@ const FormikContactComponent: React.FC = () => {
 
         const reservationInfo = getBookedDays(ordersData, confirmedOrdersData);
 
-
         const disabledDaysResult = getDisabledDays(
           reservationInfo,
           assoAmounts
@@ -301,7 +308,6 @@ const FormikContactComponent: React.FC = () => {
   }, []);
 
   // Exception Delivery Days and Delivery Types
-
   const daysOfWeekArr = [
     "niedzieli",
     "poniedziałku",
@@ -311,7 +317,6 @@ const FormikContactComponent: React.FC = () => {
     "piątku",
     "soboty",
   ];
-
   const getDeliveryDay = (
     assoType: string | null,
     deliveryType: string | null,
@@ -509,7 +514,8 @@ const FormikContactComponent: React.FC = () => {
                     <div className="calendar">
                       {!values.assoType && (
                         <div className="calendar-content-disabled">
-                          Aby zobaczyć dostępne terminy, proszę wybrać rodzaj dmuchanej atrakcji.
+                          Aby zobaczyć dostępne terminy, proszę wybrać rodzaj
+                          dmuchanej atrakcji.
                         </div>
                       )}
                       <div>
@@ -536,7 +542,7 @@ const FormikContactComponent: React.FC = () => {
                               endDate: selection.endDate,
                               key: "selection",
                             };
-                            console.log(selectedRange)
+                            console.log(selectedRange);
                             setFieldValue("timeFrames", [
                               {
                                 startDate: selectedRange.startDate,
@@ -786,6 +792,67 @@ const FormikContactComponent: React.FC = () => {
         )}
       </Formik>
       <ContactDetailsComponent />
+      {showModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2 className="modal-heading">Dziękujemy za rezerwację!</h2>
+            <div className="main-content-text">
+              <p>
+                Twoja rezerwacja została przyjęta. Dziękujemy za skorzystanie z
+                naszych usług!
+              </p>
+              <div className="additional-info">
+                <p>
+                  Jeśli masz jakiekolwiek pytania, skontaktuj się z nami -
+                  wyślij nam maila lub zadzwoń:
+                </p>
+                <ul className="icons-list">
+                  <li className="icon-email">
+                    <a href="mailto:hulancedlabajtli@gmail.com">
+                      <FaMailBulk />
+                    </a>
+                  </li>
+                  <li className="icon-phone">
+                    <a href="tel:732495748">
+                      <FaPhone />
+                    </a>
+                  </li>
+                </ul>
+                <p>
+                  Zapraszamy również do śledzenia nas na naszych profilach w
+                  mediach społecznościowych, aby być na bieżąco z nowościami i
+                  promocjami:
+                </p>
+                <ul className="icons-list">
+                  <li className="icon-inst">
+                    <a
+                      href="https://www.instagram.com/hulance_dla_bajtli/?igsh=aWRkdWNjNXo0Nnk1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaInstagram />
+                    </a>
+                  </li>
+                  <li className="icon-fb">
+                    <a
+                      href="https://www.facebook.com/profile.php?id=61558689674356"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaFacebookSquare />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <p>Udanej zabawy!</p>
+            </div>
+
+            <button className="close-modal" onClick={() => setShowModal(false)}>
+              ZAMKNIJ
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

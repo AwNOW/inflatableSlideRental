@@ -117,6 +117,98 @@
   display: none;
 }
 
+/* modal */
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  padding: 50px;
+  background-color: rgba(115, 113, 113, 0.568);
+  z-index: 100000;
+}
+
+.modal-heading {
+  font-family: "Playpen Sans";
+  color: #0183c7;
+}
+
+.modal-content {
+  background-color: #f6fdff;
+  margin: 120px auto;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+  padding-right: 50px;
+  width: 80%;
+  border-radius: 20px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.24), 0 5px 10px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+}
+
+.icons-list {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.icons-list a {
+  margin: 0 10px;
+  color: rgb(83, 80, 80);
+  font-size: 28px;
+  transition: color 0.3s;
+}
+
+.icon-email a {
+  color: #df574b;
+}
+
+.icon-phone a {
+  color: #24cc63;
+}
+
+.icon-fb a {
+  color: #0183c7;
+}
+
+.icon-inst a {
+  color: #d6249f;
+}
+
+.icon-email a:hover {
+  color: #bd3427;
+}
+
+.icon-phone a:hover {
+  color: #189648;
+}
+
+.icon-fb a:hover {
+  color: #016aa3;
+}
+
+.icon-inst a:hover {
+  color: #a71b7b;
+}
+
+.close-modal {
+  padding-block: 0;
+  padding-inline: 0;
+  padding: 10px;
+  border-width: 0;
+  border-style: none;
+  border-image: none;
+  color: rgb(161, 158, 158);
+  background-color: inherit;
+}
+
+.close-modal:hover {
+  color: #0183c7;
+  cursor: pointer;
+}
+
 @media (max-width: 1270px) {
   .form-img-container {
     zoom: 0.8;
@@ -190,5 +282,19 @@
 @media (max-width: 450px) {
   .calendar {
     zoom: 0.9;
+  }
+  .modal-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+    margin-top: 30px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .modal-heading {
+    font-size: 20px;
+  }
+  .additional-info {
+    display: none;
   }
 }
