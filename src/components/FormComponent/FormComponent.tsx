@@ -26,8 +26,6 @@ import {
 } from "formik";
 import * as Yup from "yup";
 
-
-
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { pl } from "date-fns/locale";
@@ -87,7 +85,7 @@ type AssortmentTypes =
   | "assoTypeE"
   | "assoTypeF";
 
-interface OrderForm {
+interface FormikOrderFields {
   clientName: string;
   clientSurname: string;
   phoneNr: string;
@@ -108,6 +106,11 @@ interface OrderForm {
   checked: boolean;
 }
 
+interface FirestoreOrderFields {
+  formikFields: FormikOrderFields;
+  currentDate: Date;
+}
+
 const FormikContactComponent: React.FC = () => {
   useEffect(() => {
     window.scrollTo({
@@ -118,15 +121,15 @@ const FormikContactComponent: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
 
   const handleFormSubmit: (
-    values: OrderForm,
-    formikHelpers: FormikHelpers<OrderForm>
+    values: FormikOrderFields,
+    formikHelpers: FormikHelpers<FormikOrderFields>
   ) => void | Promise<void> = async (values, { setSubmitting, resetForm }) => {
     await writeToDatabase(values);
     setSubmitting(false);
     resetForm(); // Reset the form
     setShowModal(true);
   };
-  const writeToDatabase = async (values: OrderForm) => {
+  const writeToDatabase = async (values: FormikOrderFields) => {
     const orderId = uuidv4();
     const orderRef = doc(firestore, "orders", orderId);
     const personalDetailsRef = doc(firestore, "ordersPersonalDetails", orderId);
@@ -142,6 +145,7 @@ const FormikContactComponent: React.FC = () => {
         values.timeFrames[0].startDate,
         values.timeFrames[0].endDate,
       ],
+      currentDate: new Date(),
     });
 
     let addressZipCode = values.addressZipCode;
@@ -251,7 +255,7 @@ const FormikContactComponent: React.FC = () => {
       field: string,
       value: any,
       shouldValidate?: boolean
-    ) => Promise<void | FormikErrors<OrderForm>>
+    ) => Promise<void | FormikErrors<FormikOrderFields>>
   ) => {
     return (e: React.ChangeEvent<HTMLInputElement>) => {
       const trimmedValue = e.target.value.replace(/\s/g, "");
@@ -399,7 +403,7 @@ const FormikContactComponent: React.FC = () => {
             deliveryTime: null,
             pickUpTime: null,
             checked: false,
-          } as OrderForm
+          } as FormikOrderFields
         }
         validationSchema={validationSchema}
         onSubmit={handleFormSubmit}
