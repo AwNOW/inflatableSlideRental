@@ -1,19 +1,19 @@
 import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import FormComponent from "./components/FormComponent/FormComponent";
-import RegulationsComponent from "./components/RegulationsComponent/RegulationsComponent";
-import HomeComponent from "./components/HomeComponent/HomeComponent";
-import AssortmentComponent from "./components/AssortmentComponent/AssortmentComponent";
+import Form from "./components/FormComponent/FormComponent";
+import Regulations from "./components/RegulationsComponent/Regulations";
+import Home from "./components/HomeComponent/Home";
+import Assortment from "./components/AssortmentComponent/Assortment";
 
 const App: React.FC = () => {
   return (
     <div className="app">
       <Routes>
-        <Route path="/" element={<HomeComponent />} />
-        <Route path={"/cennik"} element={<AssortmentComponent />} />
-        <Route path={"/rezerwacja"} element={<FormComponent />} />
-        <Route path={"/regulamin"} element={<RegulationsComponent />} />
+        <Route path="/" element={<Home />} />
+        <Route path={"/cennik"} element={<Assortment />} />
+        <Route path={"/rezerwacja"} element={<Form />} />
+        <Route path={"/regulamin"} element={<Regulations />} />
         <Route path="*" element={<div>This page doesn't exist!</div>} />
       </Routes>
     </div>

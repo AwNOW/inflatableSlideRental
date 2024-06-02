@@ -1,6 +1,6 @@
-import "./assortmentComponent.css";
-import NavigationComponent from "../NavigationComponent/NavigationComponent";
-import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
+import "./assortment.css";
+import Navigation from "../NavigationComponent/Navigation";
+import ContactDetails from "../ContactDetailsComponent/ContactDetails";
 import picAssoTypeA from "../../images/zamekA.png";
 import picAssoTypeB from "../../images/zamekB.png";
 import picAssoTypeC from "../../images/zamekC.png";
@@ -20,7 +20,7 @@ const AssortmentComponent: React.FC = () => {
   return (
     <div>
       <nav>
-        <NavigationComponent />
+        <Navigation />
       </nav>
       <div className="asso-main-content">
         <h1 className="main-content-heading">Cennik</h1>
@@ -231,7 +231,7 @@ const AssortmentComponent: React.FC = () => {
           </li>
         </ul>
       </div>
-      <ContactDetailsComponent />
+      <ContactDetails />
     </div>
   );
 };

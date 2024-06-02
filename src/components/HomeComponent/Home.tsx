@@ -1,7 +1,7 @@
-import "./homeComponent.css";
-import NavigationComponent from "../NavigationComponent/NavigationComponent";
-import BubblesComponent from "../BubblesComponent/BubblesComponent";
-import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
+import "./home.css";
+import Navigation from "../NavigationComponent/Navigation";
+import Bubbles from "../BubblesComponent/Bubbles";
+import ContactDetails from "../ContactDetailsComponent/ContactDetails";
 import picAssoTypeA from "../../images/zamekA.png";
 import picAssoTypeB from "../../images/zamekB.png";
 import { Link } from "react-router-dom";
@@ -79,7 +79,7 @@ const HomeComponent: React.FC = () => {
   return (
     <div>
       <nav>
-        <NavigationComponent />
+        <Navigation />
       </nav>
       <div className="component-container">
         <div className="homepage-upper-section">
@@ -100,7 +100,7 @@ const HomeComponent: React.FC = () => {
           </div>
           <div className="homepage-img-container">
             <img src={picAssoTypeA} alt="dmuchanec, zjeżdżalnia, palmy" />
-            <BubblesComponent animation bubbles={upperBubbleArr} />
+            <Bubbles animation bubbles={upperBubbleArr} />
           </div>
         </div>
         <div className="container-img-asso">
@@ -110,7 +110,7 @@ const HomeComponent: React.FC = () => {
         <div className="homepage-lower-section">
           <div className="homepage-img-container">
             <img src={picAssoTypeB} alt="dmuchanec, zjeżdżalnia" />
-            <BubblesComponent animation bubbles={lowerBubbleArr} />
+            <Bubbles animation bubbles={lowerBubbleArr} />
           </div>
 
           <div className="homepage-lower-section-content">
@@ -153,7 +153,7 @@ const HomeComponent: React.FC = () => {
             </div>
           </div>
         </div>
-        <ContactDetailsComponent />
+        <ContactDetails />
       </div>
     </div>
   );

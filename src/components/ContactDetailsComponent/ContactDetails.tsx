@@ -1,4 +1,5 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
+import "./contactDetails.css";
 import {
   APIProvider,
   Map,
@@ -6,7 +7,7 @@ import {
   Pin,
 } from "@vis.gl/react-google-maps";
 import { FaInstagram, FaFacebookSquare } from "react-icons/fa"; // Assuming you're using Font Awesome for location icon
-import "./contactDetailsComponent.css";
+
 
 const location = {
   lat: 50.182427074933315,
@@ -15,7 +16,7 @@ const location = {
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string;
 
-const ContactDetailsComponent: FC = () => {
+const ContactDetails: FC = () => {
   return (
     <div className="contact-main-container">
       <div className="contact-details">
@@ -103,4 +104,4 @@ const ContactDetailsComponent: FC = () => {
   );
 };
 
-export default ContactDetailsComponent;
+export default ContactDetails;

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import "./bubblesComponent.css";
+import "./bubbles.css";
 
 type Bubble = {
   top: string;
@@ -14,7 +14,7 @@ type BubblesProps = {
   bubbles: Bubble[];
 };
 
-const BubblesComponent: FC<BubblesProps> = ({ animation, bubbles }) => {
+const Bubbles: FC<BubblesProps> = ({ animation, bubbles }) => {
   const getRandomInt = (min: number, max: number) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
@@ -51,4 +51,4 @@ const BubblesComponent: FC<BubblesProps> = ({ animation, bubbles }) => {
   );
 };
 
-export default BubblesComponent;
+export default Bubbles;

@@ -1,7 +1,9 @@
+import React, { useEffect, useState } from "react";
 import "./formComponent.css";
-import NavigationComponent from "../NavigationComponent/NavigationComponent";
-import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
-import BubblesComponent from "../BubblesComponent/BubblesComponent";
+import Navigation from "../NavigationComponent/Navigation";
+import ContactDetails from "../ContactDetailsComponent/ContactDetails";
+import Bubbles from "../BubblesComponent/Bubbles";
+import ModalConfirmation from "./ModalConfirmation";
 
 import picAssoTypeA from "../../images/zamekA.png";
 import picAssoTypeB from "../../images/zamekB.png";
@@ -11,7 +13,9 @@ import picAssoTypeE from "../../images/zamekE.png";
 import picAssoTypeF from "../../images/zamekF.png";
 
 import { v4 as uuidv4 } from "uuid";
+import { writeBatch, doc, collection, getDocs } from "firebase/firestore";
 import { firestore } from "../../index";
+
 import {
   Formik,
   Field,
@@ -22,18 +26,10 @@ import {
 } from "formik";
 import * as Yup from "yup";
 
-import React, { useEffect, useState } from "react";
-import { writeBatch, doc, collection, getDocs } from "firebase/firestore";
+
 
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
-import {
-  FaMailBulk,
-  FaPhone,
-  FaInstagram,
-  FaFacebookSquare,
-} from "react-icons/fa";
-
 import { pl } from "date-fns/locale";
 import { DateRange } from "react-date-range";
 import { addDays } from "date-fns";
@@ -377,7 +373,7 @@ const FormikContactComponent: React.FC = () => {
   return (
     <div>
       <nav>
-        <NavigationComponent />
+        <Navigation />
       </nav>
       <h1 className="main-content-heading">Rezerwacja</h1>
       <Formik
@@ -542,7 +538,6 @@ const FormikContactComponent: React.FC = () => {
                               endDate: selection.endDate,
                               key: "selection",
                             };
-                            console.log(selectedRange);
                             setFieldValue("timeFrames", [
                               {
                                 startDate: selectedRange.startDate,
@@ -617,7 +612,6 @@ const FormikContactComponent: React.FC = () => {
                         type="text"
                         placeholder="Miejscowość"
                         name="addressCity"
-                        onChange={trimAndSet("addressCity", setFieldValue)}
                       />
                       <ErrorMessage
                         name="addressCity"
@@ -632,7 +626,6 @@ const FormikContactComponent: React.FC = () => {
                         type="text"
                         placeholder="Ulica"
                         name="addressStreet"
-                        onChange={trimAndSet("addressStreet", setFieldValue)}
                       />
                       <ErrorMessage
                         name="addressStreet"
@@ -761,7 +754,7 @@ const FormikContactComponent: React.FC = () => {
                 </div>
               </div>
               <div className="form-img-container">
-                <BubblesComponent bubbles={bubbleArr} />
+                <Bubbles bubbles={bubbleArr} />
                 {values.assoType && (
                   <img
                     className="img"
@@ -791,68 +784,8 @@ const FormikContactComponent: React.FC = () => {
           </Form>
         )}
       </Formik>
-      <ContactDetailsComponent />
-      {showModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <h2 className="modal-heading">Dziękujemy za rezerwację!</h2>
-            <div className="main-content-text">
-              <p>
-                Twoja rezerwacja została przyjęta. Dziękujemy za skorzystanie z
-                naszych usług!
-              </p>
-              <div className="additional-info">
-                <p>
-                  Jeśli masz jakiekolwiek pytania, skontaktuj się z nami -
-                  wyślij nam maila lub zadzwoń:
-                </p>
-                <ul className="icons-list">
-                  <li className="icon-email">
-                    <a href="mailto:hulancedlabajtli@gmail.com">
-                      <FaMailBulk />
-                    </a>
-                  </li>
-                  <li className="icon-phone">
-                    <a href="tel:732495748">
-                      <FaPhone />
-                    </a>
-                  </li>
-                </ul>
-                <p>
-                  Zapraszamy również do śledzenia nas na naszych profilach w
-                  mediach społecznościowych, aby być na bieżąco z nowościami i
-                  promocjami:
-                </p>
-                <ul className="icons-list">
-                  <li className="icon-inst">
-                    <a
-                      href="https://www.instagram.com/hulance_dla_bajtli/?igsh=aWRkdWNjNXo0Nnk1"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaInstagram />
-                    </a>
-                  </li>
-                  <li className="icon-fb">
-                    <a
-                      href="https://www.facebook.com/profile.php?id=61558689674356"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaFacebookSquare />
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <p>Udanej zabawy!</p>
-            </div>
-
-            <button className="close-modal" onClick={() => setShowModal(false)}>
-              ZAMKNIJ
-            </button>
-          </div>
-        </div>
-      )}
+      <ContactDetails />
+      {showModal && <ModalConfirmation setShowModal={setShowModal} />}
     </div>
   );
 };

@@ -1,11 +1,11 @@
-import "./navigationComponent.css";
+import "./navigation.css";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../images/logo icon and text.svg";
 import { useState } from "react";
 import { FaAlignJustify } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 
-const NavigationComponent: React.FC = () => {
+const Navigation: React.FC = () => {
   const location = useLocation();
 
   const [showMenu, setShowMenu] = useState(false);
@@ -75,4 +75,4 @@ const NavigationComponent: React.FC = () => {
   );
 };
 
-export default NavigationComponent;
+export default Navigation;

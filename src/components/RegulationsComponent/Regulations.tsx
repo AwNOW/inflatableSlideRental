@@ -1,7 +1,7 @@
-import "./regulationsComponent.css";
-import NavigationComponent from "../NavigationComponent/NavigationComponent";
-import BubblesComponent from "../BubblesComponent/BubblesComponent";
-import ContactDetailsComponent from "../ContactDetailsComponent/ContactDetailsComponent";
+import "./regulations.css";
+import Navigation from "../NavigationComponent/Navigation";
+import Bubbles from "../BubblesComponent/Bubbles";
+import ContactDetails from "../ContactDetailsComponent/ContactDetails";
 import { useEffect } from "react";
 
 const bubbleArr = [
@@ -28,7 +28,7 @@ const bubbleArr = [
   },
 ];
 
-const RegulationsComponent: React.FC = () => {
+const Regulations: React.FC = () => {
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -37,7 +37,7 @@ const RegulationsComponent: React.FC = () => {
   return (
     <div>
       <nav>
-        <NavigationComponent />
+        <Navigation />
       </nav>
       <h1 className="main-content-heading">Warunki Wynajmu</h1>
       <h2 className="content-title">Teren</h2>
@@ -90,12 +90,12 @@ const RegulationsComponent: React.FC = () => {
           </li>
         </ol>
         <div className="regulation-bubbles-container">
-          <BubblesComponent bubbles={bubbleArr} />
+          <Bubbles bubbles={bubbleArr} />
         </div>
       </div>
-      <ContactDetailsComponent />
+      <ContactDetails />
     </div>
   );
 };
 
-export default RegulationsComponent;
+export default Regulations;
