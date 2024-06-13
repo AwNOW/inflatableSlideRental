@@ -1,6 +1,5 @@
 import "./assortment.css";
 import Navigation from "../NavigationComponent/Navigation";
-import ContactDetails from "../ContactDetailsComponent/ContactDetails";
 import picAssoTypeA from "../../images/zamekA.png";
 import picAssoTypeB from "../../images/zamekB.png";
 import picAssoTypeC from "../../images/zamekC.png";
@@ -231,7 +230,6 @@ const AssortmentComponent: React.FC = () => {
           </li>
         </ul>
       </div>
-      <ContactDetails />
     </div>
   );
 };

@@ -93,7 +93,6 @@ const Regulations: React.FC = () => {
           <Bubbles bubbles={bubbleArr} />
         </div>
       </div>
-      <ContactDetails />
     </div>
   );
 };

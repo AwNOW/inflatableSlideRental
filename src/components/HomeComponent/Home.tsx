@@ -1,7 +1,6 @@
 import "./home.css";
 import Navigation from "../NavigationComponent/Navigation";
 import Bubbles from "../BubblesComponent/Bubbles";
-import ContactDetails from "../ContactDetailsComponent/ContactDetails";
 import picAssoTypeA from "../../images/zamekA.png";
 import picAssoTypeB from "../../images/zamekB.png";
 import { Link } from "react-router-dom";
@@ -134,7 +133,7 @@ const HomeComponent: React.FC = () => {
               </li>
               <li>
                 Przed rozłożeniem sprzętu podpisujemy umowę i dopinamy wszelkich
-                formalności. Teraz dzieci mogą bawić sę do woli!{" "}
+                formalności. Teraz dzieci mogą bawić się do woli!{" "}
               </li>
               <li>
                 Po imprezie przyjedziemy ponownie w uzgodnionym terminie,
@@ -153,7 +152,6 @@ const HomeComponent: React.FC = () => {
             </div>
           </div>
         </div>
-        <ContactDetails />
       </div>
     </div>
   );

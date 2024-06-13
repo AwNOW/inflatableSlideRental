@@ -5,6 +5,7 @@ import Form from "./components/FormComponent/FormComponent";
 import Regulations from "./components/RegulationsComponent/Regulations";
 import Home from "./components/HomeComponent/Home";
 import Assortment from "./components/AssortmentComponent/Assortment";
+import ContactDetails from "./components/ContactDetailsComponent/ContactDetails";
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
         <Route path={"/regulamin"} element={<Regulations />} />
         <Route path="*" element={<div>This page doesn't exist!</div>} />
       </Routes>
+      <ContactDetails />
     </div>
   );
 };

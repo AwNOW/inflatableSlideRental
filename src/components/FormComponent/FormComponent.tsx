@@ -788,7 +788,6 @@ const FormikContactComponent: React.FC = () => {
           </Form>
         )}
       </Formik>
-      <ContactDetails />
       {showModal && <ModalConfirmation setShowModal={setShowModal} />}
     </div>
   );
