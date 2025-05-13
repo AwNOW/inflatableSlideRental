@@ -13,6 +13,17 @@
   font-size: 38px;
   color: #0183c7;
   text-align: center;
+  margin-block-start: 20px;
+  margin-block-end: 15px;
+}
+
+.company-details {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 30px;
+  font-size: 22px;
+  font-weight: 740;
 }
 
 .contact-details {

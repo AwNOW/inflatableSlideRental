@@ -43,6 +43,11 @@ const ContactDetails: FC = () => {
         </div>
         <div className="contact">
           <h2 className="main-column-heading">Kontakt</h2>
+          <div className="company-details">
+            Flucteris Group
+            <br/>
+            NIP: 6351875454
+          </div>
           <div className="contact-information">
             <div className="contact-details-item">
               <h2 className="bold-contact-text">Adres</h2>

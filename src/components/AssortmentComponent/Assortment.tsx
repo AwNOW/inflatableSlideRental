@@ -24,8 +24,8 @@ const AssortmentComponent: React.FC = () => {
       <div className="asso-main-content">
         <h1 className="main-content-heading">Cennik</h1>
         <p className="asso-upper-section-content-text">
-          Podane ceny są cenami brutto. Nie wystawiamy faktury VAT. Kaucja
-          podlega zwrotowi.
+          Podane ceny są cenami brutto. Kaucja podlega zwrotowi.
+          <br/>Wystawiamy faktury VAT!!!
         </p>
         <ul className="items-list">
           <li>
@@ -41,16 +41,16 @@ const AssortmentComponent: React.FC = () => {
               <div className="item-additional-info">
                 <span>Wymiary:</span>
                 <span>szerokość: 3,00m</span>
-                <span>głębokość: 2,80m</span>
+                <span>długość: 2,80m</span>
                 <span>wysokość: 2,10m</span>
                 <span>
                   wymagana przestrzeń: 4x4m<sup>2</sup>
                 </span>
                 <span>waga użytkowania (max): 45kg</span>
-                <span>obciążenie całkowite (max): 180kg</span>
+                <span>obciążenie całkowite (max): 135kg</span>
                 <div>
                   <span>Cena:</span>{" "}
-                  <span className="item-card-price">150 zł / doba</span>
+                  <span className="item-card-price">200 zł / doba</span>
                   <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
@@ -75,7 +75,7 @@ const AssortmentComponent: React.FC = () => {
               <div className="item-additional-info">
                 <span>Wymiary:</span>
                 <span>szerokość: 4,68m</span>
-                <span>głębokość: 4,06m</span>
+                <span>długość: 4,06m</span>
                 <span>wysokość: 2,40m</span>
                 <span>
                   wymagana przestrzeń: 5x6m<sup>2</sup>
@@ -84,7 +84,7 @@ const AssortmentComponent: React.FC = () => {
                 <span>obciążenie całkowite (max): 180kg</span>
                 <div>
                   <span>Cena:</span>{" "}
-                  <span className="item-card-price">200 zł / doba</span>
+                  <span className="item-card-price">250 zł / doba</span>
                   <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
@@ -109,7 +109,7 @@ const AssortmentComponent: React.FC = () => {
               <div className="item-additional-info">
                 <span>Wymiary:</span>
                 <span>szerokość: 2,15m</span>
-                <span>głębokość: 6,00m</span>
+                <span>długość: 6,00m</span>
                 <span>wysokość: 2,85m</span>
                 <span>
                   wymagana przestrzeń: 5x8m<sup>2</sup>
@@ -118,7 +118,7 @@ const AssortmentComponent: React.FC = () => {
                 <span>obciążenie całkowite (max): 180kg</span>
                 <div>
                   <span>Cena:</span>{" "}
-                  <span className="item-card-price">250 zł / doba</span>
+                  <span className="item-card-price">300 zł / doba</span>
                   <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
@@ -142,7 +142,7 @@ const AssortmentComponent: React.FC = () => {
               <div className="item-additional-info">
                 <span>Wymiary:</span>
                 <span>szerokość: 3,40m</span>
-                <span>głębokość: 3,50m</span>
+                <span>długość: 3,50m</span>
                 <span>wysokość: 2,45m</span>
                 <span>
                   wymagana przestrzeń: 5x6m<sup>2</sup>
@@ -151,7 +151,7 @@ const AssortmentComponent: React.FC = () => {
                 <span>obciążenie całkowite (max): 180kg</span>
                 <div>
                   <span>Cena:</span>{" "}
-                  <span className="item-card-price">250 zł / doba</span>
+                  <span className="item-card-price">300 zł / doba</span>
                   <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
@@ -175,16 +175,16 @@ const AssortmentComponent: React.FC = () => {
               <div className="item-additional-info">
                 <span>Wymiary:</span>
                 <span>szerokość: 3,43m</span>
-                <span>głębokość: 3,88m</span>
+                <span>długość: 3,88m</span>
                 <span>wysokość: 2,28m</span>
                 <span>
                   wymagana przestrzeń: 5x5m<sup>2</sup>
                 </span>
                 <span>waga użytkowania (max): 45kg</span>
-                <span>obciążenie całkowite (max): 180kg</span>
+                <span>obciążenie całkowite (max): 135kg</span>
                 <div>
                   <span>Cena:</span>{" "}
-                  <span className="item-card-price">150 zł / doba</span>
+                  <span className="item-card-price">200 zł / doba</span>
                   <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
@@ -208,16 +208,16 @@ const AssortmentComponent: React.FC = () => {
               <div className="item-additional-info">
                 <span>Wymiary:</span>
                 <span>szerokość: 3,78m</span>
-                <span>głębokość: 4,69m</span>
+                <span>dlugość: 4,69m</span>
                 <span>wysokość: 2,50m</span>
                 <span>
                   wymagana przestrzeń: 5x6m<sup>2</sup>
                 </span>
                 <span>waga użytkowania (max): 45kg</span>
-                <span>obciążenie całkowite (max): 180kg</span>
+                <span>obciążenie całkowite (max): 90kg</span>
                 <div>
                   <span>Cena:</span>{" "}
-                  <span className="item-card-price">250 zł / doba</span>
+                  <span className="item-card-price">300 zł / doba</span>
                   <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
