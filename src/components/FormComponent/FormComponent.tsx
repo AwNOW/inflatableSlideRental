@@ -11,6 +11,8 @@ import picAssoTypeC from "../../images/zamekC.png";
 import picAssoTypeD from "../../images/zamekD.png";
 import picAssoTypeE from "../../images/zamekE.png";
 import picAssoTypeF from "../../images/zamekF.png";
+import picAssoTypeG from "../../images/zamekG.png";
+import picAssoTypeH from "../../images/zamekH.png";
 
 import { v4 as uuidv4 } from "uuid";
 import { writeBatch, doc, collection, getDocs } from "firebase/firestore";
@@ -75,6 +77,8 @@ const picAssoTypesObj: { [key in AssortmentTypes]: string } = {
   assoTypeD: picAssoTypeD,
   assoTypeE: picAssoTypeE,
   assoTypeF: picAssoTypeF,
+  assoTypeG: picAssoTypeG,
+  assoTypeH: picAssoTypeH,
 };
 
 type AssortmentTypes =
@@ -83,7 +87,10 @@ type AssortmentTypes =
   | "assoTypeC"
   | "assoTypeD"
   | "assoTypeE"
-  | "assoTypeF";
+  | "assoTypeF"
+  | "assoTypeG"
+  | "assoTypeH"
+
 
 interface FormikOrderFields {
   clientName: string;
@@ -494,6 +501,8 @@ const FormikContactComponent: React.FC = () => {
                         label: "Zamek Słonik Maksa",
                       },
                       { value: "assoTypeF", label: "Zamek Bajtel" },
+                      { value: "assoTypeG", label: "Leśny Tor Przeszkód" },
+                      { value: "assoTypeH", label: "Zjeżdżalnia Jungla i Papuga" },
                     ]}
                     onChange={(e: string) => {
                       setFieldValue("assoType", e);

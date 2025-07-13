@@ -6,6 +6,8 @@ import picAssoTypeC from "../../images/zamekC.png";
 import picAssoTypeD from "../../images/zamekD.png";
 import picAssoTypeE from "../../images/zamekE.png";
 import picAssoTypeF from "../../images/zamekF.png";
+import picAssoTypeG from "../../images/zamekG.png";
+import picAssoTypeH from "../../images/zamekH.png";
 
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
@@ -24,9 +26,81 @@ const AssortmentComponent: React.FC = () => {
       <div className="asso-main-content">
         <h1 className="main-content-heading">Cennik</h1>
         <p className="asso-upper-section-content-text">
-          Podane ceny są cenami brutto. Kaucja podlega zwrotowi.
+          Podane ceny są cenami brutto.
+          <br/>Kaucja podlega zwrotowi.
           <br/>Wystawiamy faktury VAT!!!
         </p>
+
+      <div className="section">
+        <h2 className="section-title">Duże dmuchańce</h2>
+        <p className="section-subtext">Obsługa urządzeń - ceny indywidualne</p>
+        <ul className="items-list">
+          <li>
+            <Link className="item-card" to="/rezerwacja">
+              <div className="item-card-img-container">
+                <img
+                  className="item-image"
+                  src={picAssoTypeG}
+                  alt="dmuchanec1"
+                />
+              </div>
+              <h2 className="item-card-heading">Leśny Tor Przeszkód</h2>
+              <div className="item-additional-info">
+                <span>Wymiary:</span>
+                <span>szerokość: 7,00m</span>
+                <span>długość: 12,50m</span>
+                <span>wysokość: 4,20m</span>
+                <span>
+                  wymagana przestrzeń: 13x7m<sup>2</sup>
+                </span>
+                <div>
+                  <span>Cena:</span>{" "}
+                  <span className="item-card-price">1000 zł / doba</span>
+                  <span className="item-card-deposit"> + kaucja</span>
+                </div>
+              </div>
+              <div>
+                <button className="button-primary yellow" type="submit">
+                  REZERWUJ
+                </button>
+              </div>
+            </Link>
+          </li>
+          <li>
+            <Link className="item-card" to="/rezerwacja">
+              <div className="item-card-img-container">
+                <img
+                  className="item-image"
+                  src={picAssoTypeH}
+                  alt="dmuchanec1"
+                />
+              </div>
+              <h2 className="item-card-heading">Zjeżdżalnia Jungla i Papugi</h2>
+              <div className="item-additional-info">
+                <span>Wymiary:</span>
+                <span>szerokość: 3,20m</span>
+                <span>długość: 5,20m</span>
+                <span>wysokość: 4,78m</span>
+                <span>
+                  wymagana przestrzeń: 4x6m<sup>2</sup>
+                </span>
+                <div>
+                  <span>Cena:</span>{" "}
+                  <span className="item-card-price">500 zł / doba</span>
+                  <span className="item-card-deposit"> + kaucja</span>
+                </div>
+              </div>
+              <div>
+                <button className="button-primary yellow" type="submit">
+                  REZERWUJ
+                </button>
+              </div>
+            </Link>
+          </li>
+          </ul>
+      </div>
+      <div className="section">
+        <h2 className="section-title">Małe dmuchańce</h2>
         <ul className="items-list">
           <li>
             <Link className="item-card" to="/rezerwacja">
@@ -70,7 +144,6 @@ const AssortmentComponent: React.FC = () => {
                   alt="dmuchanec1"
                 />
               </div>
-
               <h2 className="item-card-heading">Zamek La Palma</h2>
               <div className="item-additional-info">
                 <span>Wymiary:</span>
@@ -88,7 +161,6 @@ const AssortmentComponent: React.FC = () => {
                   <span className="item-card-deposit"> + kaucja</span>
                 </div>
               </div>
-
               <div>
                 <button className="button-primary yellow" type="submit">
                   REZERWUJ
@@ -229,6 +301,7 @@ const AssortmentComponent: React.FC = () => {
             </Link>
           </li>
         </ul>
+      </div>
       </div>
     </div>
   );
