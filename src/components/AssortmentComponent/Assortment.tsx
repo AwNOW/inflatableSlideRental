@@ -33,7 +33,7 @@ const AssortmentComponent: React.FC = () => {
 
       <div className="section">
         <h2 className="section-title">Duże dmuchańce</h2>
-        <p className="section-subtext">Obsługa urządzeń - ceny indywidualne</p>
+        <p className="section-subtext">Obsługa urządzeń - ceny indywidualne, prosimy o kontakt</p>
         <ul className="items-list">
           <li>
             <Link className="item-card" to="/rezerwacja">
