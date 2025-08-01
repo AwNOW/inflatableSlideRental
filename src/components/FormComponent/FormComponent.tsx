@@ -279,6 +279,8 @@ const FormikContactComponent: React.FC = () => {
     assoTypeD: 1,
     assoTypeE: 1,
     assoTypeF: 1,
+    assoTypeG: 1,
+    assoTypeH: 1,
   };
   useEffect(() => {
     const ordersCollection = collection(firestore, "orders");
